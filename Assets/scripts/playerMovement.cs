@@ -1,50 +1,81 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class playerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
+    public float speed = 5.0f;              // Speed of the player movement
+    public float jumpForce = 7.0f;          // Jump force applied to the player
+    public float rotationSpeed = 5.0f;      // Rotation speed for arrow key input
 
-    public Rigidbody rb;
-    public float move;
-
+    private Rigidbody rb;
+    private bool isGrounded;
 
     void Start()
     {
-        move = 0;
-        speed = 35.0f;
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        rb.AddForce(transform.forward * move * speed);
-    }
     void FixedUpdate()
     {
-        if (Input.GetKeyUp(KeyCode.W)) {
-            move = 0.0f;
-        }
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            move = 0.0f;
-        }
-        //"wasd" movement controls
+        //WASD Movement controls
+        Vector3 movement = Vector3.zero;
+
         if (Input.GetKey(KeyCode.W))
         {
-            move = 1.0f;
+            movement += transform.forward; // Move forward
         }
         if (Input.GetKey(KeyCode.S))
         {
-            move = -1.0f;
+            movement -= transform.forward; // Move backward
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(0, -5, 0);
+            movement -= transform.right; // Move left
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(0, 5, 0);
+            movement += transform.right; // Move right
+        }
+
+        // Apply movement using Rigidbody's velocity for smooth control
+        rb.linearVelocity = new Vector3(movement.x * speed, rb.linearVelocity.y, movement.z * speed);
+
+        // Rotation controls using Left and Right arrow keys (preserved)
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.Rotate(0, -rotationSpeed, 0); // Rotate left
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Rotate(0, rotationSpeed, 0); // Rotate right
+        }
+        Debug.Log(isGrounded);
+    }
+
+    void Update()
+    {
+        // Jumping
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("jumping!!!");
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+    }
+
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "floor")
+        {
+            isGrounded = true;
+        }
+    }
+
+    void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.tag == "floor")
+        {
+            isGrounded = false;
         }
     }
 }

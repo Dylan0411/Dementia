@@ -3397,9 +3397,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1790355010}
+        - m_Target: {fileID: 1790355016}
           m_TargetAssemblyTypeName: buttonAnimation, Assembly-CSharp
-          m_MethodName: 
+          m_MethodName: animationSTART
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

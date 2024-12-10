@@ -39,17 +39,6 @@ public class PlayerMovement : MonoBehaviour
 
         // Apply movement using Rigidbody's velocity for smooth control
         rb.linearVelocity = new Vector3(movement.x * speed, rb.linearVelocity.y, movement.z * speed);
-
-        // Rotation controls using Left and Right arrow keys (preserved)
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Rotate(0, -rotationSpeed, 0); // Rotate left
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Rotate(0, rotationSpeed, 0); // Rotate right
-        }
-        Debug.Log(isGrounded);
     }
 
     void Update()

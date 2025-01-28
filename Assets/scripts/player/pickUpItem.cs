@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PickupItem : MonoBehaviour
@@ -15,8 +16,15 @@ public class PickupItem : MonoBehaviour
 
     public GameObject dropItemText;
     public GameObject pickUpItemText;
+    public GameObject placeItemText;
 
     GameObject collectedItem;
+    GameObject itemDestination;
+
+    bool canDrop;
+
+    int itemsReturned;
+    public int totalNumberOfItems;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,8 +35,14 @@ public class PickupItem : MonoBehaviour
         defaultCrosshair.SetActive(true);
         dropItemText.SetActive(false);
         pickUpItemText.SetActive(false);
+        placeItemText.SetActive(false);
 
         collectedItem = null;
+        itemDestination = null;
+        canDrop = false;
+
+        itemsReturned = 0;
+        totalNumberOfItems = 6;//CHANGE THIS IN THE FUTURE TO MATCH THE ACTUAL VALUE<<<<<<<<<<<<<<<<<<<<<<<
     }
 
 
@@ -38,7 +52,7 @@ public class PickupItem : MonoBehaviour
     void Update()
     {
 
-        if (collectedItem != null) //if player is holding an item then...
+        if (collectedItem != null && canDrop == true) //if player is holding an item then...
         {
             if (Input.GetKeyDown(KeyCode.F)) //drop item
             {
@@ -59,7 +73,6 @@ public class PickupItem : MonoBehaviour
             }
         }
 
-
         Ray ray;
         RaycastHit hit;
 
@@ -67,10 +80,76 @@ public class PickupItem : MonoBehaviour
 
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.red); //TEMP - DELETE THIS
 
-        if (Physics.Raycast(ray, out hit, 2.5f , ~ignoreLayer)) //shoot ray (allow it to shoot through layer -> any invisible colliders)
+        if (Physics.Raycast(ray, out hit, 2.5f, ~ignoreLayer)) //shoot ray (allow it to shoot through layer -> any invisible colliders)
         {
-            if (hit.collider.gameObject.tag == "canPickup")//if the item is collectable the crosshair changes for the player
+
+            if (hit.collider.gameObject.tag == "itemDestination")//if the item is collectable the crosshair changes for the player
             {
+                if (collectedItem != null) //ensures player doesnt pick up multiple items
+                {
+                    canDrop = false;//this stops the player dropping the item when they want to place it
+
+                    puzzleConcept1_Item itemId = collectedItem.GetComponent<puzzleConcept1_Item>();//access the id number of the item
+                    puzzleConcept1_Destination destinationId = hit.collider.gameObject.GetComponent<puzzleConcept1_Destination>(); //access the id number of the destination
+                    if (itemId.idNumber == destinationId.idNumber) //if the id numbers match then...
+                    {
+                        //display the correct text
+                        placeItemText.SetActive(true);
+                        dropItemText.SetActive(false);
+
+                        if (Input.GetKeyDown(KeyCode.F)) //place item
+                        {
+                            //note the destination object
+                            itemDestination = hit.collider.gameObject;
+
+                            //drop item and remove it as a child of the hand
+                            collectedItem.transform.parent = null;
+
+                            //display no text
+                            dropItemText.SetActive(false);
+
+                            //move item to destination
+                            collectedItem.transform.position = itemDestination.transform.position;
+
+                            //reset rotation of the object to match the hand
+                            collectedItem.transform.rotation = itemDestination.transform.rotation;
+
+                            //re-enable the items collider
+                            Collider itemCollider = collectedItem.GetComponent<Collider>();
+                            itemCollider.enabled = true;
+
+                            //re-enable the items physics
+                            Rigidbody itemRigidbody = collectedItem.GetComponent<Rigidbody>();
+                            itemRigidbody.isKinematic = false;
+
+                            //stop the player from being able to move the item
+                            collectedItem.tag = "Untagged";
+
+                            //cleanup the reference to the item as were now done with it
+                            collectedItem = null;
+
+                            //despawn the destination object
+                            Destroy(itemDestination);
+
+                            //note down the number of items the player has returned to their correct positions
+                            itemsReturned++;
+
+                            //display the correct text
+                            placeItemText.SetActive(false);
+                        }
+                    }
+                    else
+                    {
+                        canDrop = true; //allow the play to drop the item
+                        //display the correct text
+                        placeItemText.SetActive(false);
+                        dropItemText.SetActive(true);
+                    }
+                }
+            }
+            else if (hit.collider.gameObject.tag == "canPickup")//if the item is collectable the crosshair changes for the player
+            {
+                //display the correct hud elements
                 interactableCrosshair.SetActive(true);
                 defaultCrosshair.SetActive(false);
                 pickUpItemText.SetActive(true);
@@ -114,6 +193,7 @@ public class PickupItem : MonoBehaviour
                 if (collectedItem != null)
                 {
                     dropItemText.SetActive(true);
+                    canDrop = true;//allow the player to drop the item in their hand
                 }
             }
         }
@@ -125,7 +205,15 @@ public class PickupItem : MonoBehaviour
             if (collectedItem != null)
             {
                 dropItemText.SetActive(true);
+                canDrop = true;//allow the player to drop the item in their hand
             }
+        }
+
+
+
+        if (itemsReturned == totalNumberOfItems)//when the player completes concept 1
+        {
+            Debug.Log("the player has returned all items.. display a note as the puzzle doc said to");
         }
     }
 }

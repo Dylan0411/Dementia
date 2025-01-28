@@ -6,6 +6,7 @@ TagManager:
   tags:
   - floor
   - canPickup
+  - itemDestination
   layers:
   - Default
   - TransparentFX

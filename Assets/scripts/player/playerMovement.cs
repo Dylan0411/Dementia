@@ -46,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
         // Jumping
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("jumping!!!");
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }

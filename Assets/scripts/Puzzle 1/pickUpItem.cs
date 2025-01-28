@@ -190,6 +190,7 @@ public class PickupItem : MonoBehaviour
                 interactableCrosshair.SetActive(false);
                 defaultCrosshair.SetActive(true);
                 pickUpItemText.SetActive(false);
+                placeItemText.SetActive(false);
                 if (collectedItem != null)
                 {
                     dropItemText.SetActive(true);
@@ -202,6 +203,7 @@ public class PickupItem : MonoBehaviour
             interactableCrosshair.SetActive(false);
             defaultCrosshair.SetActive(true);
             pickUpItemText.SetActive(false);
+            placeItemText.SetActive(false);
             if (collectedItem != null)
             {
                 dropItemText.SetActive(true);

@@ -18,6 +18,7 @@ public class pauseMenu : MonoBehaviour
         pauseMenuCanvas.SetActive(false);
         settingsMenuCanvas.SetActive(false);
         player.GetComponent<playerLook>().enabled = true;
+        player.GetComponent<PickupItem>().enabled = true;
     }
 
     void Update()
@@ -25,6 +26,7 @@ public class pauseMenu : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Escape)) //if esc key pressed then pause game
         {
             player.GetComponent<playerLook>().enabled = false;//disable player look controls
+            player.GetComponent<PickupItem>().enabled = false;//disable player raycast controls for picking up items
             Cursor.lockState = CursorLockMode.None;//let the player move the cursor
             pauseMenuCanvas.SetActive(true); //show pause menu
             Cursor.visible = true; //show cursor
@@ -39,6 +41,8 @@ public class pauseMenu : MonoBehaviour
         pauseMenuCanvas.SetActive(false);//hide pause menu
         Cursor.visible = false; //hides cursor
         player.GetComponent<playerLook>().enabled = true;//re-enable player look controls
+        player.GetComponent<PickupItem>().enabled = true;//re-enable player raycast controls for picking up items
+
         Cursor.lockState = CursorLockMode.Locked; //re-Locks cursor to middle of the screen
 
     }

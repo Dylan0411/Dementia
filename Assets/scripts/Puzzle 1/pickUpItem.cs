@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickupItem : MonoBehaviour
 {
@@ -26,9 +27,12 @@ public class PickupItem : MonoBehaviour
     int itemsReturned;
     public int totalNumberOfItems;
 
+    public Text hudItemIdText;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        hudItemIdText.text = "";
         ignoreLayer = LayerMask.GetMask("letRaycastThrough");
 
         interactableCrosshair.SetActive(false);
@@ -155,6 +159,38 @@ public class PickupItem : MonoBehaviour
                 pickUpItemText.SetActive(true);
                 dropItemText.SetActive(false);
 
+                //display the correct item name on the hud
+                puzzleConcept1_Item itemId = hit.collider.gameObject.GetComponent<puzzleConcept1_Item>();//access the id number of the item
+                if (itemId.idNumber == 1)
+                {
+                    hudItemIdText.text = "shampoo";
+                }
+                else if (itemId.idNumber == 2)
+                {
+                    hudItemIdText.text = "spatula";
+                }
+                else if (itemId.idNumber == 3)
+                {
+                    hudItemIdText.text = "tv remote";
+                }
+                else if (itemId.idNumber == 4)
+                {
+                    hudItemIdText.text = "book";
+                }
+                else if (itemId.idNumber == 5)
+                {
+                    hudItemIdText.text = "hairbrush";
+                }
+                else if (itemId.idNumber == 6)
+                {
+                    hudItemIdText.text = "headphones";
+                }
+                else
+                {
+                    hudItemIdText.text = "";
+                }
+
+                //actual pickup mechanic
                 if (collectedItem == null) //ensures player doesnt pick up multiple items
                 {
                     if (Input.GetKeyDown(KeyCode.F)) //pickup item

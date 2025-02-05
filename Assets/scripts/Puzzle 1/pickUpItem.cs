@@ -47,6 +47,8 @@ public class PickupItem : MonoBehaviour
 
         itemsReturned = 0;
         totalNumberOfItems = 6;//CHANGE THIS IN THE FUTURE TO MATCH THE ACTUAL VALUE<<<<<<<<<<<<<<<<<<<<<<<
+
+        PlayerPrefs.SetInt("note1Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
     }
 
 
@@ -115,16 +117,16 @@ public class PickupItem : MonoBehaviour
                             //move item to destination
                             collectedItem.transform.position = itemDestination.transform.position;
 
-                            //reset rotation of the object to match the hand
+                            //reset rotation of the object to match the destination
                             collectedItem.transform.rotation = itemDestination.transform.rotation;
 
                             //re-enable the items collider
                             Collider itemCollider = collectedItem.GetComponent<Collider>();
                             itemCollider.enabled = true;
 
-                            //re-enable the items physics
-                            Rigidbody itemRigidbody = collectedItem.GetComponent<Rigidbody>();
-                            itemRigidbody.isKinematic = false;
+                            //re-enable the items physics>>>disabled as i think were gonna wanna not be able to move the item after placing it?
+                            //Rigidbody itemRigidbody = collectedItem.GetComponent<Rigidbody>();
+                            //itemRigidbody.isKinematic = false;
 
                             //stop the player from being able to move the item
                             collectedItem.tag = "Untagged";
@@ -249,9 +251,10 @@ public class PickupItem : MonoBehaviour
 
 
 
-        if (itemsReturned == totalNumberOfItems)//when the player completes concept 1
+        if (itemsReturned == totalNumberOfItems)//when the player completes puzzle concept 1
         {
-            Debug.Log("the player has returned all items.. display a note as the puzzle doc said to");
+            //give them a note
+            PlayerPrefs.SetInt("note1Status", 1);
         }
     }
 }

@@ -32,20 +32,61 @@ public class brokenItem : MonoBehaviour
             Ray ray;
             RaycastHit hit;
 
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition); // fire ray from camera constantly
+            Camera tableCam = tableCamera.GetComponent<Camera>();
+            ray = tableCam.ScreenPointToRay(Input.mousePosition); // fire ray from camera constantly
 
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red); //TEMP - DELETE THIS
 
             if (Physics.Raycast(ray, out hit, 2.5f)) //shoot ray
             {
-
-                if (hit.collider.gameObject.tag == "teapotHandle1")//if the item is the table the crosshair changes for the player
+                if (hit.collider.gameObject.tag == "teapotSpout")//if the mouse is hovering over an item
                 {
-
-                    Debug.Log("teapotHandle1");
-
-
-
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+                        Debug.Log("teapotSpout");
+                    }
+                }
+                if (hit.collider.gameObject.tag == "teapotHandle1")//if the mouse is hovering over an item
+                {
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+                        Debug.Log("teapotHandle1");
+                    }
+                }
+                if (hit.collider.gameObject.tag == "teapotHandle2")//if the mouse is hovering over an item
+                {
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+                        Debug.Log("teapotHandle2");
+                    }
+                }
+                if (hit.collider.gameObject.tag == "teapotLid1")//if the mouse is hovering over an item
+                {
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+                        Debug.Log("teapotLid1");
+                    }
+                }
+                if (hit.collider.gameObject.tag == "teapotLid2")//if the mouse is hovering over an item
+                {
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+                        Debug.Log("teapotLid2");
+                    }
+                }
+                if (hit.collider.gameObject.tag == "teapotBase")//if the mouse is hovering over an item
+                {
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+                        Debug.Log("teapotBase");
+                    }
+                }
+                if (hit.collider.gameObject.tag == "teapotMainBody")//if the mouse is hovering over an item
+                {
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+                        Debug.Log("teapotMainBody");
+                    }
                 }
 
 

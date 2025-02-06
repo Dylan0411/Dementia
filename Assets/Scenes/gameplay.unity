@@ -1585,7 +1585,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.44
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -1997,7 +1997,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
+  m_Radius: 0.38
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
@@ -4883,7 +4883,7 @@ GameObject:
   - component: {fileID: 700712747}
   m_Layer: 0
   m_Name: handle1
-  m_TagString: Untagged
+  m_TagString: teapotHandle1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5079,7 +5079,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
+  m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
@@ -6093,7 +6093,7 @@ GameObject:
   - component: {fileID: 869710357}
   m_Layer: 0
   m_Name: mainBody
-  m_TagString: Untagged
+  m_TagString: teapotMainBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6410,7 +6410,7 @@ GameObject:
   - component: {fileID: 913993249}
   m_Layer: 0
   m_Name: spout
-  m_TagString: Untagged
+  m_TagString: teapotSpout
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6424,7 +6424,7 @@ Transform:
   m_GameObject: {fileID: 913993247}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3765951, y: -0, z: -0, w: 0.92637795}
-  m_LocalPosition: {x: 0.29999924, y: -0.30786943, z: -0.19420004}
+  m_LocalPosition: {x: 0.29999924, y: -0.394, z: -0.19420004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8277,7 +8277,7 @@ GameObject:
   - component: {fileID: 1130983398}
   m_Layer: 0
   m_Name: lid2
-  m_TagString: Untagged
+  m_TagString: teapotLid2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8525,7 +8525,7 @@ GameObject:
   - component: {fileID: 1183275406}
   m_Layer: 0
   m_Name: handle2
-  m_TagString: Untagged
+  m_TagString: teapotHandle2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9953,7 +9953,7 @@ GameObject:
   - component: {fileID: 1397174454}
   m_Layer: 0
   m_Name: lid1
-  m_TagString: Untagged
+  m_TagString: teapotLid1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11855,7 +11855,7 @@ GameObject:
   - component: {fileID: 1703888341}
   m_Layer: 0
   m_Name: base
-  m_TagString: Untagged
+  m_TagString: teapotBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13929,7 +13929,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1981624390
 MeshRenderer:

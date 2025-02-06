@@ -27,16 +27,30 @@ public class brokenItem : MonoBehaviour
                 tableInterface.usingTable = false;  //mark the table as not being used (allows the player to walk around etc)
             }
 
-            //interacting with broken vase code here
+            //interacting with broken teapot code here
+
+            Ray ray;
+            RaycastHit hit;
+
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition); // fire ray from camera constantly
+
+            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red); //TEMP - DELETE THIS
+
+            if (Physics.Raycast(ray, out hit, 2.5f)) //shoot ray
+            {
+
+                if (hit.collider.gameObject.tag == "teapotHandle1")//if the item is the table the crosshair changes for the player
+                {
+
+                    Debug.Log("teapotHandle1");
 
 
 
+                }
 
 
-
-
-
-
+            }
         }
+
     }
 }

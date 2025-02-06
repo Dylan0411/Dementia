@@ -10,8 +10,6 @@ public class PickupItem : MonoBehaviour
 
 
     LayerMask ignoreLayer;
-    public GameObject interactableCrosshair;
-    public GameObject defaultCrosshair;
 
     public Transform playerHand;
 
@@ -35,8 +33,6 @@ public class PickupItem : MonoBehaviour
         hudItemIdText.text = "";
         ignoreLayer = LayerMask.GetMask("letRaycastThrough");
 
-        interactableCrosshair.SetActive(false);
-        defaultCrosshair.SetActive(true);
         dropItemText.SetActive(false);
         pickUpItemText.SetActive(false);
         placeItemText.SetActive(false);
@@ -156,8 +152,6 @@ public class PickupItem : MonoBehaviour
             else if (hit.collider.gameObject.tag == "canPickup")//if the item is collectable the crosshair changes for the player
             {
                 //display the correct hud elements
-                interactableCrosshair.SetActive(true);
-                defaultCrosshair.SetActive(false);
                 pickUpItemText.SetActive(true);
                 dropItemText.SetActive(false);
 
@@ -225,8 +219,6 @@ public class PickupItem : MonoBehaviour
             }
             else //change crosshair back if ray is fired into a different tag AND display the correct text
             {
-                interactableCrosshair.SetActive(false);
-                defaultCrosshair.SetActive(true);
                 pickUpItemText.SetActive(false);
                 placeItemText.SetActive(false);
                 if (collectedItem != null)
@@ -238,8 +230,6 @@ public class PickupItem : MonoBehaviour
         }
         else //change crosshair back if ray is fired into the air AND display the correct text
         {
-            interactableCrosshair.SetActive(false);
-            defaultCrosshair.SetActive(true);
             pickUpItemText.SetActive(false);
             placeItemText.SetActive(false);
             if (collectedItem != null)

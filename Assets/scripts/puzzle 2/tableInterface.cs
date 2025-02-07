@@ -18,6 +18,8 @@ public class tableInterface : MonoBehaviour
 
     public GameObject playerTablePos;
 
+    public GameObject teapotHud;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,6 +31,8 @@ public class tableInterface : MonoBehaviour
 
         mainPlayerCamera.SetActive(true);
         tableCamera.SetActive(false);
+
+        teapotHud.SetActive(false);
     }
 
     // Update is called once per frame
@@ -62,6 +66,7 @@ public class tableInterface : MonoBehaviour
                         //show correct hud elements
                         interactWithTableText.SetActive(false);
                         interactableCrosshair.SetActive(false);
+                        teapotHud.SetActive(true);
 
                         //switch cameras
                         tableCamera.SetActive(true);
@@ -69,6 +74,10 @@ public class tableInterface : MonoBehaviour
                         player.SetActive(false);
 
                         usingTable = true; //mark the table as being used (stops the player being able to walk around etc)
+                    }
+                    else
+                    {
+                        teapotHud.SetActive(false);
                     }
                 }
                 else //change crosshair back if ray is fired into a different tag AND display the correct text

@@ -6,6 +6,30 @@ public class brokenItem : MonoBehaviour
     public GameObject tableCamera;
     public GameObject mainPlayerCamera;
 
+    public GameObject ghostTeapot;
+    //
+    public GameObject teapotSpout;
+    public GameObject teapotHandle1;
+    public GameObject teapotHandle2;
+    public GameObject teapotLid1;
+    public GameObject teapotLid2;
+    public GameObject teapotBase;
+    public GameObject teapotMainBody;
+
+    int rotationSpeed = 100;
+
+    bool rotateTeapotLeft;
+    bool rotateTeapotRight;
+
+
+
+
+    void Start()
+    {
+        rotateTeapotLeft = false;
+        rotateTeapotRight = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -26,6 +50,9 @@ public class brokenItem : MonoBehaviour
 
                 tableInterface.usingTable = false;  //mark the table as not being used (allows the player to walk around etc)
             }
+
+
+
 
             //interacting with broken teapot code here
 
@@ -90,8 +117,69 @@ public class brokenItem : MonoBehaviour
                 }
 
 
+                if (rotateTeapotRight == true)
+                {
+                    ghostTeapot.transform.Rotate(-Vector3.forward, rotationSpeed * Time.deltaTime);
+                    //
+                    teapotSpout.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
+                    teapotHandle1.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
+                    teapotHandle2.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
+                    teapotLid1.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
+                    //teapotLid2.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
+                    teapotBase.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
+                    teapotMainBody.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
+
+
+                }
+                if (rotateTeapotLeft == true)
+                {
+                    ghostTeapot.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+                    //
+                    teapotSpout.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
+                    teapotHandle1.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
+                    teapotHandle2.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
+                    teapotLid1.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+                    //teapotLid2.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+                    teapotBase.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+                    teapotMainBody.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+
+                }
+
             }
         }
 
     }
+
+
+
+    public void rotateRightSTART()
+    {
+        //rotat teapot to the right
+        rotateTeapotRight = true;
+    }
+    public void rotateRightSTOP()
+    {
+        //rotat teapot to the right
+        rotateTeapotRight = false;
+    }
+
+    public void rotateLeftSTART()
+    {
+        //rotat teapot to the right
+        rotateTeapotLeft = true;
+    }
+    public void rotateLeftSTOP()
+    {
+        //rotat teapot to the right
+        rotateTeapotLeft = false;
+    }
+
+
+
+
+
+
+
+
+
 }

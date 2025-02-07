@@ -16,27 +16,50 @@ public class brokenItem : MonoBehaviour
     public GameObject teapotBase;
     public GameObject teapotMainBody;
 
+    public GameObject ghostTeapotSpout;
+    public GameObject ghostTeapotHandle1;
+    public GameObject ghostTeapotHandle2;
+    public GameObject ghostTeapotLid1;
+    public GameObject ghostTeapotLid2;
+    public GameObject ghostTeapotBase;
+    public GameObject ghostTeapotMainBody;
+
     int rotationSpeed = 100;
 
     bool rotateTeapotLeft;
     bool rotateTeapotRight;
 
     private Vector3 offset;
-    private bool isFollowingMouse = false;
+    public static bool isFollowingMouse;
 
     GameObject selectedObject;
 
-
+    public static int correctPieces;
 
     void Start()
     {
         rotateTeapotLeft = false;
         rotateTeapotRight = false;
+
+        isFollowingMouse = false;
+
+        correctPieces = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
+        if (correctPieces == 7)
+        {
+            Debug.Log("puzzle Complete!!!!!");
+        }
+
+
+
+
+
         if (tableInterface.usingTable == true)
         {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)) //exit table
@@ -77,6 +100,8 @@ public class brokenItem : MonoBehaviour
                         Debug.Log("teapotSpout");
                         //make theobject follow the mouse position
                         isFollowingMouse = true;
+                        //
+
                         selectedObject = teapotSpout;
                     }
                 }
@@ -177,13 +202,12 @@ public class brokenItem : MonoBehaviour
             {
                 ghostTeapot.transform.Rotate(-Vector3.forward, rotationSpeed * Time.deltaTime);
                 //
-                teapotSpout.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
-                teapotHandle1.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
-                teapotHandle2.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
-                teapotLid1.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
-                //teapotLid2.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
-                teapotBase.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
-                teapotMainBody.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
+                //teapotSpout.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
+                //teapotHandle1.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
+                //teapotHandle2.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
+                //teapotLid1.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
+                //teapotBase.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
+                //teapotMainBody.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
 
 
             }
@@ -191,19 +215,24 @@ public class brokenItem : MonoBehaviour
             {
                 ghostTeapot.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
                 //
-                teapotSpout.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
-                teapotHandle1.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
-                teapotHandle2.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
-                teapotLid1.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
-                //teapotLid2.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
-                teapotBase.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
-                teapotMainBody.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+                //teapotSpout.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
+                //teapotHandle1.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
+                //teapotHandle2.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
+                //teapotLid1.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+                //teapotBase.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+                //teapotMainBody.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
 
             }
         }
 
     }
 
+    //public GameObject ghostTeapotHandle1;
+    //public GameObject ghostTeapotHandle2;
+    //public GameObject ghostTeapotLid1;
+    //public GameObject ghostTeapotLid2;
+    //public GameObject ghostTeapotBase;
+    //public GameObject ghostTeapotMainBody;
 
 
     public void rotateRightSTART()

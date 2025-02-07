@@ -21,6 +21,10 @@ public class brokenItem : MonoBehaviour
     bool rotateTeapotLeft;
     bool rotateTeapotRight;
 
+    private Vector3 offset;
+    private bool isFollowingMouse = false;
+
+    GameObject selectedObject;
 
 
 
@@ -71,6 +75,9 @@ public class brokenItem : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
                         Debug.Log("teapotSpout");
+                        //make theobject follow the mouse position
+                        isFollowingMouse = true;
+                        selectedObject = teapotSpout;
                     }
                 }
                 if (hit.collider.gameObject.tag == "teapotHandle1")//if the mouse is hovering over an item
@@ -78,6 +85,9 @@ public class brokenItem : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
                         Debug.Log("teapotHandle1");
+                        //make theobject follow the mouse position
+                        isFollowingMouse = true;
+                        selectedObject = teapotHandle1;
                     }
                 }
                 if (hit.collider.gameObject.tag == "teapotHandle2")//if the mouse is hovering over an item
@@ -85,6 +95,9 @@ public class brokenItem : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
                         Debug.Log("teapotHandle2");
+                        //make theobject follow the mouse position
+                        isFollowingMouse = true;
+                        selectedObject = teapotHandle2;
                     }
                 }
                 if (hit.collider.gameObject.tag == "teapotLid1")//if the mouse is hovering over an item
@@ -92,6 +105,9 @@ public class brokenItem : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
                         Debug.Log("teapotLid1");
+                        //make theobject follow the mouse position
+                        isFollowingMouse = true;
+                        selectedObject = teapotLid1;
                     }
                 }
                 if (hit.collider.gameObject.tag == "teapotLid2")//if the mouse is hovering over an item
@@ -99,6 +115,9 @@ public class brokenItem : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
                         Debug.Log("teapotLid2");
+                        //make theobject follow the mouse position
+                        isFollowingMouse = true;
+                        selectedObject = teapotLid2;
                     }
                 }
                 if (hit.collider.gameObject.tag == "teapotBase")//if the mouse is hovering over an item
@@ -106,6 +125,9 @@ public class brokenItem : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
                         Debug.Log("teapotBase");
+                        //make theobject follow the mouse position
+                        isFollowingMouse = true;
+                        selectedObject = teapotBase;
                     }
                 }
                 if (hit.collider.gameObject.tag == "teapotMainBody")//if the mouse is hovering over an item
@@ -113,37 +135,69 @@ public class brokenItem : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
                         Debug.Log("teapotMainBody");
+
+                        //make theobject follow the mouse position
+                        isFollowingMouse = true;
+                        selectedObject = teapotMainBody;
                     }
                 }
+            }
 
+            /////
+            if (isFollowingMouse)
+            {
 
-                if (rotateTeapotRight == true)
+                if (Input.GetKeyUp(KeyCode.Mouse0))
                 {
-                    ghostTeapot.transform.Rotate(-Vector3.forward, rotationSpeed * Time.deltaTime);
-                    //
-                    teapotSpout.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
-                    teapotHandle1.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
-                    teapotHandle2.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
-                    teapotLid1.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
-                    //teapotLid2.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
-                    teapotBase.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
-                    teapotMainBody.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
-
-
+                    //stop making the teapotMainBody object follow the mouse position <<< IMPLEMENT THIS
+                    isFollowingMouse = false;
                 }
-                if (rotateTeapotLeft == true)
+
+                // Update teapot's position to follow the mouse
+                RaycastHit hitMousePosition;
+                if (Physics.Raycast(ray, out hitMousePosition, 100f))
                 {
-                    ghostTeapot.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
-                    //
-                    teapotSpout.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
-                    teapotHandle1.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
-                    teapotHandle2.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
-                    teapotLid1.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
-                    //teapotLid2.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
-                    teapotBase.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
-                    teapotMainBody.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+                    // Only update the X and Z positions, keep Y the same as original
+                    Vector3 newPosition = hitMousePosition.point;// + offset;
+                    newPosition.y = selectedObject.transform.position.y; // Preserve the Y position
 
+                    selectedObject.transform.position = newPosition;
                 }
+            }
+
+
+
+
+
+
+
+
+
+            if (rotateTeapotRight == true)
+            {
+                ghostTeapot.transform.Rotate(-Vector3.forward, rotationSpeed * Time.deltaTime);
+                //
+                teapotSpout.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
+                teapotHandle1.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
+                teapotHandle2.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
+                teapotLid1.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
+                //teapotLid2.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
+                teapotBase.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
+                teapotMainBody.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
+
+
+            }
+            if (rotateTeapotLeft == true)
+            {
+                ghostTeapot.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+                //
+                teapotSpout.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
+                teapotHandle1.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
+                teapotHandle2.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
+                teapotLid1.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+                //teapotLid2.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+                teapotBase.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+                teapotMainBody.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
 
             }
         }

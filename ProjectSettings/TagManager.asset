@@ -15,7 +15,6 @@ TagManager:
   - teapotLid2
   - teapotBase
   - teapotMainBody
-  - ghostTeapot
   layers:
   - Default
   - TransparentFX

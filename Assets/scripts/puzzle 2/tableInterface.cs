@@ -20,6 +20,8 @@ public class tableInterface : MonoBehaviour
 
     public GameObject teapotHud;
 
+    public GameObject table;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,6 +35,8 @@ public class tableInterface : MonoBehaviour
         tableCamera.SetActive(false);
 
         teapotHud.SetActive(false);
+
+
     }
 
     // Update is called once per frame
@@ -57,6 +61,7 @@ public class tableInterface : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.F) && usingTable == false) //use table
                     {
+                        //
                         player.transform.position = playerTablePos.transform.position;//move player to the front of the table to avoid spatial disorientation
 
                         //cursor controller
@@ -89,7 +94,21 @@ public class tableInterface : MonoBehaviour
             {
                 interactWithTableText.SetActive(false);
             }
+
+            int note2 = PlayerPrefs.GetInt("note2Status");
+            if (note2 == 1)
+            {
+                teapotHud.SetActive(false);
+
+                interactWithTableText.SetActive(false);
+
+                //change tag of table
+                table.tag = "Untagged";
+                //disable this script
+                this.enabled = false;
+            }
         }
+
     }
 }
 

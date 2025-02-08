@@ -6,7 +6,7 @@ public class brokenPieceMatcher : MonoBehaviour
 
     public int idNumber;
 
-    bool match;
+    public bool match;
 
     GameObject selectedObject;
     GameObject ghostTeaPot;

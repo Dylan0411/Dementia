@@ -16,6 +16,14 @@ public class brokenItem : MonoBehaviour
     public GameObject teapotBase;
     public GameObject teapotMainBody;
 
+    public GameObject teapotSpoutDefaultPos;
+    public GameObject teapotHandle1DefaultPos;
+    public GameObject teapotHandle2DefaultPos;
+    public GameObject teapotLid1DefaultPos;
+    public GameObject teapotLid2DefaultPos;
+    public GameObject teapotBaseDefaultPos;
+    public GameObject teapotMainBodyDefaultPos;
+
     public GameObject ghostTeapotSpout;
     public GameObject ghostTeapotHandle1;
     public GameObject ghostTeapotHandle2;
@@ -23,6 +31,9 @@ public class brokenItem : MonoBehaviour
     public GameObject ghostTeapotLid2;
     public GameObject ghostTeapotBase;
     public GameObject ghostTeapotMainBody;
+
+
+
 
     int rotationSpeed = 100;
 
@@ -44,6 +55,9 @@ public class brokenItem : MonoBehaviour
         isFollowingMouse = false;
 
         correctPieces = 0;
+
+        PlayerPrefs.SetInt("note2Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
+
     }
 
     // Update is called once per frame
@@ -53,7 +67,8 @@ public class brokenItem : MonoBehaviour
 
         if (correctPieces == 7)
         {
-            Debug.Log("puzzle Complete!!!!!");
+            //disable table interface script and rename table tag to smth else
+            PlayerPrefs.SetInt("note2Status", 1);
         }
 
 
@@ -62,7 +77,7 @@ public class brokenItem : MonoBehaviour
 
         if (tableInterface.usingTable == true)
         {
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)) //exit table
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || PlayerPrefs.GetInt("note2Status") == 1) //exit table
             {
                 //lock and hide the cursor
                 Cursor.lockState = CursorLockMode.Locked;//let the player move the cursor
@@ -103,6 +118,8 @@ public class brokenItem : MonoBehaviour
                         //
 
                         selectedObject = teapotSpout;
+                        offset = selectedObject.transform.position - hit.point;
+
                     }
                 }
                 if (hit.collider.gameObject.tag == "teapotHandle1")//if the mouse is hovering over an item
@@ -113,6 +130,8 @@ public class brokenItem : MonoBehaviour
                         //make theobject follow the mouse position
                         isFollowingMouse = true;
                         selectedObject = teapotHandle1;
+                        offset = selectedObject.transform.position - hit.point;
+
                     }
                 }
                 if (hit.collider.gameObject.tag == "teapotHandle2")//if the mouse is hovering over an item
@@ -123,6 +142,8 @@ public class brokenItem : MonoBehaviour
                         //make theobject follow the mouse position
                         isFollowingMouse = true;
                         selectedObject = teapotHandle2;
+                        offset = selectedObject.transform.position - hit.point;
+
                     }
                 }
                 if (hit.collider.gameObject.tag == "teapotLid1")//if the mouse is hovering over an item
@@ -133,6 +154,8 @@ public class brokenItem : MonoBehaviour
                         //make theobject follow the mouse position
                         isFollowingMouse = true;
                         selectedObject = teapotLid1;
+                        offset = selectedObject.transform.position - hit.point;
+
                     }
                 }
                 if (hit.collider.gameObject.tag == "teapotLid2")//if the mouse is hovering over an item
@@ -143,6 +166,8 @@ public class brokenItem : MonoBehaviour
                         //make theobject follow the mouse position
                         isFollowingMouse = true;
                         selectedObject = teapotLid2;
+                        offset = selectedObject.transform.position - hit.point;
+
                     }
                 }
                 if (hit.collider.gameObject.tag == "teapotBase")//if the mouse is hovering over an item
@@ -153,6 +178,8 @@ public class brokenItem : MonoBehaviour
                         //make theobject follow the mouse position
                         isFollowingMouse = true;
                         selectedObject = teapotBase;
+                        offset = selectedObject.transform.position - hit.point;
+
                     }
                 }
                 if (hit.collider.gameObject.tag == "teapotMainBody")//if the mouse is hovering over an item
@@ -164,6 +191,8 @@ public class brokenItem : MonoBehaviour
                         //make theobject follow the mouse position
                         isFollowingMouse = true;
                         selectedObject = teapotMainBody;
+                        offset = selectedObject.transform.position - hit.point;
+
                     }
                 }
             }
@@ -182,8 +211,9 @@ public class brokenItem : MonoBehaviour
                 RaycastHit hitMousePosition;
                 if (Physics.Raycast(ray, out hitMousePosition, 100f))
                 {
+                
                     // Only update the X and Z positions, keep Y the same as original
-                    Vector3 newPosition = hitMousePosition.point;// + offset;
+                    Vector3 newPosition = hitMousePosition.point + offset;
                     newPosition.y = selectedObject.transform.position.y; // Preserve the Y position
 
                     selectedObject.transform.position = newPosition;

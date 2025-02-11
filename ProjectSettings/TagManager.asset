@@ -7,6 +7,15 @@ TagManager:
   - floor
   - canPickup
   - itemDestination
+  - brokenItemArea
+  - teapotSpout
+  - teapotHandle1
+  - teapotHandle2
+  - teapotLid1
+  - teapotLid2
+  - teapotBase
+  - teapotMainBody
+  - ghostTeaPot
   layers:
   - Default
   - TransparentFX

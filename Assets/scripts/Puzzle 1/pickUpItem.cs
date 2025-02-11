@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickupItem : MonoBehaviour
 {
@@ -9,8 +10,6 @@ public class PickupItem : MonoBehaviour
 
 
     LayerMask ignoreLayer;
-    public GameObject interactableCrosshair;
-    public GameObject defaultCrosshair;
 
     public Transform playerHand;
 
@@ -26,13 +25,14 @@ public class PickupItem : MonoBehaviour
     int itemsReturned;
     public int totalNumberOfItems;
 
+    public Text hudItemIdText;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        hudItemIdText.text = "";
         ignoreLayer = LayerMask.GetMask("letRaycastThrough");
 
-        interactableCrosshair.SetActive(false);
-        defaultCrosshair.SetActive(true);
         dropItemText.SetActive(false);
         pickUpItemText.SetActive(false);
         placeItemText.SetActive(false);
@@ -43,6 +43,8 @@ public class PickupItem : MonoBehaviour
 
         itemsReturned = 0;
         totalNumberOfItems = 6;//CHANGE THIS IN THE FUTURE TO MATCH THE ACTUAL VALUE<<<<<<<<<<<<<<<<<<<<<<<
+
+        PlayerPrefs.SetInt("note1Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
     }
 
 
@@ -111,16 +113,16 @@ public class PickupItem : MonoBehaviour
                             //move item to destination
                             collectedItem.transform.position = itemDestination.transform.position;
 
-                            //reset rotation of the object to match the hand
+                            //reset rotation of the object to match the destination
                             collectedItem.transform.rotation = itemDestination.transform.rotation;
 
                             //re-enable the items collider
                             Collider itemCollider = collectedItem.GetComponent<Collider>();
                             itemCollider.enabled = true;
 
-                            //re-enable the items physics
-                            Rigidbody itemRigidbody = collectedItem.GetComponent<Rigidbody>();
-                            itemRigidbody.isKinematic = false;
+                            //re-enable the items physics>>>disabled as i think were gonna wanna not be able to move the item after placing it?
+                            //Rigidbody itemRigidbody = collectedItem.GetComponent<Rigidbody>();
+                            //itemRigidbody.isKinematic = false;
 
                             //stop the player from being able to move the item
                             collectedItem.tag = "Untagged";
@@ -150,11 +152,41 @@ public class PickupItem : MonoBehaviour
             else if (hit.collider.gameObject.tag == "canPickup")//if the item is collectable the crosshair changes for the player
             {
                 //display the correct hud elements
-                interactableCrosshair.SetActive(true);
-                defaultCrosshair.SetActive(false);
                 pickUpItemText.SetActive(true);
                 dropItemText.SetActive(false);
 
+                //display the correct item name on the hud
+                puzzleConcept1_Item itemId = hit.collider.gameObject.GetComponent<puzzleConcept1_Item>();//access the id number of the item
+                if (itemId.idNumber == 1)
+                {
+                    hudItemIdText.text = "shampoo";
+                }
+                else if (itemId.idNumber == 2)
+                {
+                    hudItemIdText.text = "spatula";
+                }
+                else if (itemId.idNumber == 3)
+                {
+                    hudItemIdText.text = "tv remote";
+                }
+                else if (itemId.idNumber == 4)
+                {
+                    hudItemIdText.text = "book";
+                }
+                else if (itemId.idNumber == 5)
+                {
+                    hudItemIdText.text = "hairbrush";
+                }
+                else if (itemId.idNumber == 6)
+                {
+                    hudItemIdText.text = "headphones";
+                }
+                else
+                {
+                    hudItemIdText.text = "";
+                }
+
+                //actual pickup mechanic
                 if (collectedItem == null) //ensures player doesnt pick up multiple items
                 {
                     if (Input.GetKeyDown(KeyCode.F)) //pickup item
@@ -187,8 +219,6 @@ public class PickupItem : MonoBehaviour
             }
             else //change crosshair back if ray is fired into a different tag AND display the correct text
             {
-                interactableCrosshair.SetActive(false);
-                defaultCrosshair.SetActive(true);
                 pickUpItemText.SetActive(false);
                 placeItemText.SetActive(false);
                 if (collectedItem != null)
@@ -200,8 +230,6 @@ public class PickupItem : MonoBehaviour
         }
         else //change crosshair back if ray is fired into the air AND display the correct text
         {
-            interactableCrosshair.SetActive(false);
-            defaultCrosshair.SetActive(true);
             pickUpItemText.SetActive(false);
             placeItemText.SetActive(false);
             if (collectedItem != null)
@@ -213,9 +241,10 @@ public class PickupItem : MonoBehaviour
 
 
 
-        if (itemsReturned == totalNumberOfItems)//when the player completes concept 1
+        if (itemsReturned == totalNumberOfItems)//when the player completes puzzle concept 1
         {
-            Debug.Log("the player has returned all items.. display a note as the puzzle doc said to");
+            //give them a note
+            PlayerPrefs.SetInt("note1Status", 1);
         }
     }
 }

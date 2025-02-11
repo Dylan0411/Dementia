@@ -37,13 +37,15 @@ public class pauseMenu : MonoBehaviour
     //pause menu buttons
     public void resumeButton()
     {
-        Time.timeScale = 1f; //unpause time
         pauseMenuCanvas.SetActive(false);//hide pause menu
-        Cursor.visible = false; //hides cursor
-        player.GetComponent<playerLook>().enabled = true;//re-enable player look controls
-        player.GetComponent<PickupItem>().enabled = true;//re-enable player raycast controls for picking up items
-
-        Cursor.lockState = CursorLockMode.Locked; //re-Locks cursor to middle of the screen
+        if (noteMenu.inNotesMenu == false)//if the player wasnt in the notes menu when pausing
+        {
+            Time.timeScale = 1f; //unpause time
+            Cursor.visible = false; //hides cursor
+            player.GetComponent<playerLook>().enabled = true;//re-enable player look controls
+            player.GetComponent<PickupItem>().enabled = true;//re-enable player raycast controls for picking up items
+            Cursor.lockState = CursorLockMode.Locked; //re-Locks cursor to middle of the screen
+        }
 
     }
     public void settingsButton() //hide the pause menu and show the settings menu

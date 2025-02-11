@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7644222933618495708}
   - component: {fileID: 7974018101211228841}
   m_Layer: 0
-  m_Name: MazeWallE
+  m_Name: MazeWallS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 540470294605825667}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 29}
+  m_LocalPosition: {x: 0, y: 0, z: -14.75}
+  m_LocalScale: {x: 0.5, y: 1, z: 19}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5904659536994455755}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 431563184789293866}
   - component: {fileID: 3717439371105283654}
   m_Layer: 0
-  m_Name: MazeWallW
+  m_Name: MazeWallN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,8 +136,8 @@ Transform:
   m_GameObject: {fileID: 781516546520125895}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 19.5}
-  m_LocalScale: {x: 0.5, y: 1, z: 29}
+  m_LocalPosition: {x: 0, y: 0, z: 14.75}
+  m_LocalScale: {x: 0.5, y: 1, z: 19}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5904659536994455755}
@@ -234,7 +234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8055614185765854497
 Transform:
   m_ObjectHideFlags: 0
@@ -244,8 +244,8 @@ Transform:
   m_GameObject: {fileID: 1417403227703091565}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.54999995, z: 9.75}
-  m_LocalScale: {x: 30, y: 0.1, z: 20}
+  m_LocalPosition: {x: 0, y: 0.54999995, z: 0}
+  m_LocalScale: {x: 20, y: 0.1, z: 30}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5904659536994455755}
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 4439450160114107014}
   - component: {fileID: 6044787740369419405}
   m_Layer: 0
-  m_Name: MazeWallN
+  m_Name: MazeWallE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -352,8 +352,8 @@ Transform:
   m_GameObject: {fileID: 4586573696479697354}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.75, y: 0, z: 9.75}
-  m_LocalScale: {x: 0.5, y: 1, z: 20}
+  m_LocalPosition: {x: 9.75, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 1, z: 30}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5904659536994455755}
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 4861869631578432868}
   - component: {fileID: 1339235854852551488}
   m_Layer: 0
-  m_Name: MazeWallS
+  m_Name: MazeWallW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -460,8 +460,8 @@ Transform:
   m_GameObject: {fileID: 6183421701775459463}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.75, y: 0, z: 9.75}
-  m_LocalScale: {x: 0.5, y: 1, z: 20}
+  m_LocalPosition: {x: -9.75, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 1, z: 30}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5904659536994455755}
@@ -569,12 +569,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 9203548596958804224}
+  - {fileID: 5004860384713831607}
+  - {fileID: 1332357226120583670}
+  - {fileID: 6465125664803167351}
   - {fileID: 1399767225013066097}
   - {fileID: 8055614185765854497}
-  - {fileID: 6465125664803167351}
-  - {fileID: 5004860384713831607}
-  - {fileID: 9203548596958804224}
-  - {fileID: 1332357226120583670}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7537417164858349339
@@ -605,8 +605,8 @@ Transform:
   m_GameObject: {fileID: 7537417164858349339}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 9.75}
-  m_LocalScale: {x: 30, y: 1, z: 20}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 20, y: 1, z: 30}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5904659536994455755}

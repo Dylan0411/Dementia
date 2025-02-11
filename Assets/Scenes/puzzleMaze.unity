@@ -372,7 +372,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f3f2e5d87ce4a3147be33e0d828333f3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -411,7 +411,7 @@ Transform:
   m_GameObject: {fileID: 1328427162}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3, y: 20.721018, z: -4.7428102}
+  m_LocalPosition: {x: -5.52, y: 0, z: 10.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -425,9 +425,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1328427162}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 3
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -452,6 +452,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 105115471986241886, guid: 93be6b7b316ee9b4bbbe1493eeedd1b3, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 105115471986241886, guid: 93be6b7b316ee9b4bbbe1493eeedd1b3, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4341123647344154626, guid: 93be6b7b316ee9b4bbbe1493eeedd1b3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.75
+      objectReference: {fileID: 0}
     - target: {fileID: 5904659536994455755, guid: 93be6b7b316ee9b4bbbe1493eeedd1b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -492,9 +504,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6428499500485167302, guid: 93be6b7b316ee9b4bbbe1493eeedd1b3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6428499500485167302, guid: 93be6b7b316ee9b4bbbe1493eeedd1b3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.625
+      objectReference: {fileID: 0}
     - target: {fileID: 6978184540049943435, guid: 93be6b7b316ee9b4bbbe1493eeedd1b3, type: 3}
       propertyPath: m_Name
       value: Maze
+      objectReference: {fileID: 0}
+    - target: {fileID: 9203548596958804224, guid: 93be6b7b316ee9b4bbbe1493eeedd1b3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9203548596958804224, guid: 93be6b7b316ee9b4bbbe1493eeedd1b3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -521,7 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2049695a846703749af32cc2d28ef40a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiltSpeed: 7.5
+  tiltSpeed: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -22,6 +22,8 @@ public class tableInterface : MonoBehaviour
 
     public GameObject table;
 
+    public GameObject fragments;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,6 +38,7 @@ public class tableInterface : MonoBehaviour
 
         teapotHud.SetActive(false);
 
+        fragments.SetActive(false);
 
     }
 
@@ -66,7 +69,6 @@ public class tableInterface : MonoBehaviour
 
                         //cursor controller
                         Cursor.lockState = CursorLockMode.None;//let the player move the cursor
-                        Cursor.visible = true; //show cursor
                         
                         //show correct hud elements
                         interactWithTableText.SetActive(false);
@@ -79,6 +81,8 @@ public class tableInterface : MonoBehaviour
                         player.SetActive(false);
 
                         usingTable = true; //mark the table as being used (stops the player being able to walk around etc)
+
+                        fragments.SetActive(true);
                     }
                     else
                     {

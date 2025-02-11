@@ -33,7 +33,7 @@ public class brokenItem : MonoBehaviour
     public GameObject ghostTeapotMainBody;
 
 
-
+    public GameObject fragments;
 
     int rotationSpeed = 100;
 
@@ -47,6 +47,10 @@ public class brokenItem : MonoBehaviour
 
     public static int correctPieces;
 
+    public GameObject cylinder;
+
+    public LayerMask ghostTeapotLayerMask;
+
     void Start()
     {
         rotateTeapotLeft = false;
@@ -57,6 +61,8 @@ public class brokenItem : MonoBehaviour
         correctPieces = 0;
 
         PlayerPrefs.SetInt("note2Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
+
+        ghostTeapotLayerMask = LayerMask.NameToLayer("ghostTeapot");
 
     }
 
@@ -77,11 +83,13 @@ public class brokenItem : MonoBehaviour
 
         if (tableInterface.usingTable == true)
         {
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || PlayerPrefs.GetInt("note2Status") == 1) //exit table
+            if (Input.GetKeyDown(KeyCode.Space) || PlayerPrefs.GetInt("note2Status") == 1) //exit table
             {
+
+                fragments.SetActive(false);
+
                 //lock and hide the cursor
                 Cursor.lockState = CursorLockMode.Locked;//let the player move the cursor
-                Cursor.visible = false; //hide cursor
 
                 //switch cameras
                 tableCamera.SetActive(false);
@@ -106,9 +114,21 @@ public class brokenItem : MonoBehaviour
 
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red); //TEMP - DELETE THIS
 
-            if (Physics.Raycast(ray, out hit, 2.5f)) //shoot ray
+            if (Physics.Raycast(ray, out hit, 2.5f, ghostTeapotLayerMask)) //shoot ray
             {
-                if (hit.collider.gameObject.tag == "teapotSpout")//if the mouse is hovering over an item
+
+                if (hit.collider != null)
+                {
+                    //keep the y axis the samwe
+
+                    Vector3 newPosition = hit.point;
+                    newPosition.y = cylinder.transform.position.y; // Preserve the Y position
+
+                    cylinder.transform.position = newPosition;
+
+                }
+
+                    if (hit.collider.gameObject.tag == "teapotSpout")//if the mouse is hovering over an item
                 {
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
@@ -228,7 +248,7 @@ public class brokenItem : MonoBehaviour
 
 
 
-            if (rotateTeapotRight == true)
+            if (Input.GetKey(KeyCode.D))
             {
                 ghostTeapot.transform.Rotate(-Vector3.forward, rotationSpeed * Time.deltaTime);
                 //
@@ -241,7 +261,7 @@ public class brokenItem : MonoBehaviour
 
 
             }
-            if (rotateTeapotLeft == true)
+            if (Input.GetKey(KeyCode.A))
             {
                 ghostTeapot.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
                 //
@@ -262,30 +282,7 @@ public class brokenItem : MonoBehaviour
     //public GameObject ghostTeapotLid1;
     //public GameObject ghostTeapotLid2;
     //public GameObject ghostTeapotBase;
-    //public GameObject ghostTeapotMainBody;
 
-
-    public void rotateRightSTART()
-    {
-        //rotat teapot to the right
-        rotateTeapotRight = true;
-    }
-    public void rotateRightSTOP()
-    {
-        //rotat teapot to the right
-        rotateTeapotRight = false;
-    }
-
-    public void rotateLeftSTART()
-    {
-        //rotat teapot to the right
-        rotateTeapotLeft = true;
-    }
-    public void rotateLeftSTOP()
-    {
-        //rotat teapot to the right
-        rotateTeapotLeft = false;
-    }
 
 
 

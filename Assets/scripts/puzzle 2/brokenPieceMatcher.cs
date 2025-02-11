@@ -19,7 +19,7 @@ public class brokenPieceMatcher : MonoBehaviour
         ghostTeaPot = GameObject.FindWithTag("ghostTeaPot");
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionStay(Collision collision)
     {
 
         if (collision.gameObject.CompareTag("teapotSpout"))
@@ -32,7 +32,7 @@ public class brokenPieceMatcher : MonoBehaviour
                 match = true;
             }
         }
-        if (collision.gameObject.CompareTag("teapotHandle1"))
+        else if (collision.gameObject.CompareTag("teapotHandle1"))
         {
             if (idNumber == 2)
             {
@@ -43,7 +43,7 @@ public class brokenPieceMatcher : MonoBehaviour
 
             }
         }
-        if (collision.gameObject.CompareTag("teapotHandle2"))
+        else if (collision.gameObject.CompareTag("teapotHandle2"))
         {
             if (idNumber == 3)
             {
@@ -54,7 +54,7 @@ public class brokenPieceMatcher : MonoBehaviour
 
             }
         }
-        if (collision.gameObject.CompareTag("teapotLid1"))
+        else if (collision.gameObject.CompareTag("teapotLid1"))
         {
             if (idNumber == 4)
             {
@@ -65,7 +65,7 @@ public class brokenPieceMatcher : MonoBehaviour
 
             }
         }
-        if (collision.gameObject.CompareTag("teapotLid2"))
+        else if (collision.gameObject.CompareTag("teapotLid2"))
         {
             if (idNumber == 5)
             {
@@ -76,8 +76,7 @@ public class brokenPieceMatcher : MonoBehaviour
             }
 
         }
-        
-        if (collision.gameObject.CompareTag("teapotBase"))
+        else if (collision.gameObject.CompareTag("teapotBase"))
         {
             if (idNumber == 6)
             {
@@ -88,7 +87,7 @@ public class brokenPieceMatcher : MonoBehaviour
 
             }
         }
-        if (collision.gameObject.CompareTag("teapotMainBody"))
+        else if (collision.gameObject.CompareTag("teapotMainBody"))
         {
             if (idNumber == 7)
             {
@@ -97,6 +96,11 @@ public class brokenPieceMatcher : MonoBehaviour
                 match = true;
 
             }
+        }
+        else
+        {
+            selectedObject = null;
+            match = false;
         }
     }
 

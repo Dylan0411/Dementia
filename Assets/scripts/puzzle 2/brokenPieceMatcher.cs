@@ -10,6 +10,7 @@ public class brokenPieceMatcher : MonoBehaviour
 
     GameObject selectedObject;
     GameObject ghostTeaPot;
+    public GameObject vfx;
 
     private void Start()
     {
@@ -118,6 +119,7 @@ public class brokenPieceMatcher : MonoBehaviour
             brokenItem.correctPieces++;
 
             gameObject.SetActive(false);
+            vfx.SetActive(false);
         }
     }
 }

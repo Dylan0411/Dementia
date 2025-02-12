@@ -49,7 +49,7 @@ public class brokenItem : MonoBehaviour
 
     public GameObject cylinder;
 
-    public LayerMask ghostTeapotLayerMask;
+    LayerMask ghostTeapotLayerMask;
 
     void Start()
     {
@@ -83,7 +83,7 @@ public class brokenItem : MonoBehaviour
 
         if (tableInterface.usingTable == true)
         {
-            if (Input.GetKeyDown(KeyCode.Space) || PlayerPrefs.GetInt("note2Status") == 1) //exit table
+            if (Input.GetKeyDown(KeyCode.F) || PlayerPrefs.GetInt("note2Status") == 1) //exit table
             {
 
                 fragments.SetActive(false);

@@ -24,7 +24,7 @@ public class noteMenu : MonoBehaviour
     public GameObject notificationPopUpPos;
     public GameObject notificationDefaultPos;
 
-    float notificationMovementSpeed = 5f; //feel free to change :)
+    float notificationMovementSpeed = 20f; //feel free to change :)
 
     bool noteNotification;
 
@@ -115,10 +115,13 @@ public class noteMenu : MonoBehaviour
             noteNotification = true;
             note4Activated = true;
         }
+    }
 
 
 
 
+    private void FixedUpdate()
+    {
         //new note notification
         if (noteNotification == true)
         {
@@ -139,6 +142,9 @@ public class noteMenu : MonoBehaviour
             }
         }
     }
+
+
+
     void hideNotification()
     {
         noteNotification = false;

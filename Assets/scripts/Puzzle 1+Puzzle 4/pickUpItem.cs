@@ -45,6 +45,8 @@ public class PickupItem : MonoBehaviour
         totalNumberOfItems = 6;//CHANGE THIS IN THE FUTURE TO MATCH THE ACTUAL VALUE<<<<<<<<<<<<<<<<<<<<<<<
 
         PlayerPrefs.SetInt("note1Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
+        PlayerPrefs.SetInt("note4Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
+
     }
 
 
@@ -133,8 +135,15 @@ public class PickupItem : MonoBehaviour
                             //despawn the destination object
                             Destroy(itemDestination);
 
-                            //note down the number of items the player has returned to their correct positions
-                            itemsReturned++;
+                            if (itemId.idNumber == 100) //if its the wedding ring from puzzle 4 (item id 100)
+                            {
+                                PlayerPrefs.SetInt("note4Status", 1);
+                            }
+                            else
+                            {
+                                //note down the number of items the player has returned to their correct positions
+                                itemsReturned++;
+                            }
 
                             //display the correct text
                             placeItemText.SetActive(false);
@@ -180,6 +189,11 @@ public class PickupItem : MonoBehaviour
                 else if (itemId.idNumber == 6)
                 {
                     hudItemIdText.text = "headphones";
+                }
+                //
+                else if (itemId.idNumber == 100)
+                {
+                    hudItemIdText.text = "Wedding Ring";
                 }
                 else
                 {

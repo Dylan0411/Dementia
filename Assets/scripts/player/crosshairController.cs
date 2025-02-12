@@ -45,6 +45,11 @@ public class crosshairController : MonoBehaviour
                 interactableCrosshair.SetActive(true);
                 defaultCrosshair.SetActive(false);
             }
+            else if (hit.collider.gameObject.tag == "puzzle4Table")//if the item is collectable the crosshair changes for the player
+            {
+                interactableCrosshair.SetActive(true);
+                defaultCrosshair.SetActive(false);
+            }
             else //change crosshair back if ray is fired into a different tag AND display the correct text
             {
                 interactableCrosshair.SetActive(false);

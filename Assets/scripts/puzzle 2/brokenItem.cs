@@ -51,6 +51,8 @@ public class brokenItem : MonoBehaviour
 
     LayerMask ghostTeapotLayerMask;
 
+    public static Vector3 defaultLocation;
+
     void Start()
     {
         rotateTeapotLeft = false;
@@ -63,6 +65,8 @@ public class brokenItem : MonoBehaviour
         PlayerPrefs.SetInt("note2Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
 
         ghostTeapotLayerMask = LayerMask.NameToLayer("ghostTeapot");
+
+
 
     }
 
@@ -126,9 +130,10 @@ public class brokenItem : MonoBehaviour
 
                     cylinder.transform.position = newPosition;
 
+
                 }
 
-                    if (hit.collider.gameObject.tag == "teapotSpout")//if the mouse is hovering over an item
+                if (hit.collider.gameObject.tag == "teapotSpout")//if the mouse is hovering over an item
                 {
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
@@ -139,6 +144,8 @@ public class brokenItem : MonoBehaviour
 
                         selectedObject = teapotSpout;
                         offset = selectedObject.transform.position - hit.point;
+                        defaultLocation = selectedObject.transform.position;
+
 
                     }
                 }
@@ -151,6 +158,7 @@ public class brokenItem : MonoBehaviour
                         isFollowingMouse = true;
                         selectedObject = teapotHandle1;
                         offset = selectedObject.transform.position - hit.point;
+                        defaultLocation = selectedObject.transform.position;
 
                     }
                 }
@@ -163,6 +171,8 @@ public class brokenItem : MonoBehaviour
                         isFollowingMouse = true;
                         selectedObject = teapotHandle2;
                         offset = selectedObject.transform.position - hit.point;
+                        defaultLocation = selectedObject.transform.position;
+
 
                     }
                 }
@@ -175,6 +185,8 @@ public class brokenItem : MonoBehaviour
                         isFollowingMouse = true;
                         selectedObject = teapotLid1;
                         offset = selectedObject.transform.position - hit.point;
+                        defaultLocation = selectedObject.transform.position;
+
 
                     }
                 }
@@ -187,6 +199,8 @@ public class brokenItem : MonoBehaviour
                         isFollowingMouse = true;
                         selectedObject = teapotLid2;
                         offset = selectedObject.transform.position - hit.point;
+                        defaultLocation = selectedObject.transform.position;
+
 
                     }
                 }
@@ -199,6 +213,8 @@ public class brokenItem : MonoBehaviour
                         isFollowingMouse = true;
                         selectedObject = teapotBase;
                         offset = selectedObject.transform.position - hit.point;
+                        defaultLocation = selectedObject.transform.position;
+
 
                     }
                 }
@@ -212,6 +228,8 @@ public class brokenItem : MonoBehaviour
                         isFollowingMouse = true;
                         selectedObject = teapotMainBody;
                         offset = selectedObject.transform.position - hit.point;
+                        defaultLocation = selectedObject.transform.position;
+
 
                     }
                 }

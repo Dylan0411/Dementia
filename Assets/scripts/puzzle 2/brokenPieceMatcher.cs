@@ -77,6 +77,16 @@ public class brokenPieceMatcher : MonoBehaviour
             }
 
         }
+        else if (collision.gameObject.CompareTag("teapotMainBody"))
+        {
+            if (idNumber == 7)
+            {
+                selectedObject = collision.gameObject;
+                Debug.Log("matched main body");
+                match = true;
+
+            }
+        }
         else if (collision.gameObject.CompareTag("teapotBase"))
         {
             if (idNumber == 6)
@@ -88,18 +98,9 @@ public class brokenPieceMatcher : MonoBehaviour
 
             }
         }
-        else if (collision.gameObject.CompareTag("teapotMainBody"))
-        {
-            if (idNumber == 7)
-            {
-                selectedObject = collision.gameObject;
-                Debug.Log("matched main body");
-                match = true;
-
-            }
-        }
         else
         {
+            Debug.Log("STOP MATCH");
             selectedObject = null;
             match = false;
         }

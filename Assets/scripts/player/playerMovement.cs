@@ -37,6 +37,12 @@ public class PlayerMovement : MonoBehaviour
             movement += transform.right; // Move right
         }
 
+        // Normalize movement vector to prevent diagonal speed boost (change diagonal value which is the combined total of 2 keys ( roughly 1.41) into 1 to prevent speed boost when player drifts)
+        if (movement.magnitude > 1)
+        {
+            movement.Normalize();
+        }
+
         //the actual math of the movement
         rb.linearVelocity = new Vector3(movement.x * speed, rb.linearVelocity.y, movement.z * speed);
     }

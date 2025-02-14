@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class tableInterface : MonoBehaviour
 {
-
-    LayerMask ignoreLayer;
     public GameObject interactWithTableText;
     public static bool usingTable;
 
@@ -27,8 +25,6 @@ public class tableInterface : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ignoreLayer = LayerMask.GetMask("letRaycastThrough");
-
         interactWithTableText.SetActive(false);
 
         usingTable = false;
@@ -39,7 +35,6 @@ public class tableInterface : MonoBehaviour
         teapotHud.SetActive(false);
 
         fragments.SetActive(false);
-
     }
 
     // Update is called once per frame
@@ -50,21 +45,19 @@ public class tableInterface : MonoBehaviour
             Ray ray;
             RaycastHit hit;
 
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition); // fire ray from camera constantly
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition); //fire ray from camera constantly
 
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red); //TEMP - DELETE THIS
 
-            if (Physics.Raycast(ray, out hit, 2.5f, ~ignoreLayer)) //shoot ray (allow it to shoot through layer -> any invisible colliders)
+            if (Physics.Raycast(ray, out hit, 2.5f)) //shoot ray
             {
-
-                if (hit.collider.gameObject.tag == "brokenItemArea")//if the item is the table the crosshair changes for the player
+                if (hit.collider.gameObject.tag == "brokenItemArea") //if the player is looking at the table with the broken item..
                 {
                     //show correct hud elements
                     interactWithTableText.SetActive(true);
 
                     if (Input.GetKeyDown(KeyCode.F) && usingTable == false) //use table
                     {
-                        //
                         player.transform.position = playerTablePos.transform.position;//move player to the front of the table to avoid spatial disorientation
 
                         //cursor controller
@@ -82,34 +75,32 @@ public class tableInterface : MonoBehaviour
 
                         usingTable = true; //mark the table as being used (stops the player being able to walk around etc)
 
-                        fragments.SetActive(true);
+                        fragments.SetActive(true); //show the smashed fragments on the table
                     }
                     else
                     {
                         teapotHud.SetActive(false);
                     }
                 }
-                else //change crosshair back if ray is fired into a different tag AND display the correct text
+                else //show correct hud elements
                 {
                     interactWithTableText.SetActive(false);
                 }
             }
-            else //change crosshair back if ray is fired into the air AND display the correct text
+            else //show correct hud elements
             {
                 interactWithTableText.SetActive(false);
             }
 
-            int note2 = PlayerPrefs.GetInt("note2Status");
+            int note2 = PlayerPrefs.GetInt("note2Status"); //if the player has completed the smashed puzzle..
             if (note2 == 1)
             {
+                //show correct hud elements
                 teapotHud.SetActive(false);
-
                 interactWithTableText.SetActive(false);
 
-                //change tag of table
-                table.tag = "Untagged";
-                //disable this script
-                this.enabled = false;
+                table.tag = "Untagged"; //change tag of table (stops the player from accessing the puzzle again) 
+                this.enabled = false; //disable this script
             }
         }
 

@@ -7,7 +7,8 @@ public class brokenItem : MonoBehaviour
     public GameObject mainPlayerCamera;
 
     public GameObject ghostTeapot;
-    //
+    public GameObject fragments;
+    
     public GameObject teapotSpout;
     public GameObject teapotHandle1;
     public GameObject teapotHandle2;
@@ -32,15 +33,10 @@ public class brokenItem : MonoBehaviour
     public GameObject ghostTeapotBase;
     public GameObject ghostTeapotMainBody;
 
-
-    public GameObject fragments;
-
-    int rotationSpeed = 100;
-
-    bool rotateTeapotLeft;
-    bool rotateTeapotRight;
+    int rotationSpeed = 100; //<<<<<<<<<< feel free to change :)
 
     private Vector3 offset;
+
     public static bool isFollowingMouse;
 
     GameObject selectedObject;
@@ -51,13 +47,8 @@ public class brokenItem : MonoBehaviour
 
     LayerMask ghostTeapotLayerMask;
 
-    public GameObject defaultLocation;
-
     void Start()
     {
-        rotateTeapotLeft = false;
-        rotateTeapotRight = false;
-
         isFollowingMouse = false;
 
         correctPieces = 0;
@@ -65,33 +56,26 @@ public class brokenItem : MonoBehaviour
         PlayerPrefs.SetInt("note2Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
 
         ghostTeapotLayerMask = LayerMask.NameToLayer("ghostTeapot");
-
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
-        if (correctPieces == 7)
+        if (correctPieces == 7) //if all the fragments are in the right place
         {
-            //disable table interface script and rename table tag to smth else
-            PlayerPrefs.SetInt("note2Status", 1);
+            PlayerPrefs.SetInt("note2Status", 1); //give the player a note
         }
-
-
-
-
 
         if (tableInterface.usingTable == true)
         {
-            if (Input.GetKeyDown(KeyCode.F) || PlayerPrefs.GetInt("note2Status") == 1) //exit table
+            //exit table
+            if (Input.GetKeyDown(KeyCode.F) || PlayerPrefs.GetInt("note2Status") == 1) //if the player exits or if the puzzle is complete
             {
-
+                //hide the loose fragments on the table
                 fragments.SetActive(false);
 
                 //lock and hide the cursor
-                Cursor.lockState = CursorLockMode.Locked;//let the player move the cursor
+                Cursor.lockState = CursorLockMode.Locked;
 
                 //switch cameras
                 tableCamera.SetActive(false);
@@ -100,226 +84,118 @@ public class brokenItem : MonoBehaviour
                 //bring back the players body
                 player.SetActive(true);
 
-                tableInterface.usingTable = false;  //mark the table as not being used (allows the player to walk around etc)
+                //mark the table as not being used (allows the player to walk around etc)
+                tableInterface.usingTable = false;
 
-                ghostTeapot.transform.rotation = Quaternion.Euler(90, 90, 0); //set rotation of teapot to default
-
+                //set rotation of teapot to default
+                ghostTeapot.transform.rotation = Quaternion.Euler(90, 90, 0);
             }
 
-
-
-
             //interacting with broken teapot code here
-
             Ray ray;
             RaycastHit hit;
 
+            // fire ray from camera constantly
             Camera tableCam = tableCamera.GetComponent<Camera>();
-            ray = tableCam.ScreenPointToRay(Input.mousePosition); // fire ray from camera constantly
+            ray = tableCam.ScreenPointToRay(Input.mousePosition);
 
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red); //TEMP - DELETE THIS
+
+            //if the game isnt paused
             if (Time.timeScale > 0)
             {
-
                 Cursor.lockState = CursorLockMode.None;//let the player move the cursor
 
-                if (Physics.Raycast(ray, out hit, 2.5f, ghostTeapotLayerMask)) //shoot ray
+                if (Physics.Raycast(ray, out hit, 2.5f, ghostTeapotLayerMask)) //shoot ray (let the player shoot through the ghost teapot, ignoring its existence
                 {
-                    //make light pole stick to cursor position
+                    //make beam of light stay on the cursors position
                     Vector3 newPosition = hit.point;
-                    newPosition.y = cylinder.transform.position.y; // Preserve the Y position
+                    newPosition.y = cylinder.transform.position.y; //Preserve the Y position (dont change the height)
                     cylinder.transform.position = newPosition;
 
-
+                    //when the player attempts to select an item
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
-                        if (hit.collider.gameObject.tag == "teapotSpout")//if the mouse is hovering over an item
+                        if (hit.collider.gameObject.tag == "teapotSpout" || hit.collider.gameObject.tag == "teapotHandle1" || hit.collider.gameObject.tag == "teapotHandle2" || hit.collider.gameObject.tag == "teapotLid1" || hit.collider.gameObject.tag == "teapotLid2" || hit.collider.gameObject.tag == "teapotBase" || hit.collider.gameObject.tag == "teapotMainBody")//if the mouse is hovering over an item
                         {
-                            Debug.Log("teapotSpout");
-                            //make theobject follow the mouse position
-                            isFollowingMouse = true;
-                            //
-
-                            selectedObject = teapotSpout;
-                            offset = selectedObject.transform.position - hit.point;
-                            //defaultLocation = selectedObject.transform.position;
-                        }
-                        if (hit.collider.gameObject.tag == "teapotHandle1")//if the mouse is hovering over an item
-                        {
-                            Debug.Log("teapotHandle1");
-                            //make theobject follow the mouse position
-                            isFollowingMouse = true;
-                            selectedObject = teapotHandle1;
-                            offset = selectedObject.transform.position - hit.point;
-                            //defaultLocation = selectedObject.transform.position;
-                        }
-                        if (hit.collider.gameObject.tag == "teapotHandle2")//if the mouse is hovering over an item
-                        {
-                            Debug.Log("teapotHandle2");
-                            //make theobject follow the mouse position
-                            isFollowingMouse = true;
-                            selectedObject = teapotHandle2;
-                            offset = selectedObject.transform.position - hit.point;
-                            //defaultLocation = selectedObject.transform.position;
-                        }
-                        if (hit.collider.gameObject.tag == "teapotLid1")//if the mouse is hovering over an item
-                        {
-                            Debug.Log("teapotLid1");
-                            //make theobject follow the mouse position
-                            isFollowingMouse = true;
-                            selectedObject = teapotLid1;
-                            offset = selectedObject.transform.position - hit.point;
-                            //defaultLocation = selectedObject.transform.position;
-                        }
-                        if (hit.collider.gameObject.tag == "teapotLid2")//if the mouse is hovering over an item
-                        {
-                            Debug.Log("teapotLid2");
-                            //make theobject follow the mouse position
-                            isFollowingMouse = true;
-                            selectedObject = teapotLid2;
-                            offset = selectedObject.transform.position - hit.point;
-                            //defaultLocation = selectedObject.transform.position;
-                        }
-                        if (hit.collider.gameObject.tag == "teapotBase")//if the mouse is hovering over an item
-                        {
-                            Debug.Log("teapotBase");
-                            //make theobject follow the mouse position
-                            isFollowingMouse = true;
-                            selectedObject = teapotBase;
-                            offset = selectedObject.transform.position - hit.point;
-                            //defaultLocation = selectedObject.transform.position;
-                        }
-                        if (hit.collider.gameObject.tag == "teapotMainBody")//if the mouse is hovering over an item
-                        {
-
-                            Debug.Log("teapotMainBody");
-
-                            //make theobject follow the mouse position
-                            isFollowingMouse = true;
-                            selectedObject = teapotMainBody;
-                            offset = selectedObject.transform.position - hit.point;
-                            //defaultLocation = selectedObject.transform.position;
-
+                            selectedObject = hit.collider.gameObject; //select the correct fragment
+                            isFollowingMouse = true; //toggle the object to follow the mouse position
+                            offset = selectedObject.transform.position - hit.point; //calculate the offset (prevents the fragent from jumping around when its selected)
                         }
                     }
                 }
             }
 
-
-            /////
+            //if a fragment is following the cursor
             if (isFollowingMouse == true)
             {
-
-                if (Input.GetKeyUp(KeyCode.Mouse0))
+                if (Input.GetKeyUp(KeyCode.Mouse0)) //if player lets go of left click while holding a fragment..
                 {
-                    //stop making the teapotMainBody object follow the mouse position <<< IMPLEMENT THIS
+                    //stop making the fragment follow the mouse position
                     isFollowingMouse = false;
                 }
 
-                // Update teapot's position to follow the mouse
+                //if game isnt paused then fire ray
                 RaycastHit hitMousePosition;
                 if (Time.timeScale > 0)
                 {
                     if (Physics.Raycast(ray, out hitMousePosition, 100f))
                     {
-
-                        // Only update the X and Z positions, keep Y the same as original
-                        Vector3 newPosition = hitMousePosition.point + offset;
-                        newPosition.y = selectedObject.transform.position.y; // Preserve the Y position
-
+                        //move the object with the position of the cursor
+                        Vector3 newPosition = hitMousePosition.point + offset; //add the offset to stop the selected piece jumping around when being selected
+                        newPosition.y = selectedObject.transform.position.y; // Preserve the Y position (dont change the height)
                         selectedObject.transform.position = newPosition;
                     }
                 }
             }
+            //if a fragment isnt following the cursor
             else
             {
-                if (selectedObject != null)
+                //if an object has been selected and has a unique tag, return it to the correct location based on what the tag is
+                if (selectedObject != null && selectedObject.tag != "Untagged")
                 {
-                    if (selectedObject.tag != "Untagged")
+                    if (selectedObject.tag == "teapotSpout")
                     {
-
-         
-
-                        if (selectedObject.tag == "teapotSpout")
-                        {
-                            selectedObject.transform.position = teapotSpoutDefaultPos.transform.position;
-                        }
-                        if (selectedObject.tag == "teapotHandle1")
-                        {
-                            selectedObject.transform.position = teapotHandle1DefaultPos.transform.position;
-                        }
-                        if (selectedObject.tag == "teapotHandle2")
-                        {
-                            selectedObject.transform.position = teapotHandle2DefaultPos.transform.position;
-                        }
-                        if (selectedObject.tag == "teapotLid1")
-                        {
-                            selectedObject.transform.position = teapotLid1DefaultPos.transform.position;
-                        }
-                        if (selectedObject.tag == "teapotLid2")
-                        {
-                            selectedObject.transform.position = teapotLid2DefaultPos.transform.position;
-                        }
-                        if (selectedObject.tag == "teapotBase")
-                        {
-                            selectedObject.transform.position = teapotBaseDefaultPos.transform.position;
-                        }
-                        if (selectedObject.tag == "teapotMainBody")
-                        {
-                            Debug.Log("WE DO HAVE A PROBLEM");
-                            selectedObject.transform.position = teapotMainBodyDefaultPos.transform.position;
-                        }
+                        selectedObject.transform.position = teapotSpoutDefaultPos.transform.position;
+                    }
+                    if (selectedObject.tag == "teapotHandle1")
+                    {
+                        selectedObject.transform.position = teapotHandle1DefaultPos.transform.position;
+                    }
+                    if (selectedObject.tag == "teapotHandle2")
+                    {
+                        selectedObject.transform.position = teapotHandle2DefaultPos.transform.position;
+                    }
+                    if (selectedObject.tag == "teapotLid1")
+                    {
+                        selectedObject.transform.position = teapotLid1DefaultPos.transform.position;
+                    }
+                    if (selectedObject.tag == "teapotLid2")
+                    {
+                        selectedObject.transform.position = teapotLid2DefaultPos.transform.position;
+                    }
+                    if (selectedObject.tag == "teapotBase")
+                    {
+                        selectedObject.transform.position = teapotBaseDefaultPos.transform.position;
+                    }
+                    if (selectedObject.tag == "teapotMainBody")
+                    {
+                        selectedObject.transform.position = teapotMainBodyDefaultPos.transform.position;
                     }
                 }
             }
-
-
-
-
-
-
-
-
-
-
         }
-
     }
 
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D)) //rotate the ghost teapot clockwise
         {
             ghostTeapot.transform.Rotate(-Vector3.forward, rotationSpeed * Time.deltaTime);
-            //
-            //teapotSpout.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
-            //teapotHandle1.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
-            //teapotHandle2.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
-            //teapotLid1.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
-            //teapotBase.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
-            //teapotMainBody.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
-
-
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A)) //rotate the ghost teapot anti-clockwise
         {
             ghostTeapot.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
-            //
-            //teapotSpout.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
-            //teapotHandle1.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
-            //teapotHandle2.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
-            //teapotLid1.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
-            //teapotBase.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
-            //teapotMainBody.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
-
         }
     }
-
-    //public GameObject ghostTeapotHandle1;
-    //public GameObject ghostTeapotHandle2;
-    //public GameObject ghostTeapotLid1;
-    //public GameObject ghostTeapotLid2;
-    //public GameObject ghostTeapotBase;
-
-
 }

@@ -4,18 +4,14 @@ using UnityEngine.UI;
 
 public class photoInterface : MonoBehaviour
 {
-
     public GameObject interactWithTableText;
-
     public GameObject interactableCrosshair;
-
     public GameObject table;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        //show correct hud elements
         interactWithTableText.SetActive(false);
     }
 
@@ -25,36 +21,33 @@ public class photoInterface : MonoBehaviour
         Ray ray;
         RaycastHit hit;
 
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition); // fire ray from camera constantly
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition); //fire ray from camera constantly
 
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.red); //TEMP - DELETE THIS
 
-        if (Physics.Raycast(ray, out hit, 2.5f)) //shoot ray (allow it to shoot through layer -> any invisible colliders)
+        if (Physics.Raycast(ray, out hit, 2.5f)) //shoot ray
         {
 
-            if (hit.collider.gameObject.tag == "puzzle4Table")//if the item is the table the crosshair changes for the player
+            if (hit.collider.gameObject.tag == "puzzle4Table") //if the player is looking at the puzzle 4 table...
             {
-                Debug.Log("kaa kaaaaaa");
                 //show correct hud elements
                 interactWithTableText.SetActive(true);
 
                 if (Input.GetKeyDown(KeyCode.F)) //use table
-                {
-
+                { 
                     //show correct hud elements
                     interactWithTableText.SetActive(false);
                     interactableCrosshair.SetActive(false);
-
-                    table.SetActive(false);
+                    //
+                    table.SetActive(false); //removes the initial hitbox to trigger the start of the puzzle
                 }
-
             }
-            else //change crosshair back if ray is fired into a different tag AND display the correct text
+            else //show correct hud elements
             {
                 interactWithTableText.SetActive(false);
             }
         }
-        else //change crosshair back if ray is fired into the air AND display the correct text
+        else //show correct hud elements
         {
             interactWithTableText.SetActive(false);
         }

@@ -3,7 +3,6 @@ using UnityEngine.UIElements;
 
 public class brokenPieceMatcher : MonoBehaviour
 {
-
     public int idNumber;
 
     public bool match;
@@ -20,182 +19,98 @@ public class brokenPieceMatcher : MonoBehaviour
         ghostTeaPot = GameObject.FindWithTag("ghostTeaPot");
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision) //if the fragment enters the correct spot..
     {
-
-        if (collision.gameObject.CompareTag("teapotSpout"))
+        if (collision.gameObject.CompareTag("teapotSpout") && idNumber == 1) //if the tag matches the correct id number of this script
         {
-            if (idNumber == 1)
-            {
-                selectedObject = collision.gameObject;
-
-                Debug.Log("matched spout");
-                match = true;
-            }
+            selectedObject = collision.gameObject; //store the fragment
+            match = true; //mark it as a match
         }
-        if (collision.gameObject.CompareTag("teapotHandle1"))
+        if (collision.gameObject.CompareTag("teapotHandle1") && idNumber == 2) //if the tag matches the correct id number of this script)
         {
-            if (idNumber == 2)
-            {
-                selectedObject = collision.gameObject;
-
-                Debug.Log("matched handle 1");
-                match = true;
-
-            }
+            selectedObject = collision.gameObject; //store the fragment
+            match = true; //mark it as a match
         }
-        if (collision.gameObject.CompareTag("teapotHandle2"))
+        if (collision.gameObject.CompareTag("teapotHandle2") && idNumber == 3) //if the tag matches the correct id number of this script)
         {
-            if (idNumber == 3)
-            {
-                selectedObject = collision.gameObject;
-
-                Debug.Log("matched handle 2");
-                match = true;
-
-            }
+            selectedObject = collision.gameObject; //store the fragment
+            match = true; //mark it as a match
         }
-        if(collision.gameObject.CompareTag("teapotLid1"))
+        if(collision.gameObject.CompareTag("teapotLid1") && idNumber == 4) //if the tag matches the correct id number of this script)
         {
-            if (idNumber == 4)
-            {
-                selectedObject = collision.gameObject;
-
-                Debug.Log("matched lid 1");
-                match = true;
-
-            }
+            selectedObject = collision.gameObject; //store the fragment
+            match = true; //mark it as a match
         }
-        if (collision.gameObject.CompareTag("teapotLid2"))
+        if (collision.gameObject.CompareTag("teapotLid2") && idNumber == 5) //if the tag matches the correct id number of this script)
         {
-            if (idNumber == 5)
-            {
-                selectedObject = collision.gameObject;
-
-                Debug.Log("matched lid 2");
-                match = true;
-            }
-
+            selectedObject = collision.gameObject; //store the fragment
+            match = true; //mark it as a match
         }
-        if (collision.gameObject.CompareTag("teapotBase"))
+        if (collision.gameObject.CompareTag("teapotBase") && idNumber == 6) //if the tag matches the correct id number of this script)
         {
-            if (idNumber == 6)
-            {
-                selectedObject = collision.gameObject;
-
-                Debug.Log("matched base");
-                match = true;
-
-            }
+            selectedObject = collision.gameObject; //store the fragment
+            match = true; //mark it as a match
         }
-        if (collision.gameObject.CompareTag("teapotMainBody"))
+        if (collision.gameObject.CompareTag("teapotMainBody") && idNumber == 7) //if the tag matches the correct id number of this script)
         {
-            if (idNumber == 7)
-            {
-                selectedObject = collision.gameObject;
-
-                Debug.Log("matched mian body");
-                match = true;
-
-            }
+            selectedObject = collision.gameObject; //store the fragment
+            match = true; //mark it as a match
         }
     }
-    void OnCollisionExit(Collision collision)
+    void OnCollisionExit(Collision collision) //if the fragment exits the correct spot..
     {
-
-        if (collision.gameObject.CompareTag("teapotSpout"))
+        if (collision.gameObject.CompareTag("teapotSpout") && idNumber == 1) //if the tag matches the correct id number of this script
         {
-            if (idNumber == 1)
-            {
-                selectedObject = null;
-
-                Debug.Log("UN-matched spout");
-                match = false;
-            }
+            selectedObject = null; //STOP storing the fragment
+            match = false; //UNmark it as a match
         }
-        if (collision.gameObject.CompareTag("teapotHandle1"))
+        if (collision.gameObject.CompareTag("teapotHandle1") && idNumber == 2) //if the tag matches the correct id number of this script)
         {
-            if (idNumber == 2)
-            {
-                selectedObject = null;
-
-                Debug.Log("UN-matched handle 1");
-                match = false;
-
-            }
+            selectedObject = null; //STOP storing the fragment
+            match = false; //UNmark it as a match
         }
-        if (collision.gameObject.CompareTag("teapotHandle2"))
+        if (collision.gameObject.CompareTag("teapotHandle2") && idNumber == 3) //if the tag matches the correct id number of this script)
         {
-            if (idNumber == 3)
-            {
-                selectedObject = null;
-
-                Debug.Log("UN-matched handle 2");
-                match = false;
-
-            }
+            selectedObject = null; //STOP storing the fragment
+            match = false; //UNmark it as a match
         }
-        if (collision.gameObject.CompareTag("teapotLid1"))
+        if (collision.gameObject.CompareTag("teapotLid1") && idNumber == 4) //if the tag matches the correct id number of this script)
         {
-            if (idNumber == 4)
-            {
-                selectedObject = null;
-
-                Debug.Log("UN-matched lid 1");
-                match = false;
-
-            }
+            selectedObject = null; //STOP storing the fragment
+            match = false; //UNmark it as a match
         }
-        if (collision.gameObject.CompareTag("teapotLid2"))
+        if (collision.gameObject.CompareTag("teapotLid2") && idNumber == 5) //if the tag matches the correct id number of this script)
         {
-            if (idNumber == 5)
-            {
-                selectedObject = null;
-
-                Debug.Log("UN-matched lid 2");
-                match = false;
-            }
-
+            selectedObject = null; //STOP storing the fragment
+            match = false; //UNmark it as a match
         }
-        if (collision.gameObject.CompareTag("teapotBase"))
+        if (collision.gameObject.CompareTag("teapotBase") && idNumber == 6) //if the tag matches the correct id number of this script)
         {
-            if (idNumber == 6)
-            {
-                selectedObject = null;
-
-                Debug.Log("UN-matched base");
-                match = false;
-
-            }
+            selectedObject = null; //STOP storing the fragment
+            match = false; //UNmark it as a match
         }
-        if (collision.gameObject.CompareTag("teapotMainBody"))
+        if (collision.gameObject.CompareTag("teapotMainBody") && idNumber == 7) //if the tag matches the correct id number of this script)
         {
-            if (idNumber == 7)
-            {
-                selectedObject = null;
-
-                Debug.Log("UN-matched mian body");
-                match = false;
-
-            }
+            selectedObject = null; //STOP storing the fragment
+            match = false; //UNmark it as a match
         }
     }
 
     private void Update()
     {
-        if (match == true && brokenItem.isFollowingMouse == false)
+        if (match == true && brokenItem.isFollowingMouse == false) //if its a match and the players stopped moving it..
         {
+            selectedObject.tag = "Untagged"; //this stops the player being able to pick it back up
 
-            selectedObject.tag = "Untagged";
-            selectedObject.transform.position = transform.position;
-            selectedObject.transform.rotation = transform.rotation;
+            selectedObject.transform.position = transform.position; //snap the fragment into the correct position
+            selectedObject.transform.rotation = transform.rotation; //snap the fragment into the correct rotation
 
-            selectedObject.transform.SetParent(ghostTeaPot.transform);
+            selectedObject.transform.SetParent(ghostTeaPot.transform); //make it a child of the ghost teapot (so that it rotates with the teapot)
 
-            brokenItem.correctPieces++;
+            brokenItem.correctPieces++; //mark it as correctly in place (when this reaches 7 the puzzle is marked as complete)
 
-            gameObject.SetActive(false);
-            vfx.SetActive(false);
+            gameObject.SetActive(false); //hide the ghost fragment
+            vfx.SetActive(false); //hide particle effects of the fragment
         }
     }
 }

@@ -3,16 +3,12 @@ using UnityEngine;
 
 public class crosshairController : MonoBehaviour
 {
-    LayerMask ignoreLayer;
     public GameObject interactableCrosshair;
     public GameObject defaultCrosshair;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ignoreLayer = LayerMask.GetMask("letRaycastThrough");
-
         interactableCrosshair.SetActive(false);
         defaultCrosshair.SetActive(true);
     }
@@ -29,7 +25,7 @@ public class crosshairController : MonoBehaviour
 
         if (Time.timeScale > 0) //if game isnt paused
         {
-            if (Physics.Raycast(ray, out hit, 2.5f, ~ignoreLayer)) //shoot ray (allow it to shoot through layer -> any invisible colliders)
+            if (Physics.Raycast(ray, out hit, 2.5f)) //shoot ray (allow it to shoot through layer -> any invisible colliders)
             {
 
                 if (hit.collider.gameObject.tag == "brokenItemArea")//if the item is collectable the crosshair changes for the player

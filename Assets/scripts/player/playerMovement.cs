@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5.0f;              // Speed of the player movement
-    public float jumpForce = 7.0f;          // Jump force applied to the player
-    public float rotationSpeed = 5.0f;      // Rotation speed for arrow key input
+    public float speed = 5.0f; //Speed of the player movement
+    public float jumpForce = 7.0f; //Jump force applied to the player
+    public float rotationSpeed = 5.0f; //Rotation speed for arrow key input
 
     private Rigidbody rb;
     private bool isGrounded;
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
             movement += transform.right; // Move right
         }
 
-        // Apply movement using Rigidbody's velocity for smooth control
+        //the actual math of the movement
         rb.linearVelocity = new Vector3(movement.x * speed, rb.linearVelocity.y, movement.z * speed);
     }
 
@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "floor")
+        if (other.gameObject.tag == "floor") //allow jumping when touching a "floor" object
         {
             isGrounded = true;
         }
@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionExit(Collision other)
     {
-        if (other.gameObject.tag == "floor")
+        if (other.gameObject.tag == "floor") //stop allowing jumping when stop touching a "floor" object
         {
             isGrounded = false;
         }

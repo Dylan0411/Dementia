@@ -35,7 +35,7 @@ public class pauseMenu : MonoBehaviour
     }
 
     //pause menu buttons
-    public void resumeButton()
+    public void resumeButton() //virtual
     {
         pauseMenuCanvas.SetActive(false);//hide pause menu
         if (noteMenu.inNotesMenu == false)//if the player wasnt in the notes menu when pausing
@@ -48,24 +48,25 @@ public class pauseMenu : MonoBehaviour
         }
 
     }
-    public void settingsButton() //hide the pause menu and show the settings menu
+    public void settingsButton() //virtual
     {
+        //hide the pause menu and show the settings menu 
         pauseMenuCanvas.SetActive(false);
         settingsMenuCanvas.SetActive(true);
     }
-    public void exitToMenuButton()
+    public void exitToMenuButton() //virtual
     {
         SceneManager.LoadScene("mainMenu");
     }
-    public void quitButton()
+    public void quitButton() //virtual
     {
         Application.Quit();
     }
 
-
     //settings menu buttons
-    public void settingsBackButton() //hide the settings menu and show the pause menu
+    public void settingsBackButton() //virtual
     {
+        //hide the settings menu and show the pause menu 
         pauseMenuCanvas.SetActive(true);
         settingsMenuCanvas.SetActive(false);
     }

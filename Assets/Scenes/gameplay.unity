@@ -37860,6 +37860,8 @@ MonoBehaviour:
   note2Button: {fileID: 392162602}
   note3Button: {fileID: 917446061}
   note4Button: {fileID: 799583611}
+  note5Button: {fileID: 2006902933}
+  note6Button: {fileID: 1693165603}
   noteText: {fileID: 1278339796}
   notification: {fileID: 452144804}
   notificationPopUpPos: {fileID: 323999183}
@@ -40128,7 +40130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1693165604
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40192,7 +40194,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1693165606}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1487656424}
+        m_TargetAssemblyTypeName: noteMenu, Assembly-CSharp
+        m_MethodName: noteSixButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1693165606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47641,6 +47655,7 @@ MonoBehaviour:
   tableCamera: {fileID: 1950635726}
   mainPlayerCamera: {fileID: 963194225}
   ghostTeapot: {fileID: 527117927}
+  fragments: {fileID: 673888789}
   teapotSpout: {fileID: 913993247}
   teapotHandle1: {fileID: 700712745}
   teapotHandle2: {fileID: 1183275404}
@@ -47662,9 +47677,7 @@ MonoBehaviour:
   ghostTeapotLid2: {fileID: 1570043141}
   ghostTeapotBase: {fileID: 2137267571}
   ghostTeapotMainBody: {fileID: 2010275745}
-  fragments: {fileID: 673888789}
   cylinder: {fileID: 1244746649}
-  defaultLocation: {fileID: 0}
 --- !u!1 &1958200619
 GameObject:
   m_ObjectHideFlags: 0
@@ -52988,7 +53001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2006902934
 RectTransform:
   m_ObjectHideFlags: 0
@@ -53052,7 +53065,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2006902936}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1487656424}
+        m_TargetAssemblyTypeName: noteMenu, Assembly-CSharp
+        m_MethodName: noteFiveButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2006902936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53191,7 +53216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idNumber: 7
   match: 0
-  vfx: {fileID: 0}
+  vfx: {fileID: 1759856502}
 --- !u!1 &2010869177
 GameObject:
   m_ObjectHideFlags: 0

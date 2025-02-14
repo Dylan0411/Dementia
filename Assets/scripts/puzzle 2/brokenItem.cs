@@ -51,7 +51,7 @@ public class brokenItem : MonoBehaviour
 
     LayerMask ghostTeapotLayerMask;
 
-    public static Vector3 defaultLocation;
+    public GameObject defaultLocation;
 
     void Start()
     {
@@ -65,8 +65,6 @@ public class brokenItem : MonoBehaviour
         PlayerPrefs.SetInt("note2Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
 
         ghostTeapotLayerMask = LayerMask.NameToLayer("ghostTeapot");
-
-
 
     }
 
@@ -103,6 +101,9 @@ public class brokenItem : MonoBehaviour
                 player.SetActive(true);
 
                 tableInterface.usingTable = false;  //mark the table as not being used (allows the player to walk around etc)
+
+                ghostTeapot.transform.rotation = Quaternion.Euler(90, 90, 0); //set rotation of teapot to default
+
             }
 
 
@@ -144,7 +145,7 @@ public class brokenItem : MonoBehaviour
 
                         selectedObject = teapotSpout;
                         offset = selectedObject.transform.position - hit.point;
-                        defaultLocation = selectedObject.transform.position;
+                        //defaultLocation = selectedObject.transform.position;
 
 
                     }
@@ -158,7 +159,7 @@ public class brokenItem : MonoBehaviour
                         isFollowingMouse = true;
                         selectedObject = teapotHandle1;
                         offset = selectedObject.transform.position - hit.point;
-                        defaultLocation = selectedObject.transform.position;
+                        //defaultLocation = selectedObject.transform.position;
 
                     }
                 }
@@ -171,7 +172,7 @@ public class brokenItem : MonoBehaviour
                         isFollowingMouse = true;
                         selectedObject = teapotHandle2;
                         offset = selectedObject.transform.position - hit.point;
-                        defaultLocation = selectedObject.transform.position;
+                        //defaultLocation = selectedObject.transform.position;
 
 
                     }
@@ -185,7 +186,7 @@ public class brokenItem : MonoBehaviour
                         isFollowingMouse = true;
                         selectedObject = teapotLid1;
                         offset = selectedObject.transform.position - hit.point;
-                        defaultLocation = selectedObject.transform.position;
+                        //defaultLocation = selectedObject.transform.position;
 
 
                     }
@@ -199,7 +200,7 @@ public class brokenItem : MonoBehaviour
                         isFollowingMouse = true;
                         selectedObject = teapotLid2;
                         offset = selectedObject.transform.position - hit.point;
-                        defaultLocation = selectedObject.transform.position;
+                        //defaultLocation = selectedObject.transform.position;
 
 
                     }
@@ -213,7 +214,7 @@ public class brokenItem : MonoBehaviour
                         isFollowingMouse = true;
                         selectedObject = teapotBase;
                         offset = selectedObject.transform.position - hit.point;
-                        defaultLocation = selectedObject.transform.position;
+                        //defaultLocation = selectedObject.transform.position;
 
 
                     }
@@ -228,7 +229,7 @@ public class brokenItem : MonoBehaviour
                         isFollowingMouse = true;
                         selectedObject = teapotMainBody;
                         offset = selectedObject.transform.position - hit.point;
-                        defaultLocation = selectedObject.transform.position;
+                        //defaultLocation = selectedObject.transform.position;
 
 
                     }
@@ -236,7 +237,7 @@ public class brokenItem : MonoBehaviour
             }
 
             /////
-            if (isFollowingMouse)
+            if (isFollowingMouse == true)
             {
 
                 if (Input.GetKeyUp(KeyCode.Mouse0))
@@ -257,42 +258,84 @@ public class brokenItem : MonoBehaviour
                     selectedObject.transform.position = newPosition;
                 }
             }
-
-
-
-
-
-
-
-
-
-            if (Input.GetKey(KeyCode.D))
+            else
             {
-                ghostTeapot.transform.Rotate(-Vector3.forward, rotationSpeed * Time.deltaTime);
-                //
-                //teapotSpout.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
-                //teapotHandle1.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
-                //teapotHandle2.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
-                //teapotLid1.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
-                //teapotBase.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
-                //teapotMainBody.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
-
-
+                if (selectedObject != null)
+                {
+                    if (selectedObject.tag != "Untagged")
+                    {
+                        if (selectedObject.tag == "teapotSpout")
+                        {
+                            selectedObject.transform.position = teapotSpoutDefaultPos.transform.position;
+                        }
+                        if (selectedObject.tag == "teapotHandle1")
+                        {
+                            selectedObject.transform.position = teapotHandle1DefaultPos.transform.position;
+                        }
+                        if (selectedObject.tag == "teapotHandle2")
+                        {
+                            selectedObject.transform.position = teapotHandle2DefaultPos.transform.position;
+                        }
+                        if (selectedObject.tag == "teapotLid1")
+                        {
+                            selectedObject.transform.position = teapotLid1DefaultPos.transform.position;
+                        }
+                        if (selectedObject.tag == "teapotLid2")
+                        {
+                            selectedObject.transform.position = teapotLid2DefaultPos.transform.position;
+                        }
+                        if (selectedObject.tag == "teapotBase")
+                        {
+                            selectedObject.transform.position = teapotBaseDefaultPos.transform.position;
+                        }
+                        if (selectedObject.tag == "teapotMainBody")
+                        {
+                            selectedObject.transform.position = teapotMainBodyDefaultPos.transform.position;
+                        }
+                    }
+                }
             }
-            if (Input.GetKey(KeyCode.A))
-            {
-                ghostTeapot.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
-                //
-                //teapotSpout.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
-                //teapotHandle1.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
-                //teapotHandle2.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
-                //teapotLid1.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
-                //teapotBase.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
-                //teapotMainBody.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
 
-            }
+
+
+
+
+
+
+
+
+
         }
 
+    }
+
+    void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.D))
+        {
+            ghostTeapot.transform.Rotate(-Vector3.forward, rotationSpeed * Time.deltaTime);
+            //
+            //teapotSpout.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
+            //teapotHandle1.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
+            //teapotHandle2.transform.Rotate(new Vector3(0, 1, 0), rotationSpeed * Time.deltaTime);
+            //teapotLid1.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
+            //teapotBase.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
+            //teapotMainBody.transform.Rotate(new Vector3(0, 0, -1), rotationSpeed * Time.deltaTime);
+
+
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            ghostTeapot.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+            //
+            //teapotSpout.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
+            //teapotHandle1.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
+            //teapotHandle2.transform.Rotate(new Vector3(0, -1, 0), rotationSpeed * Time.deltaTime);
+            //teapotLid1.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+            //teapotBase.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+            //teapotMainBody.transform.Rotate(new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
+
+        }
     }
 
     //public GameObject ghostTeapotHandle1;
@@ -300,14 +343,6 @@ public class brokenItem : MonoBehaviour
     //public GameObject ghostTeapotLid1;
     //public GameObject ghostTeapotLid2;
     //public GameObject ghostTeapotBase;
-
-
-
-
-
-
-
-
 
 
 }

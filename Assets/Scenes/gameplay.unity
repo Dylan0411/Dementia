@@ -25890,7 +25890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 768234743}
   m_Layer: 0
-  m_Name: item and destination prefabs so can be deleted
+  m_Name: item and destination prefabs -> so can be deleted
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36562,7 +36562,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1305028003}
   m_Layer: 0
-  m_Name: puzzle4 - Dont delete
+  m_Name: concept4 puzzle items - Dont delete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37084,7 +37084,7 @@ GameObject:
   - component: {fileID: 1372490805}
   - component: {fileID: 1372490804}
   m_Layer: 0
-  m_Name: hitBox - dont delete
+  m_Name: hitBox - dont delete (disable mesh renderer)
   m_TagString: puzzle4Table
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38561,7 +38561,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1551763888}
   m_Layer: 0
-  m_Name: 'temporary level design '
+  m_Name: 'level design '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40363,7 +40363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1700038311}
   m_Layer: 0
-  m_Name: concept2 puzzle Items - DONT DELETE
+  m_Name: concept2 puzzle Items - Dont delete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

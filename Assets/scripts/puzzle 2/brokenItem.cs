@@ -121,22 +121,15 @@ public class brokenItem : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 2.5f, ghostTeapotLayerMask)) //shoot ray
             {
+                //make light pole stick to cursor position
+                Vector3 newPosition = hit.point;
+                newPosition.y = cylinder.transform.position.y; // Preserve the Y position
+                cylinder.transform.position = newPosition;
 
-                if (hit.collider != null)
+
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    //keep the y axis the samwe
-
-                    Vector3 newPosition = hit.point;
-                    newPosition.y = cylinder.transform.position.y; // Preserve the Y position
-
-                    cylinder.transform.position = newPosition;
-
-
-                }
-
-                if (hit.collider.gameObject.tag == "teapotSpout")//if the mouse is hovering over an item
-                {
-                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    if (hit.collider.gameObject.tag == "teapotSpout")//if the mouse is hovering over an item
                     {
                         Debug.Log("teapotSpout");
                         //make theobject follow the mouse position
@@ -146,13 +139,8 @@ public class brokenItem : MonoBehaviour
                         selectedObject = teapotSpout;
                         offset = selectedObject.transform.position - hit.point;
                         //defaultLocation = selectedObject.transform.position;
-
-
                     }
-                }
-                if (hit.collider.gameObject.tag == "teapotHandle1")//if the mouse is hovering over an item
-                {
-                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    if (hit.collider.gameObject.tag == "teapotHandle1")//if the mouse is hovering over an item
                     {
                         Debug.Log("teapotHandle1");
                         //make theobject follow the mouse position
@@ -160,12 +148,8 @@ public class brokenItem : MonoBehaviour
                         selectedObject = teapotHandle1;
                         offset = selectedObject.transform.position - hit.point;
                         //defaultLocation = selectedObject.transform.position;
-
                     }
-                }
-                if (hit.collider.gameObject.tag == "teapotHandle2")//if the mouse is hovering over an item
-                {
-                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    if (hit.collider.gameObject.tag == "teapotHandle2")//if the mouse is hovering over an item
                     {
                         Debug.Log("teapotHandle2");
                         //make theobject follow the mouse position
@@ -173,13 +157,8 @@ public class brokenItem : MonoBehaviour
                         selectedObject = teapotHandle2;
                         offset = selectedObject.transform.position - hit.point;
                         //defaultLocation = selectedObject.transform.position;
-
-
                     }
-                }
-                if (hit.collider.gameObject.tag == "teapotLid1")//if the mouse is hovering over an item
-                {
-                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    if (hit.collider.gameObject.tag == "teapotLid1")//if the mouse is hovering over an item
                     {
                         Debug.Log("teapotLid1");
                         //make theobject follow the mouse position
@@ -187,13 +166,8 @@ public class brokenItem : MonoBehaviour
                         selectedObject = teapotLid1;
                         offset = selectedObject.transform.position - hit.point;
                         //defaultLocation = selectedObject.transform.position;
-
-
                     }
-                }
-                if (hit.collider.gameObject.tag == "teapotLid2")//if the mouse is hovering over an item
-                {
-                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    if (hit.collider.gameObject.tag == "teapotLid2")//if the mouse is hovering over an item
                     {
                         Debug.Log("teapotLid2");
                         //make theobject follow the mouse position
@@ -201,13 +175,8 @@ public class brokenItem : MonoBehaviour
                         selectedObject = teapotLid2;
                         offset = selectedObject.transform.position - hit.point;
                         //defaultLocation = selectedObject.transform.position;
-
-
                     }
-                }
-                if (hit.collider.gameObject.tag == "teapotBase")//if the mouse is hovering over an item
-                {
-                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    if (hit.collider.gameObject.tag == "teapotBase")//if the mouse is hovering over an item
                     {
                         Debug.Log("teapotBase");
                         //make theobject follow the mouse position
@@ -215,14 +184,10 @@ public class brokenItem : MonoBehaviour
                         selectedObject = teapotBase;
                         offset = selectedObject.transform.position - hit.point;
                         //defaultLocation = selectedObject.transform.position;
-
-
                     }
-                }
-                if (hit.collider.gameObject.tag == "teapotMainBody")//if the mouse is hovering over an item
-                {
-                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    if (hit.collider.gameObject.tag == "teapotMainBody")//if the mouse is hovering over an item
                     {
+
                         Debug.Log("teapotMainBody");
 
                         //make theobject follow the mouse position
@@ -230,7 +195,6 @@ public class brokenItem : MonoBehaviour
                         selectedObject = teapotMainBody;
                         offset = selectedObject.transform.position - hit.point;
                         //defaultLocation = selectedObject.transform.position;
-
 
                     }
                 }
@@ -264,6 +228,9 @@ public class brokenItem : MonoBehaviour
                 {
                     if (selectedObject.tag != "Untagged")
                     {
+
+         
+
                         if (selectedObject.tag == "teapotSpout")
                         {
                             selectedObject.transform.position = teapotSpoutDefaultPos.transform.position;
@@ -290,6 +257,7 @@ public class brokenItem : MonoBehaviour
                         }
                         if (selectedObject.tag == "teapotMainBody")
                         {
+                            Debug.Log("WE DO HAVE A PROBLEM");
                             selectedObject.transform.position = teapotMainBodyDefaultPos.transform.position;
                         }
                     }

@@ -20,7 +20,7 @@ public class brokenPieceMatcher : MonoBehaviour
         ghostTeaPot = GameObject.FindWithTag("ghostTeaPot");
     }
 
-    void OnCollisionStay(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
 
         if (collision.gameObject.CompareTag("teapotSpout"))
@@ -33,7 +33,7 @@ public class brokenPieceMatcher : MonoBehaviour
                 match = true;
             }
         }
-        else if (collision.gameObject.CompareTag("teapotHandle1"))
+        if (collision.gameObject.CompareTag("teapotHandle1"))
         {
             if (idNumber == 2)
             {
@@ -44,7 +44,7 @@ public class brokenPieceMatcher : MonoBehaviour
 
             }
         }
-        else if (collision.gameObject.CompareTag("teapotHandle2"))
+        if (collision.gameObject.CompareTag("teapotHandle2"))
         {
             if (idNumber == 3)
             {
@@ -55,7 +55,7 @@ public class brokenPieceMatcher : MonoBehaviour
 
             }
         }
-        else if (collision.gameObject.CompareTag("teapotLid1"))
+        if(collision.gameObject.CompareTag("teapotLid1"))
         {
             if (idNumber == 4)
             {
@@ -66,7 +66,7 @@ public class brokenPieceMatcher : MonoBehaviour
 
             }
         }
-        else if (collision.gameObject.CompareTag("teapotLid2"))
+        if (collision.gameObject.CompareTag("teapotLid2"))
         {
             if (idNumber == 5)
             {
@@ -77,17 +77,7 @@ public class brokenPieceMatcher : MonoBehaviour
             }
 
         }
-        else if (collision.gameObject.CompareTag("teapotMainBody"))
-        {
-            if (idNumber == 7)
-            {
-                selectedObject = collision.gameObject;
-                Debug.Log("matched main body");
-                match = true;
-
-            }
-        }
-        else if (collision.gameObject.CompareTag("teapotBase"))
+        if (collision.gameObject.CompareTag("teapotBase"))
         {
             if (idNumber == 6)
             {
@@ -98,11 +88,96 @@ public class brokenPieceMatcher : MonoBehaviour
 
             }
         }
-        else
+        if (collision.gameObject.CompareTag("teapotMainBody"))
         {
-            Debug.Log("STOP MATCH");
-            selectedObject = null;
-            match = false;
+            if (idNumber == 7)
+            {
+                selectedObject = collision.gameObject;
+
+                Debug.Log("matched mian body");
+                match = true;
+
+            }
+        }
+    }
+    void OnCollisionExit(Collision collision)
+    {
+
+        if (collision.gameObject.CompareTag("teapotSpout"))
+        {
+            if (idNumber == 1)
+            {
+                selectedObject = null;
+
+                Debug.Log("UN-matched spout");
+                match = false;
+            }
+        }
+        if (collision.gameObject.CompareTag("teapotHandle1"))
+        {
+            if (idNumber == 2)
+            {
+                selectedObject = null;
+
+                Debug.Log("UN-matched handle 1");
+                match = false;
+
+            }
+        }
+        if (collision.gameObject.CompareTag("teapotHandle2"))
+        {
+            if (idNumber == 3)
+            {
+                selectedObject = null;
+
+                Debug.Log("UN-matched handle 2");
+                match = false;
+
+            }
+        }
+        if (collision.gameObject.CompareTag("teapotLid1"))
+        {
+            if (idNumber == 4)
+            {
+                selectedObject = null;
+
+                Debug.Log("UN-matched lid 1");
+                match = false;
+
+            }
+        }
+        if (collision.gameObject.CompareTag("teapotLid2"))
+        {
+            if (idNumber == 5)
+            {
+                selectedObject = null;
+
+                Debug.Log("UN-matched lid 2");
+                match = false;
+            }
+
+        }
+        if (collision.gameObject.CompareTag("teapotBase"))
+        {
+            if (idNumber == 6)
+            {
+                selectedObject = null;
+
+                Debug.Log("UN-matched base");
+                match = false;
+
+            }
+        }
+        if (collision.gameObject.CompareTag("teapotMainBody"))
+        {
+            if (idNumber == 7)
+            {
+                selectedObject = null;
+
+                Debug.Log("UN-matched mian body");
+                match = false;
+
+            }
         }
     }
 

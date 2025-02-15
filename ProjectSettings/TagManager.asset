@@ -16,6 +16,9 @@ TagManager:
   - teapotBase
   - teapotMainBody
   - ghostTeaPot
+  - puzzle4CanPickup
+  - puzzle4ItemDestination
+  - puzzle4Table
   layers:
   - Default
   - TransparentFX
@@ -24,7 +27,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - ghostTeapot
   - 
   - 
   - 

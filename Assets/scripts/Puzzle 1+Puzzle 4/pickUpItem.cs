@@ -4,13 +4,6 @@ using UnityEngine.UI;
 
 public class PickupItem : MonoBehaviour
 {
-
-
-
-
-
-    LayerMask ignoreLayer;
-
     public Transform playerHand;
 
     public GameObject dropItemText;
@@ -31,7 +24,6 @@ public class PickupItem : MonoBehaviour
     void Start()
     {
         hudItemIdText.text = "";
-        ignoreLayer = LayerMask.GetMask("letRaycastThrough");
 
         dropItemText.SetActive(false);
         pickUpItemText.SetActive(false);
@@ -45,15 +37,12 @@ public class PickupItem : MonoBehaviour
         totalNumberOfItems = 6;//CHANGE THIS IN THE FUTURE TO MATCH THE ACTUAL VALUE<<<<<<<<<<<<<<<<<<<<<<<
 
         PlayerPrefs.SetInt("note1Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
+        PlayerPrefs.SetInt("note4Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
     }
-
-
-
 
     // Update is called once per frame
     void Update()
     {
-
         if (collectedItem != null && canDrop == true) //if player is holding an item then...
         {
             if (Input.GetKeyDown(KeyCode.F)) //drop item
@@ -78,13 +67,12 @@ public class PickupItem : MonoBehaviour
         Ray ray;
         RaycastHit hit;
 
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition); // fire ray from camera constantly
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition); //fire ray from camera constantly
 
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.red); //TEMP - DELETE THIS
 
-        if (Physics.Raycast(ray, out hit, 2.5f, ~ignoreLayer)) //shoot ray (allow it to shoot through layer -> any invisible colliders)
+        if (Physics.Raycast(ray, out hit, 2.5f)) //shoot ray
         {
-
             if (hit.collider.gameObject.tag == "itemDestination")//if the item is collectable the crosshair changes for the player
             {
                 if (collectedItem != null) //ensures player doesnt pick up multiple items
@@ -95,7 +83,7 @@ public class PickupItem : MonoBehaviour
                     puzzleConcept1_Destination destinationId = hit.collider.gameObject.GetComponent<puzzleConcept1_Destination>(); //access the id number of the destination
                     if (itemId.idNumber == destinationId.idNumber) //if the id numbers match then...
                     {
-                        //display the correct text
+                        //show correct text (hud elements)
                         placeItemText.SetActive(true);
                         dropItemText.SetActive(false);
 
@@ -120,10 +108,6 @@ public class PickupItem : MonoBehaviour
                             Collider itemCollider = collectedItem.GetComponent<Collider>();
                             itemCollider.enabled = true;
 
-                            //re-enable the items physics>>>disabled as i think were gonna wanna not be able to move the item after placing it?
-                            //Rigidbody itemRigidbody = collectedItem.GetComponent<Rigidbody>();
-                            //itemRigidbody.isKinematic = false;
-
                             //stop the player from being able to move the item
                             collectedItem.tag = "Untagged";
 
@@ -133,17 +117,24 @@ public class PickupItem : MonoBehaviour
                             //despawn the destination object
                             Destroy(itemDestination);
 
-                            //note down the number of items the player has returned to their correct positions
-                            itemsReturned++;
+                            if (itemId.idNumber == 100) //if its the wedding ring from puzzle 4 (item id 100)
+                            {
+                                PlayerPrefs.SetInt("note4Status", 1); //give note (puzzle complete)
+                            }
+                            else
+                            {
+                                //note down the number of items the player has returned to their correct positions
+                                itemsReturned++;
+                            }
 
-                            //display the correct text
+                            //show correct text (hud elements)
                             placeItemText.SetActive(false);
                         }
                     }
                     else
                     {
                         canDrop = true; //allow the play to drop the item
-                        //display the correct text
+                        //show correct text (hud elements)
                         placeItemText.SetActive(false);
                         dropItemText.SetActive(true);
                     }
@@ -151,7 +142,7 @@ public class PickupItem : MonoBehaviour
             }
             else if (hit.collider.gameObject.tag == "canPickup")//if the item is collectable the crosshair changes for the player
             {
-                //display the correct hud elements
+                //show correct text (hud elements)
                 pickUpItemText.SetActive(true);
                 dropItemText.SetActive(false);
 
@@ -181,6 +172,12 @@ public class PickupItem : MonoBehaviour
                 {
                     hudItemIdText.text = "headphones";
                 }
+                //
+                else if (itemId.idNumber == 100)
+                {
+                    hudItemIdText.text = "Wedding Ring";
+                }
+                //
                 else
                 {
                     hudItemIdText.text = "";
@@ -219,6 +216,7 @@ public class PickupItem : MonoBehaviour
             }
             else //change crosshair back if ray is fired into a different tag AND display the correct text
             {
+                //show correct text (hud elements)
                 pickUpItemText.SetActive(false);
                 placeItemText.SetActive(false);
                 if (collectedItem != null)
@@ -230,6 +228,7 @@ public class PickupItem : MonoBehaviour
         }
         else //change crosshair back if ray is fired into the air AND display the correct text
         {
+            //show correct text (hud elements)
             pickUpItemText.SetActive(false);
             placeItemText.SetActive(false);
             if (collectedItem != null)
@@ -239,12 +238,9 @@ public class PickupItem : MonoBehaviour
             }
         }
 
-
-
         if (itemsReturned == totalNumberOfItems)//when the player completes puzzle concept 1
         {
-            //give them a note
-            PlayerPrefs.SetInt("note1Status", 1);
+            PlayerPrefs.SetInt("note1Status", 1); //give note (puzzle complete)
         }
     }
 }

@@ -177,6 +177,19 @@ public class PickupItem : MonoBehaviour
                 {
                     hudItemIdText.text = "Wedding Ring";
                 }
+                //Puzzle 5 items, names obviously temporary, just cant think of any right now.
+                else if(itemId.idNumber == 501)
+                {
+                    hudItemIdText.text = "Item 1";
+                }
+                else if (itemId.idNumber == 502)
+                {
+                    hudItemIdText.text = "Item 2";
+                }
+                else if (itemId.idNumber == 503)
+                {
+                    hudItemIdText.text = "Item 3";
+                }
                 //
                 else
                 {

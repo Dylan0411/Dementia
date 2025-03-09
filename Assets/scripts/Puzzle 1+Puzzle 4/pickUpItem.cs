@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class PickupItem : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class PickupItem : MonoBehaviour
     public GameObject pickUpItemText;
     public GameObject placeItemText;
 
-    GameObject collectedItem;
+    public static GameObject collectedItem;
     GameObject itemDestination;
 
     bool canDrop;
@@ -19,6 +20,13 @@ public class PickupItem : MonoBehaviour
     public int totalNumberOfItems;
 
     public Text hudItemIdText;
+
+    public GameObject destination1;
+    public GameObject destination2;
+    public GameObject destination3;
+    public GameObject destination4;
+    public GameObject destination5;
+    public GameObject destination6;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,6 +46,13 @@ public class PickupItem : MonoBehaviour
 
         PlayerPrefs.SetInt("note1Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
         PlayerPrefs.SetInt("note4Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
+
+        destination1.SetActive(false);
+        destination2.SetActive(false);
+        destination3.SetActive(false);
+        destination4.SetActive(false);
+        destination5.SetActive(false);
+        destination6.SetActive(false);
     }
 
     // Update is called once per frame
@@ -114,8 +129,8 @@ public class PickupItem : MonoBehaviour
                             //cleanup the reference to the item as were now done with it
                             collectedItem = null;
 
-                            //despawn the destination object
-                            Destroy(itemDestination);
+                            //hide the destination object
+                            itemDestination.SetActive(false);
 
                             if (itemId.idNumber == 100) //if its the wedding ring from puzzle 4 (item id 100)
                             {
@@ -178,7 +193,7 @@ public class PickupItem : MonoBehaviour
                     hudItemIdText.text = "Wedding Ring";
                 }
                 //Puzzle 5 items, names obviously temporary, just cant think of any right now.
-                else if(itemId.idNumber == 501)
+                else if (itemId.idNumber == 501)
                 {
                     hudItemIdText.text = "Item 1";
                 }
@@ -224,8 +239,74 @@ public class PickupItem : MonoBehaviour
                         //disable the items physics
                         Rigidbody itemRigidbody = collectedItem.GetComponent<Rigidbody>();
                         itemRigidbody.isKinematic = true;
+
+                        //display the correct destinations
+                        if (itemId.idNumber == 1) //if the id numbers match then...
+                        {
+                            destination1.SetActive(true);
+                            destination2.SetActive(false);
+                            destination3.SetActive(false);
+                            destination4.SetActive(false);
+                            destination5.SetActive(false);
+                            destination6.SetActive(false);
+                        }
+                        if (itemId.idNumber == 2) //if the id numbers match then...
+                        {
+                            destination1.SetActive(false);
+                            destination2.SetActive(true);
+                            destination3.SetActive(false);
+                            destination4.SetActive(false);
+                            destination5.SetActive(false);
+                            destination6.SetActive(false);
+                        }
+                        if (itemId.idNumber == 3) //if the id numbers match then...
+                        {
+                            destination1.SetActive(false);
+                            destination2.SetActive(false);
+                            destination3.SetActive(true);
+                            destination4.SetActive(false);
+                            destination5.SetActive(false);
+                            destination6.SetActive(false);
+                        }
+                        if (itemId.idNumber == 4) //if the id numbers match then...
+                        {
+                            destination1.SetActive(false);
+                            destination2.SetActive(false);
+                            destination3.SetActive(false);
+                            destination4.SetActive(true);
+                            destination5.SetActive(false);
+                            destination6.SetActive(false);
+                        }
+                        if (itemId.idNumber == 5) //if the id numbers match then...
+                        {
+                            destination1.SetActive(false);
+                            destination2.SetActive(false);
+                            destination3.SetActive(false);
+                            destination4.SetActive(false);
+                            destination5.SetActive(true);
+                            destination6.SetActive(false);
+                        }
+                        if (itemId.idNumber == 6) //if the id numbers match then...
+                        {
+                            destination1.SetActive(false);
+                            destination2.SetActive(false);
+                            destination3.SetActive(false);
+                            destination4.SetActive(false);
+                            destination5.SetActive(false);
+                            destination6.SetActive(true);
+                        }
                     }
                 }
+
+
+
+
+
+
+
+
+
+
             }
             else //change crosshair back if ray is fired into a different tag AND display the correct text
             {
@@ -254,6 +335,17 @@ public class PickupItem : MonoBehaviour
         if (itemsReturned == totalNumberOfItems)//when the player completes puzzle concept 1
         {
             PlayerPrefs.SetInt("note1Status", 1); //give note (puzzle complete)
+        }
+
+        //display the correct destinations(reset)
+        if (collectedItem == null)
+        {
+            destination1.SetActive(false);
+            destination2.SetActive(false);
+            destination3.SetActive(false);
+            destination4.SetActive(false);
+            destination5.SetActive(false);
+            destination6.SetActive(false);
         }
     }
 }

@@ -29331,10 +29331,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 65
+    m_FontSize: 38
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 65
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -29342,7 +29342,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Note 6 name
+  m_Text: 'Note 6 name
+
+    (Dylans grid puzzle)'
 --- !u!222 &318666577
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -30965,10 +30967,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 65
+    m_FontSize: 38
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 65
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -30976,7 +30978,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Note 4 name
+  m_Text: 'Note 4 name
+
+    (Photo retrieval puzzle)'
 --- !u!222 &373011762
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -31748,7 +31752,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.2004, y: 191.09497}
+  m_AnchoredPosition: {x: -1.2004, y: 65.81012}
   m_SizeDelta: {x: 542.1013, y: 92.8327}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &392162604
@@ -60875,7 +60879,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.2004, y: -56.71513}
+  m_AnchoredPosition: {x: -1.2004, y: -182}
   m_SizeDelta: {x: 542.1013, y: 92.8327}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &799583613
@@ -65560,10 +65564,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 65
+    m_FontSize: 38
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 65
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -65571,7 +65575,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Note 3 name
+  m_Text: 'Note 3 name
+
+    (Dylans grid puzzle)'
 --- !u!222 &913674681
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -65784,7 +65790,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.2004, y: 71.73682}
+  m_AnchoredPosition: {x: -1.2004, y: -58}
   m_SizeDelta: {x: 542.1013, y: 92.8327}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &917446063
@@ -89781,7 +89787,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 65
+    m_FontSize: 38
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -89792,7 +89798,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Note 1 name
+  m_Text: 'Note 1 name
+
+    (misplaced items puzzle)'
 --- !u!222 &1553992721
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -102331,10 +102339,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 65
+    m_FontSize: 38
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 65
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -102342,7 +102350,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Note 5 name
+  m_Text: 'Note 5 name
+
+    (trash items puzzle)'
 --- !u!222 &1810781512
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -117655,7 +117665,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.2004, y: -181.18861}
+  m_AnchoredPosition: {x: -1.2004, y: 190}
   m_SizeDelta: {x: 542.1013, y: 92.8327}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2006902935
@@ -120770,10 +120780,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 65
+    m_FontSize: 38
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 65
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -120781,7 +120791,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Note 2 name
+  m_Text: 'Note 2 name
+
+    (teapot repair puzzle)'
 --- !u!222 &2113295517
 CanvasRenderer:
   m_ObjectHideFlags: 0

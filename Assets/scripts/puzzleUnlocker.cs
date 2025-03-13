@@ -20,6 +20,7 @@ public class puzzleUnlocker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //get the state of each puzzles progress
         int note1Status = PlayerPrefs.GetInt("puzzle1Status", 0);
         int note2Status = PlayerPrefs.GetInt("puzzle2Status", 0);
         int note3Status = PlayerPrefs.GetInt("puzzle3Status", 0);
@@ -43,7 +44,7 @@ public class puzzleUnlocker : MonoBehaviour
             player.GetComponent<tableInterface>().enabled = false;
 
             //enable dylans grid puzzle script
-            PlayerPrefs.SetInt("puzzle3Status", 1); //<<<<<<< TEMPORARY DELETE THIS
+            PlayerPrefs.SetInt("puzzle3Status", 1); //<<<<<<< TEMPORARY - MOVE THIS TO GRID PUZZLE SCRIPT WHEN PUZZLE IS COMPLETE
 
         }
         if (note3Status == 1)
@@ -60,7 +61,7 @@ public class puzzleUnlocker : MonoBehaviour
             player.GetComponent<photoInterface>().enabled = false;
 
             //enable dylans marble maze script
-            PlayerPrefs.SetInt("puzzle6Status", 1); //<<<<<<< TEMPORARY DELETE THIS
+            PlayerPrefs.SetInt("puzzle6Status", 1); //<<<<<<< TEMPORARY - MOVE THIS TO MARBLE MAZE SCRIPT WHEN PUZZLE IS COMPLETE
 
         }
         if (note6Status == 1)
@@ -72,6 +73,7 @@ public class puzzleUnlocker : MonoBehaviour
 
     void disableScripts()
     {
+        //Disable scripts that are not needed at the start of the game
         player.GetComponent<tableInterface>().enabled = false;
         player.GetComponent<photoInterface>().enabled = false;
     }

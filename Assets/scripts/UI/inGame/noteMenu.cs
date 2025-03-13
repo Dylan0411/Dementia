@@ -128,12 +128,12 @@ public class noteMenu : MonoBehaviour
         int puzzle6Status = PlayerPrefs.GetInt("puzzle6Status", 0);
 
 
+        //when a variable == 1, it means the puzzle is complete
 
-
+        //display correct tick boxes, notes in note menus, and note notifications
         if (puzzle1Status == 1)
         {
             note1Tick.SetActive(true);
-
         }
         if (puzzle5Status == 1)
         {
@@ -147,8 +147,6 @@ public class noteMenu : MonoBehaviour
             note2Activated = true;
         }
         //
-
-
         if (puzzle2Status == 1 && note3Activated == false)
         {
             note2Tick.SetActive(true);
@@ -192,7 +190,8 @@ public class noteMenu : MonoBehaviour
 
         }
 
-        if (inNotesMenu == true)
+        //if the game is paused, hide the notification canvas
+        if (Time.timeScale == 0)
         {
             noteNotificationCanvas.SetActive(false); //hide notification canvas
         }
@@ -200,10 +199,7 @@ public class noteMenu : MonoBehaviour
         {
             noteNotificationCanvas.SetActive(true); //show notification canvas
         }
-
     }
-
-
 
 
     private void FixedUpdate()

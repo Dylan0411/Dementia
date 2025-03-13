@@ -40,10 +40,11 @@ public class noteMenu : MonoBehaviour
     bool progressNotification;
 
     bool puzzle1Activated;
+    bool puzzle1And5Activated;
     bool note2Activated;
     bool note3Activated;
-    bool note4Activated;
     bool puzzle5Activated;
+    bool note4Activated;
     bool note6Activated;
 
     public GameObject noteNotificationCanvas;
@@ -75,10 +76,11 @@ public class noteMenu : MonoBehaviour
         progressNotification = false;
 
         puzzle1Activated = false;
+        puzzle1And5Activated = false;
         note2Activated = false;
         note3Activated = false;
-        note4Activated = false;
         puzzle5Activated = false;
+        note4Activated = false;
         note6Activated = false;
 
         note1Button.SetActive(false);
@@ -152,15 +154,15 @@ public class noteMenu : MonoBehaviour
 
             puzzle5Activated = true;
         }
-        if (puzzle1Status == 1 && puzzle5Status == 1 && note2Activated == false)
+        if (puzzle1Status == 1 && puzzle5Status == 1 && puzzle1And5Activated == false)
         {
             note2Button.SetActive(true);//show button in notes menu
                                         //display a notification about the new note (ONLY ONCE)
             noteNotification = true;
-            note2Activated = true;
+            puzzle1And5Activated = true;
         }
         //
-        if (puzzle2Status == 1 && note3Activated == false)
+        if (puzzle2Status == 1 && note2Activated == false)
         {
             note2Tick.SetActive(true);
             progressNotification = true;
@@ -168,9 +170,9 @@ public class noteMenu : MonoBehaviour
             note3Button.SetActive(true);//show button in notes menu
             //display a notification about the new note (ONLY ONCE)
             noteNotification = true;
-            note3Activated = true;
+            note2Activated = true;
         }
-        if (puzzle3Status == 1 && note4Activated == false)
+        if (puzzle3Status == 1 && note3Activated == false)
         {
             note3Tick.SetActive(true);
             progressNotification = true;
@@ -178,9 +180,9 @@ public class noteMenu : MonoBehaviour
             note4Button.SetActive(true);//show button in notes menu
             //display a notification about the new note (ONLY ONCE)
             noteNotification = true;
-            note4Activated = true;
+            note3Activated = true;
         }
-        if (puzzle4Status == 1 && note6Activated == false)
+        if (puzzle4Status == 1 && note4Activated == false)
         {
             note4Tick.SetActive(true);
             progressNotification = true;
@@ -188,12 +190,14 @@ public class noteMenu : MonoBehaviour
             note6Button.SetActive(true);//show button in notes menu
             //display a notification about the new note (ONLY ONCE)
             noteNotification = true;
-            note6Activated = true;
+            note4Activated = true;
         }
-        if (puzzle6Status == 1)
+        if (puzzle6Status == 1 && note6Activated == false)
         {
             note6Tick.SetActive(true);
             progressNotification = true;
+
+            note6Activated = true;
         }
 
 

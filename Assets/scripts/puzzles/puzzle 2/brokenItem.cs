@@ -63,7 +63,6 @@ public class brokenItem : MonoBehaviour
     {
         if (correctPieces == 7) //if all the fragments are in the right place
         {
-            Debug.Log("uhhhhh");
             PlayerPrefs.SetInt("puzzle2Status", 1); //mark as complete
         }
 

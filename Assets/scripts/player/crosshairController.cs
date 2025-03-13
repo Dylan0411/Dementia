@@ -18,6 +18,8 @@ public class crosshairController : MonoBehaviour
     {
         int note1Status = PlayerPrefs.GetInt("puzzle1Status", 0);
         int note3Status = PlayerPrefs.GetInt("puzzle3Status", 0);
+        int note5Status = PlayerPrefs.GetInt("puzzle5Status", 0);
+
 
         Ray ray;
         RaycastHit hit;
@@ -31,7 +33,7 @@ public class crosshairController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 2.5f)) //shoot ray (allow it to shoot through layer -> any invisible colliders)
             {
 
-                if (note1Status == 1 && hit.collider.gameObject.tag == "brokenItemArea")//if the item is collectable the crosshair changes for the player (AND puzzle 1 is complete)
+                if (note1Status == 1 && note5Status == 1 && hit.collider.gameObject.tag == "brokenItemArea")//if the item is collectable the crosshair changes for the player (AND puzzle 1 is complete)
                 {
                     interactableCrosshair.SetActive(true);
                     defaultCrosshair.SetActive(false);
@@ -46,7 +48,7 @@ public class crosshairController : MonoBehaviour
                     interactableCrosshair.SetActive(true);
                     defaultCrosshair.SetActive(false);
                 }
-                else if (note3Status == 1 && hit.collider.gameObject.tag == "puzzle4Table")//if the item is collectable the crosshair changes for the player (AND puzzle 3 is complete)
+                else if (note3Status == 1 && hit.collider.gameObject.tag == "puzzle4Picture")//if the item is collectable the crosshair changes for the player (AND puzzle 3 is complete)
                 {
                     interactableCrosshair.SetActive(true);
                     defaultCrosshair.SetActive(false);

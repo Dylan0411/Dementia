@@ -18,7 +18,7 @@ TagManager:
   - ghostTeaPot
   - puzzle4CanPickup
   - puzzle4ItemDestination
-  - puzzle4Table
+  - puzzle4Picture
   layers:
   - Default
   - TransparentFX

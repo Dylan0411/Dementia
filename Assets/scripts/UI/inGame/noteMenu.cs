@@ -26,19 +26,24 @@ public class noteMenu : MonoBehaviour
 
     public static bool inNotesMenu;
 
-    public GameObject notification;
-    public GameObject notificationPopUpPos;
-    public GameObject notificationDefaultPos;
+    public GameObject noteNotificationPopUp;
+    public GameObject progressNotificationPopUp;
+        //
+    public GameObject noteNotificationPopUpPos;
+    public GameObject noteNotificationDefaultPos;
+    public GameObject progressNotificationPopUpPos;
+    public GameObject progressNotificationDefaultPos;
 
     float notificationMovementSpeed = 20f; //feel free to change :)
 
     bool noteNotification;
+    bool progressNotification;
 
-    bool note1Activated;
+    bool puzzle1Activated;
     bool note2Activated;
     bool note3Activated;
     bool note4Activated;
-    bool note5Activated;
+    bool puzzle5Activated;
     bool note6Activated;
 
     public GameObject noteNotificationCanvas;
@@ -63,15 +68,17 @@ public class noteMenu : MonoBehaviour
         noteText.text = "";
         inNotesMenu = false;
 
-        notification.transform.position = notificationDefaultPos.transform.position;
+        noteNotificationPopUp.transform.position = noteNotificationDefaultPos.transform.position;
+        progressNotificationPopUp.transform.position = progressNotificationDefaultPos.transform.position;
 
         noteNotification = false;
+        progressNotification = false;
 
-        note1Activated = false;
+        puzzle1Activated = false;
         note2Activated = false;
         note3Activated = false;
         note4Activated = false;
-        note5Activated = false;
+        puzzle5Activated = false;
         note6Activated = false;
 
         note1Button.SetActive(false);
@@ -131,13 +138,19 @@ public class noteMenu : MonoBehaviour
         //when a variable == 1, it means the puzzle is complete
 
         //display correct tick boxes, notes in note menus, and note notifications
-        if (puzzle1Status == 1)
+        if (puzzle1Status == 1 && puzzle1Activated == false)
         {
             note1Tick.SetActive(true);
+            progressNotification = true;
+
+            puzzle1Activated = true;
         }
-        if (puzzle5Status == 1)
+        if (puzzle5Status == 1 && puzzle5Activated == false)
         {
             note5Tick.SetActive(true);
+            progressNotification = true;
+
+            puzzle5Activated = true;
         }
         if (puzzle1Status == 1 && puzzle5Status == 1 && note2Activated == false)
         {
@@ -150,6 +163,7 @@ public class noteMenu : MonoBehaviour
         if (puzzle2Status == 1 && note3Activated == false)
         {
             note2Tick.SetActive(true);
+            progressNotification = true;
             //
             note3Button.SetActive(true);//show button in notes menu
             //display a notification about the new note (ONLY ONCE)
@@ -159,6 +173,7 @@ public class noteMenu : MonoBehaviour
         if (puzzle3Status == 1 && note4Activated == false)
         {
             note3Tick.SetActive(true);
+            progressNotification = true;
             //
             note4Button.SetActive(true);//show button in notes menu
             //display a notification about the new note (ONLY ONCE)
@@ -168,6 +183,7 @@ public class noteMenu : MonoBehaviour
         if (puzzle4Status == 1 && note6Activated == false)
         {
             note4Tick.SetActive(true);
+            progressNotification = true;
             //
             note6Button.SetActive(true);//show button in notes menu
             //display a notification about the new note (ONLY ONCE)
@@ -177,7 +193,7 @@ public class noteMenu : MonoBehaviour
         if (puzzle6Status == 1)
         {
             note6Tick.SetActive(true);
-            Debug.Log("All puzzles complete - now what?");
+            progressNotification = true;
         }
 
 
@@ -207,24 +223,48 @@ public class noteMenu : MonoBehaviour
         //new note notification
         if (noteNotification == true)
         {
-            if (notification.transform.position != notificationPopUpPos.transform.position) //if notification isnt in destination..
+            if (noteNotificationPopUp.transform.position != noteNotificationPopUpPos.transform.position) //if notification isnt in destination..
             {
-                notification.transform.position = Vector3.MoveTowards(notification.transform.position, notificationPopUpPos.transform.position, notificationMovementSpeed); //move it onto the screen
+                noteNotificationPopUp.transform.position = Vector3.MoveTowards(noteNotificationPopUp.transform.position, noteNotificationPopUpPos.transform.position, notificationMovementSpeed); //move it onto the screen
             }
             else
             {
-                Invoke("hideNotification", 3f);//wait 3 seconds before hiding the notification
+                Invoke("hideNoteNotification", 3f);//wait 3 seconds before hiding the notification
             }
         }
         else
         {
-            if (notification.transform.position != notificationDefaultPos.transform.position) //if notification isnt in destination..
+            if (noteNotificationPopUp.transform.position != noteNotificationDefaultPos.transform.position) //if notification isnt in destination..
             {
-                notification.transform.position = Vector3.MoveTowards(notification.transform.position, notificationDefaultPos.transform.position, notificationMovementSpeed); //move it out the screen
+                noteNotificationPopUp.transform.position = Vector3.MoveTowards(noteNotificationPopUp.transform.position, noteNotificationDefaultPos.transform.position, notificationMovementSpeed); //move it out the screen
+            }
+        }
+        //puzzle complete notification
+        if (progressNotification == true)
+        {
+            if (progressNotificationPopUp.transform.position != progressNotificationPopUpPos.transform.position) //if notification isnt in destination..
+            {
+                progressNotificationPopUp.transform.position = Vector3.MoveTowards(progressNotificationPopUp.transform.position, progressNotificationPopUpPos.transform.position, notificationMovementSpeed); //move it onto the screen
+            }
+            else
+            {
+                Invoke("hideProgressNotification", 3f);//wait 3 seconds before hiding the notification
+            }
+        }
+        else
+        {
+            if (progressNotificationPopUp.transform.position != progressNotificationDefaultPos.transform.position) //if notification isnt in destination..
+            {
+                progressNotificationPopUp.transform.position = Vector3.MoveTowards(progressNotificationPopUp.transform.position, progressNotificationDefaultPos.transform.position, notificationMovementSpeed); //move it out the screen
             }
         }
     }
-    void hideNotification() //call this via an Invoke
+
+    void hideProgressNotification() //call this via an Invoke
+    {
+        progressNotification = false; //hide notification
+    }
+    void hideNoteNotification() //call this via an Invoke
     {
         noteNotification = false; //hide notification
     }

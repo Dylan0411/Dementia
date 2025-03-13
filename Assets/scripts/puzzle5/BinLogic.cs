@@ -1,10 +1,19 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BinLogic : MonoBehaviour
 {
+    public static int trashedItems;
+
+    //recognize that the puzzle is complete
+    public void Start()
+    {
+        trashedItems = 0; //accessed at the bottom of 'pickUpItem' script
+    }
+
     [SerializeField] List<int> validIDs;
     public bool puzzleCompleteFlag = false;
     public bool resetPuzzleFlag = false;
@@ -21,6 +30,7 @@ public class BinLogic : MonoBehaviour
                     if(flag)
                     {
                         Debug.Log("Removed item successfully");
+                        trashedItems++;
                     }
                     else
                     {
@@ -46,6 +56,13 @@ public class BinLogic : MonoBehaviour
             {
                 Debug.Log("PuzzleConcept1_Item is null");
             }
+        }
+    }
+    public void Update()
+    {
+        if (trashedItems == 3) //change this value to match the amount of trash <<<<<<<<<<<<<<<<<
+        {
+            PlayerPrefs.SetInt("puzzle5Status", 1); //mark as complete
         }
     }
 }

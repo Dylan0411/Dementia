@@ -44,9 +44,6 @@ public class PickupItem : MonoBehaviour
         itemsReturned = 0;
         totalNumberOfItems = 6;//CHANGE THIS IN THE FUTURE TO MATCH THE ACTUAL VALUE<<<<<<<<<<<<<<<<<<<<<<<
 
-        PlayerPrefs.SetInt("note1Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
-        PlayerPrefs.SetInt("note4Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
-
         destination1.SetActive(false);
         destination2.SetActive(false);
         destination3.SetActive(false);
@@ -134,7 +131,7 @@ public class PickupItem : MonoBehaviour
 
                             if (itemId.idNumber == 100) //if its the wedding ring from puzzle 4 (item id 100)
                             {
-                                PlayerPrefs.SetInt("note4Status", 1); //give note (puzzle complete)
+                                PlayerPrefs.SetInt("puzzle4Status", 1); //give note (puzzle complete)
                             }
                             else
                             {
@@ -297,16 +294,6 @@ public class PickupItem : MonoBehaviour
                         }
                     }
                 }
-
-
-
-
-
-
-
-
-
-
             }
             else //change crosshair back if ray is fired into a different tag AND display the correct text
             {
@@ -334,7 +321,7 @@ public class PickupItem : MonoBehaviour
 
         if (itemsReturned == totalNumberOfItems)//when the player completes puzzle concept 1
         {
-            PlayerPrefs.SetInt("note1Status", 1); //give note (puzzle complete)
+            PlayerPrefs.SetInt("puzzle1Status", 1); //mark as complete
         }
 
         //display the correct destinations(reset)

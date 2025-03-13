@@ -1,0 +1,78 @@
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class puzzleUnlocker : MonoBehaviour
+{
+
+    public GameObject player;
+
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        //enable misplaced items scritps
+        player.GetComponent<PickupItem>().enabled = true;
+        //disable scripts used later
+        Invoke("disableScripts", 0.1f);
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        int note1Status = PlayerPrefs.GetInt("puzzle1Status", 0);
+        int note2Status = PlayerPrefs.GetInt("puzzle2Status", 0);
+        int note3Status = PlayerPrefs.GetInt("puzzle3Status", 0);
+        int note4Status = PlayerPrefs.GetInt("puzzle4Status", 0);
+        int note5Status = PlayerPrefs.GetInt("puzzle5Status", 0);
+        int note6Status = PlayerPrefs.GetInt("puzzle6Status", 0);
+
+        if (note5Status == 1)
+        {
+            //do nothing (trash task should just be constant?)
+        }
+        //
+        if (note1Status == 1)
+        {
+            //enable teapot scripts
+            player.GetComponent<tableInterface>().enabled = true;
+        }
+        if (note2Status == 1)
+        {
+            //disable teapot scripts
+            player.GetComponent<tableInterface>().enabled = false;
+
+            //enable dylans grid puzzle script
+            PlayerPrefs.SetInt("puzzle3Status", 1); //<<<<<<< TEMPORARY DELETE THIS
+
+        }
+        if (note3Status == 1)
+        {
+            //disable dylans grid puzzle script
+            
+            
+            //enable picture frame script
+            player.GetComponent<photoInterface>().enabled = true;
+        }
+        if (note4Status == 1)
+        {
+            //disable picture frame script
+            player.GetComponent<photoInterface>().enabled = false;
+
+            //enable dylans marble maze script
+            PlayerPrefs.SetInt("puzzle6Status", 1); //<<<<<<< TEMPORARY DELETE THIS
+
+        }
+        if (note6Status == 1)
+        {
+            //disable dylans marble maze script
+
+        }
+    }
+
+    void disableScripts()
+    {
+        player.GetComponent<tableInterface>().enabled = false;
+        player.GetComponent<photoInterface>().enabled = false;
+    }
+}

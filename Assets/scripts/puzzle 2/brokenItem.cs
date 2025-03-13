@@ -53,7 +53,7 @@ public class brokenItem : MonoBehaviour
 
         correctPieces = 0;
 
-        PlayerPrefs.SetInt("note2Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
+        PlayerPrefs.SetInt("puzzle2Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
 
         ghostTeapotLayerMask = LayerMask.NameToLayer("ghostTeapot");
     }
@@ -63,13 +63,14 @@ public class brokenItem : MonoBehaviour
     {
         if (correctPieces == 7) //if all the fragments are in the right place
         {
-            PlayerPrefs.SetInt("note2Status", 1); //give the player a note
+            Debug.Log("uhhhhh");
+            PlayerPrefs.SetInt("puzzle2Status", 1); //mark as complete
         }
 
         if (tableInterface.usingTable == true)
         {
             //exit table
-            if (Input.GetKeyDown(KeyCode.F) || PlayerPrefs.GetInt("note2Status") == 1) //if the player exits or if the puzzle is complete
+            if (Input.GetKeyDown(KeyCode.F) || PlayerPrefs.GetInt("puzzle2Status") == 1) //if the player exits or if the puzzle is complete
             {
                 //hide the loose fragments on the table
                 fragments.SetActive(false);

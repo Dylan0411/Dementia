@@ -92,7 +92,7 @@ public class tableInterface : MonoBehaviour
                 interactWithTableText.SetActive(false);
             }
 
-            int note2 = PlayerPrefs.GetInt("note2Status"); //if the player has completed the smashed puzzle..
+            int note2 = PlayerPrefs.GetInt("puzzle2Status"); //if the player has completed the smashed puzzle..
             if (note2 == 1)
             {
                 //show correct hud elements

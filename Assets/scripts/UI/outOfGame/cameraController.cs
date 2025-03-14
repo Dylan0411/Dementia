@@ -44,6 +44,11 @@ public class cameraController : MonoBehaviour
         cam.transform.rotation = defaultPos1.transform.rotation;
 
         FadeOut();
+
+        //unpause the game so animation actually works
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.None;//let the player move the cursor
+        Cursor.visible = true; //show cursor
     }
 
     // Update is called once per frame

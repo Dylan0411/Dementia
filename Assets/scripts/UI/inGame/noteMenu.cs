@@ -1,12 +1,6 @@
-using System.Net.NetworkInformation;
-using System;
-using System.Numerics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Playables;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
-using Vector3 = UnityEngine.Vector3;
+//using Vector3 = UnityEngine.Vector3;
 
 public class noteMenu : MonoBehaviour
 {

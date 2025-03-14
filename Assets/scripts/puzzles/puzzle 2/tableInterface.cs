@@ -58,25 +58,28 @@ public class tableInterface : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.F) && usingTable == false) //use table
                     {
-                        player.transform.position = playerTablePos.transform.position;//move player to the front of the table to avoid spatial disorientation
+                        //Move player to the front of the table
+                        player.transform.position = playerTablePos.transform.position;
 
-                        //cursor controller
-                        Cursor.lockState = CursorLockMode.None;//let the player move the cursor
-                        
-                        //show correct hud elements
+                        //Update HUD elements
                         interactWithTableText.SetActive(false);
                         interactableCrosshair.SetActive(false);
                         teapotHud.SetActive(true);
 
-                        //switch cameras
+                        //Switch cameras
                         tableCamera.SetActive(true);
                         mainPlayerCamera.SetActive(false);
+
+                        //Disable player controls to prevent movement
                         player.SetActive(false);
 
-                        usingTable = true; //mark the table as being used (stops the player being able to walk around etc)
+                        //Mark table as being used
+                        usingTable = true;
 
-                        fragments.SetActive(true); //show the smashed fragments on the table
+                        //Show fragments
+                        fragments.SetActive(true);
                     }
+
                     else
                     {
                         teapotHud.SetActive(false);

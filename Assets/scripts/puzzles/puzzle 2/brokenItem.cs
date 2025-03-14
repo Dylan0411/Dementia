@@ -69,28 +69,28 @@ public class brokenItem : MonoBehaviour
         if (tableInterface.usingTable == true)
         {
             //exit table
-            if (Input.GetKeyDown(KeyCode.F) || PlayerPrefs.GetInt("puzzle2Status") == 1) //if the player exits or if the puzzle is complete
+            if (Input.GetKeyDown(KeyCode.F) || PlayerPrefs.GetInt("puzzle2Status") == 1)
             {
-                //hide the loose fragments on the table
+                //Hide the loose fragments on the table
                 fragments.SetActive(false);
 
-                //lock and hide the cursor
-                Cursor.lockState = CursorLockMode.Locked;
-
-                //switch cameras
+                //Switch cameras back to the player's view
                 tableCamera.SetActive(false);
                 mainPlayerCamera.SetActive(true);
 
-                //bring back the players body
+                //Re-enable player controls
                 player.SetActive(true);
 
-                //mark the table as not being used (allows the player to walk around etc)
+                //Mark the table as not being used
                 tableInterface.usingTable = false;
 
-                //set rotation of teapot to default
+                //Reset the teapot's rotation
                 ghostTeapot.transform.rotation = Quaternion.Euler(90, 90, 0);
-            }
 
+                //Use Invoke with a short delay to lock the cursor on the next frame (cursor wouldnt recenter if i didnt do this)
+                Invoke("LockCursor", 0.01f);
+            }
+        
             //interacting with broken teapot code here
             Ray ray;
             RaycastHit hit;
@@ -197,5 +197,12 @@ public class brokenItem : MonoBehaviour
         {
             ghostTeapot.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
         }
+    }
+
+    //used to recenter the cursor after the player leaves the table
+    private void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

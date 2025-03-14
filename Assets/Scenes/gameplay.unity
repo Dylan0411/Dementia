@@ -34146,7 +34146,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Note 6 name
 
-    (Dylans grid puzzle)'
+    (Dylans maze puzzle)'
 --- !u!222 &318666577
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -146417,7 +146417,7 @@ Transform:
   m_GameObject: {fileID: 2082688327}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -36.2, y: -1.1, z: -76.7}
+  m_LocalPosition: {x: -36.2, y: -1.1, z: -12.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

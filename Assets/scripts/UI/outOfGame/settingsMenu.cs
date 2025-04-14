@@ -15,8 +15,4 @@ public class settingsMenu : MonoBehaviour
         
     }
 
-    public void backButton()
-    {
-        SceneManager.LoadScene("mainMenu");
-    }
 }

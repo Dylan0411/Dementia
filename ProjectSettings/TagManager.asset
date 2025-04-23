@@ -19,6 +19,7 @@ TagManager:
   - puzzle4CanPickup
   - puzzle4ItemDestination
   - puzzle4Picture
+  - puzzle3ValidTile
   layers:
   - Default
   - TransparentFX

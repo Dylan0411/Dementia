@@ -34,6 +34,26 @@ public class GridController : MonoBehaviour
 
     }
 
+    bool VertCheck()
+    {
+        //Move left
+        if (Input.GetAxis("Vertical") == 1)
+        {
+        }
+        else
+        {
+        }
+
+        return false;
+    }
+
+    bool HoriCheck()
+    {
+        //True = up, False = down
+
+        return false;
+    }
+
     // Update is called once per frame
     void Update()
     {

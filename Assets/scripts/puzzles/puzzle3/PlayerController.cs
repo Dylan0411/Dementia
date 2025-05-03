@@ -24,11 +24,71 @@ public class PlayerController : MonoBehaviour
     {
         Self = this.GameObject();
         negativeMoveVal = (-1 * moveVal);
+
+        GameObject LeftCol = this.GameObject().transform.GetChild(0).gameObject;
+        GameObject DownCol = this.GameObject().transform.GetChild(1).gameObject;
+        GameObject RightCol = this.GameObject().transform.GetChild(2).gameObject;
+        GameObject UpCol = this.GameObject().transform.GetChild(3).gameObject;
+    }
+
+    bool VertCheck()
+    {
+        //Move left
+        if (Input.GetAxis("Vertical") == 1)
+        {
+        }
+        else
+        {
+
+        }
+
+        return false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (waitForInputs == false)
+        {
+            //Tries to work out if it's doing vert or hori
+            if ((Input.GetAxis("Vertical") == 1) || (Input.GetAxis("Vertical") == -1)) { vertActive = true; }
+            if ((Input.GetAxis("Horizontal") == 1) || (Input.GetAxis("Horizontal") == -1)) { horiActive = true; }
+
+            //If it's vert, not hori
+            if (vertActive == true && horiActive == false)
+            {
+                if (Input.GetAxis("Vertical") == 1) { movePick = moveVal; }
+                else { movePick = negativeMoveVal; }
+                movement = new Vector3(0.0f, 0.0f, movePick);
+            }
+            //If it's hori, not vert
+            if (vertActive == false && horiActive == true)
+            {
+                if (Input.GetAxis("Horizontal") == 1) { movePick = moveVal; }
+                else { movePick = negativeMoveVal; }
+                movement = new Vector3(movePick, 0.0f, 0.0f);
+            }
+            //If both are being held down
+            if (vertActive == true && horiActive == true)
+            {
+                //Prioritise vert movement
+                if (Input.GetAxis("Vertical") == 1) { movePick = moveVal; }
+                else { movePick = negativeMoveVal; }
+                movement = new Vector3(0.0f, 0.0f, movePick);
+            }
+
+            waitForInputs = true;
+            vertActive = false; horiActive = false;
+            desiredPos = Self.transform.position + movement;
+        }
+
+        smoothPos = Vector3.Lerp(Self.transform.position, desiredPos, 0.1f);
+
+        Self.transform.position = smoothPos;
+        if (Self.transform.position == desiredPos)
+        {
+            movement = new Vector3(0.0f, 0.0f, 0.0f);
+            waitForInputs = false;
+        }
     }
 }

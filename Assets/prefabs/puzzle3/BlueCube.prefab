@@ -14,11 +14,11 @@ GameObject:
   - component: {fileID: 467824630301761029}
   m_Layer: 6
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: puzzle3ValidTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8675413875233173121
 Transform:
   m_ObjectHideFlags: 0

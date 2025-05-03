@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GridControllerNew : MonoBehaviour
+public class GridController : MonoBehaviour
 {
     // https://discussions.unity.com/t/3d-grid-movement/227008/2 used as reference
 

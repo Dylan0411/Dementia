@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2740009395662964092}
   - component: {fileID: 196719575361877997}
   m_Layer: 6
-  m_Name: Collider
+  m_Name: PinkCollider
   m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

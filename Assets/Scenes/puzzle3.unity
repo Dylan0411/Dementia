@@ -889,6 +889,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1474901770}
     m_Modifications:
+    - target: {fileID: 3814949719926281017, guid: 596a8348ab74ae44dbcbac1bb9cb5020, type: 3}
+      propertyPath: activeInterval
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6626514791447746978, guid: 596a8348ab74ae44dbcbac1bb9cb5020, type: 3}
       propertyPath: m_Name
       value: BlueCube (1)
@@ -1207,6 +1211,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1474901770}
     m_Modifications:
+    - target: {fileID: 3814949719926281017, guid: 596a8348ab74ae44dbcbac1bb9cb5020, type: 3}
+      propertyPath: activeInterval
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6626514791447746978, guid: 596a8348ab74ae44dbcbac1bb9cb5020, type: 3}
       propertyPath: m_Name
       value: BlueCube (2)
@@ -1417,7 +1425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 463add8ee2a32194994fcef476982b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveVal: 1
+  puzzleTimer: 10
 --- !u!1001 &1532745855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1693,11 +1701,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1364ebfd81542c145910059629eaafba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveVal: 1
   leftCollider: {fileID: 1838654719}
   downCollider: {fileID: 1918215108}
   rightCollider: {fileID: 300828862}
   upCollider: {fileID: 1998973452}
+  moveVal: 1
 --- !u!1001 &1631311935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2651,6 +2659,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1474901770}
     m_Modifications:
+    - target: {fileID: 3814949719926281017, guid: 596a8348ab74ae44dbcbac1bb9cb5020, type: 3}
+      propertyPath: activeTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814949719926281017, guid: 596a8348ab74ae44dbcbac1bb9cb5020, type: 3}
+      propertyPath: activeInterval
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6626514791447746978, guid: 596a8348ab74ae44dbcbac1bb9cb5020, type: 3}
       propertyPath: m_Name
       value: BlueCube

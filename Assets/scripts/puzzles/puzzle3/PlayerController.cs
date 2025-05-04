@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
     // https://discussions.unity.com/t/3d-grid-movement/227008/2 used as reference
 
     GameObject self;
+    private GridController grid;
+
     public PlayerColliderScript leftCollider;
     public PlayerColliderScript downCollider;
     public PlayerColliderScript rightCollider;
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         self = this.GameObject();
+        grid = GetComponentInParent<GridController>();
         negativeMoveVal = (-1 * moveVal);
     }
     float VertCheck()
@@ -92,6 +95,10 @@ public class PlayerController : MonoBehaviour
                 }
                 else { movement = new Vector3(0.0f, 0.0f, movePick); }
             }
+
+            //Advance time
+            if (movePick != 0.0f) { grid.AdvanceTime(); }
+            movePick = 0.0f;
 
             waitForInputs = true;
             vertActive = false; horiActive = false;

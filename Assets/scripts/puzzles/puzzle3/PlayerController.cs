@@ -19,23 +19,25 @@ public class PlayerController : MonoBehaviour
     Vector3 desiredPos;
     Vector3 smoothPos;
 
+    GameObject self;
+    public PlayerColliderScript leftCollider;
+    public PlayerColliderScript downCollider;
+    public PlayerColliderScript rightCollider;
+    public PlayerColliderScript upCollider;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Self = this.GameObject();
         negativeMoveVal = (-1 * moveVal);
 
-        GameObject LeftCol = this.GameObject().transform.GetChild(0).gameObject;
-        GameObject DownCol = this.GameObject().transform.GetChild(1).gameObject;
-        GameObject RightCol = this.GameObject().transform.GetChild(2).gameObject;
-        GameObject UpCol = this.GameObject().transform.GetChild(3).gameObject;
+        self = this.GameObject();
     }
-
     bool VertCheck()
     {
         //Move left
         if (Input.GetAxis("Vertical") == 1)
         {
+
         }
         else
         {

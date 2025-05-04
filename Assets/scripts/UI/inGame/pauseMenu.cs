@@ -5,6 +5,8 @@ public class pauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuCanvas;
     public GameObject settingsMenuCanvas;
+    public GameObject controlsMenuCanvas;
+
 
     public GameObject player;
 
@@ -15,6 +17,8 @@ public class pauseMenu : MonoBehaviour
 
         pauseMenuCanvas.SetActive(false);
         settingsMenuCanvas.SetActive(false);
+        controlsMenuCanvas.SetActive(false);
+
         player.GetComponent<playerLook>().enabled = true;
         player.GetComponent<PickupItem>().enabled = true;
     }
@@ -52,6 +56,12 @@ public class pauseMenu : MonoBehaviour
         pauseMenuCanvas.SetActive(false);
         settingsMenuCanvas.SetActive(true);
     }
+    public void controlsButton() //virtual
+    {
+        //hide the pause menu and show the settings menu 
+        pauseMenuCanvas.SetActive(false);
+        controlsMenuCanvas.SetActive(true);
+    }
     public void exitToMenuButton() //virtual
     {
         SceneManager.LoadScene("mainMenu");
@@ -67,5 +77,13 @@ public class pauseMenu : MonoBehaviour
         //hide the settings menu and show the pause menu 
         pauseMenuCanvas.SetActive(true);
         settingsMenuCanvas.SetActive(false);
+    }
+
+    //controls menu buttons
+    public void controlsBackButton() //virtual
+    {
+        //hide the controls menu and show the pause menu 
+        pauseMenuCanvas.SetActive(true);
+        controlsMenuCanvas.SetActive(false);
     }
 }

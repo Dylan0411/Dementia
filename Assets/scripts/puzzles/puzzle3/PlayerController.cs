@@ -5,7 +5,11 @@ public class PlayerController : MonoBehaviour
 {
     // https://discussions.unity.com/t/3d-grid-movement/227008/2 used as reference
 
-    GameObject Self;
+    GameObject self;
+    public PlayerColliderScript leftCollider;
+    public PlayerColliderScript downCollider;
+    public PlayerColliderScript rightCollider;
+    public PlayerColliderScript upCollider;
 
     bool waitForInputs = false;
     bool vertActive = false;
@@ -19,32 +23,40 @@ public class PlayerController : MonoBehaviour
     Vector3 desiredPos;
     Vector3 smoothPos;
 
-    GameObject self;
-    public PlayerColliderScript leftCollider;
-    public PlayerColliderScript downCollider;
-    public PlayerColliderScript rightCollider;
-    public PlayerColliderScript upCollider;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        negativeMoveVal = (-1 * moveVal);
-
         self = this.GameObject();
+        negativeMoveVal = (-1 * moveVal);
     }
-    bool VertCheck()
+    float VertCheck()
     {
+        //Move up
+        if (Input.GetAxis("Vertical") == 1) {
+            if (upCollider.IsColliding()) { return moveVal; } //Means the player can move
+        }
+
+        //Move down
+        else {
+            if (downCollider.IsColliding()) { return negativeMoveVal; }
+        }
+
+        return 0.0f;
+    }
+
+    float HoriCheck()
+    {
+        //Move right
+        if (Input.GetAxis("Horizontal") == 1) {
+            if (rightCollider.IsColliding()) { return moveVal; } //same as above
+        }
+
         //Move left
-        if (Input.GetAxis("Vertical") == 1)
-        {
-
-        }
-        else
-        {
-
+        else {
+            if (leftCollider.IsColliding()) { return negativeMoveVal; } //same as above
         }
 
-        return false;
+        return 0.0f;
     }
 
     // Update is called once per frame
@@ -59,35 +71,37 @@ public class PlayerController : MonoBehaviour
             //If it's vert, not hori
             if (vertActive == true && horiActive == false)
             {
-                if (Input.GetAxis("Vertical") == 1) { movePick = moveVal; }
-                else { movePick = negativeMoveVal; }
+                movePick = VertCheck();
                 movement = new Vector3(0.0f, 0.0f, movePick);
             }
             //If it's hori, not vert
             if (vertActive == false && horiActive == true)
             {
-                if (Input.GetAxis("Horizontal") == 1) { movePick = moveVal; }
-                else { movePick = negativeMoveVal; }
+                movePick = HoriCheck();
                 movement = new Vector3(movePick, 0.0f, 0.0f);
             }
             //If both are being held down
             if (vertActive == true && horiActive == true)
             {
                 //Prioritise vert movement
-                if (Input.GetAxis("Vertical") == 1) { movePick = moveVal; }
-                else { movePick = negativeMoveVal; }
-                movement = new Vector3(0.0f, 0.0f, movePick);
+                movePick = VertCheck();
+                if (movePick == 0.0f)
+                { //If vert movement wasn't valid - allows for hori movement instead
+                    movePick = HoriCheck();
+                    movement = new Vector3(movePick, 0.0f, 0.0f);
+                }
+                else { movement = new Vector3(0.0f, 0.0f, movePick); }
             }
 
             waitForInputs = true;
             vertActive = false; horiActive = false;
-            desiredPos = Self.transform.position + movement;
+            desiredPos = self.transform.position + movement;
         }
 
-        smoothPos = Vector3.Lerp(Self.transform.position, desiredPos, 0.1f);
+        smoothPos = Vector3.Lerp(self.transform.position, desiredPos, 0.1f);
 
-        Self.transform.position = smoothPos;
-        if (Self.transform.position == desiredPos)
+        self.transform.position = smoothPos;
+        if (self.transform.position == desiredPos)
         {
             movement = new Vector3(0.0f, 0.0f, 0.0f);
             waitForInputs = false;

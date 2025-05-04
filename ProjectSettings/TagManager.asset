@@ -19,6 +19,14 @@ TagManager:
   - puzzle4CanPickup
   - puzzle4ItemDestination
   - puzzle4Picture
+  - lightSwitch1
+  - lightSwitch2
+  - lightSwitch3
+  - lightSwitch4
+  - lightSwitch5
+  - water1
+  - water2
+  - water3
   layers:
   - Default
   - TransparentFX

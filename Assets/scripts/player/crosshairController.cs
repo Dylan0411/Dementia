@@ -53,6 +53,46 @@ public class crosshairController : MonoBehaviour
                     interactableCrosshair.SetActive(true);
                     defaultCrosshair.SetActive(false);
                 }
+                else if (hit.collider.gameObject.tag == "lightSwitch1")
+                {
+                    interactableCrosshair.SetActive(true);
+                    defaultCrosshair.SetActive(false);
+                }
+                else if (hit.collider.gameObject.tag == "lightSwitch2")
+                {
+                    interactableCrosshair.SetActive(true);
+                    defaultCrosshair.SetActive(false);
+                }
+                else if (hit.collider.gameObject.tag == "lightSwitch3")
+                {
+                    interactableCrosshair.SetActive(true);
+                    defaultCrosshair.SetActive(false);
+                }
+                else if (hit.collider.gameObject.tag == "lightSwitch4")
+                {
+                    interactableCrosshair.SetActive(true);
+                    defaultCrosshair.SetActive(false);
+                }
+                else if (hit.collider.gameObject.tag == "lightSwitch5")
+                {
+                    interactableCrosshair.SetActive(true);
+                    defaultCrosshair.SetActive(false);
+                }
+                else if (hit.collider.gameObject.tag == "water1")
+                {
+                    interactableCrosshair.SetActive(true);
+                    defaultCrosshair.SetActive(false);
+                }
+                else if (hit.collider.gameObject.tag == "water2")
+                {
+                    interactableCrosshair.SetActive(true);
+                    defaultCrosshair.SetActive(false);
+                }
+                else if (hit.collider.gameObject.tag == "water3")
+                {
+                    interactableCrosshair.SetActive(true);
+                    defaultCrosshair.SetActive(false);
+                }
                 else //change crosshair back if ray is fired into a different tag AND display the correct text
                 {
                     interactableCrosshair.SetActive(false);

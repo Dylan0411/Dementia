@@ -93,6 +93,11 @@ public class crosshairController : MonoBehaviour
                     interactableCrosshair.SetActive(true);
                     defaultCrosshair.SetActive(false);
                 }
+                else if (hit.collider.gameObject.tag == "puzzle6Area")
+                {
+                    interactableCrosshair.SetActive(true);
+                    defaultCrosshair.SetActive(false);
+                }
                 else //change crosshair back if ray is fired into a different tag AND display the correct text
                 {
                     interactableCrosshair.SetActive(false);

@@ -27,6 +27,9 @@ TagManager:
   - water1
   - water2
   - water3
+  - puzzle3ValidTile
+  - puzzle6Area
+  - mazeCompletionZone
   layers:
   - Default
   - TransparentFX

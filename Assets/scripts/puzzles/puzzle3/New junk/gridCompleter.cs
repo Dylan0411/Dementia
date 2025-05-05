@@ -38,7 +38,7 @@ public class gridCompleter : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "AAA") //if this is attached to the black cylinder then should it check for collisions with the pink square?
+        if (other.gameObject.tag == "gridCompletionZone") //if this is attached to the black cylinder then should it check for collisions with the pink square?
         {
             Debug.Log("Grid Completed");
 

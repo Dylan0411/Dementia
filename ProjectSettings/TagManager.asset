@@ -31,6 +31,7 @@ TagManager:
   - puzzle6Area
   - mazeCompletionZone
   - puzzle3Area
+  - gridCompletionZone
   layers:
   - Default
   - TransparentFX

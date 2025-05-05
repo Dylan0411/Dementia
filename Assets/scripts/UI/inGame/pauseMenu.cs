@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.SceneManagement;
 
 public class pauseMenu : MonoBehaviour
@@ -9,6 +10,10 @@ public class pauseMenu : MonoBehaviour
 
 
     public GameObject player;
+
+    bool isPaused;
+
+    public GameObject hudElements;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() //hide menus when game launches and enable the player look script
@@ -21,12 +26,15 @@ public class pauseMenu : MonoBehaviour
 
         player.GetComponent<playerLook>().enabled = true;
         player.GetComponent<PickupItem>().enabled = true;
+
     }
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape)) //if esc key pressed then pause game
+        if (Input.GetKeyUp(KeyCode.Escape) && isPaused == false) //if esc key pressed then pause game
         {
+            isPaused = true;
+
             player.GetComponent<playerLook>().enabled = false;//disable player look controls
             player.GetComponent<PickupItem>().enabled = false;//disable player raycast controls for picking up items
             Cursor.lockState = CursorLockMode.None;//let the player move the cursor
@@ -34,12 +42,24 @@ public class pauseMenu : MonoBehaviour
             Cursor.visible = true; //show cursor
             Time.timeScale = 0f; //pause time
         }
+
+        if (isPaused == true)
+        {
+            hudElements.SetActive(false);
+        }
+        if (isPaused == false)
+        {
+            hudElements.SetActive(true);
+        }
     }
 
     //pause menu buttons
     public void resumeButton() //virtual
     {
         pauseMenuCanvas.SetActive(false);//hide pause menu
+
+        isPaused = false;
+
         if (noteMenu.inNotesMenu == false)//if the player wasnt in the notes menu when pausing
         {
             Time.timeScale = 1f; //unpause time

@@ -30,6 +30,7 @@ TagManager:
   - puzzle3ValidTile
   - puzzle6Area
   - mazeCompletionZone
+  - puzzle3Area
   layers:
   - Default
   - TransparentFX

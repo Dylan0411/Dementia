@@ -28,7 +28,7 @@ public class settingsMenu : MonoBehaviour
         //
         if (!PlayerPrefs.HasKey("camFOV")) //if player prefs doesnt exist then make it a default value
         {
-            PlayerPrefs.SetFloat("camFOV", 60);
+            PlayerPrefs.SetFloat("camFOV", 70);
         }
         if (!PlayerPrefs.HasKey("sensitivityX")) //if player prefs doesnt exist then make it a default value
         {
@@ -96,7 +96,7 @@ public class settingsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("sensitivityX", defaultSensitivityValue);
         PlayerPrefs.SetFloat("sensitivityY", defaultSensitivityValue);
         Screen.fullScreen = true;
-        PlayerPrefs.SetFloat("camFOV", 60);
+        PlayerPrefs.SetFloat("camFOV", 70);
         loadSettings();//reload this new save data
         //
         settingsResetPopup.SetActive(true);

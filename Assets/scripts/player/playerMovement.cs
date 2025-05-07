@@ -10,11 +10,27 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private bool isGrounded;
 
+    public AudioSource audioSource;
+    public AudioClip[] walkingSounds;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        // init audio source
+        audioSource = GetComponent<AudioSource>();
     }
 
+    void PlayRandomSound(AudioClip[] soundArray)
+    {
+        //if (isGrounded == true){
+            if (!audioSource.isPlaying && soundArray.Length > 0 && isGrounded == true)
+            {
+                AudioClip clip = soundArray[Random.Range(0, soundArray.Length)];
+                audioSource.PlayOneShot(clip);
+            }
+        //}
+    }
+    
     void FixedUpdate()
     {
         //WASD Movement controls
@@ -23,18 +39,22 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             movement += transform.forward; // Move forward
+            PlayRandomSound(walkingSounds);
         }
         if (Input.GetKey(KeyCode.S))
         {
             movement -= transform.forward; // Move backward
+            PlayRandomSound(walkingSounds);
         }
         if (Input.GetKey(KeyCode.A))
         {
             movement -= transform.right; // Move left
+            PlayRandomSound(walkingSounds);
         }
         if (Input.GetKey(KeyCode.D))
         {
             movement += transform.right; // Move right
+            PlayRandomSound(walkingSounds);
         }
 
         // Normalize movement vector to prevent diagonal speed boost (change diagonal value which is the combined total of 2 keys ( roughly 1.41) into 1 to prevent speed boost when player drifts)

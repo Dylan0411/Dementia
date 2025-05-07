@@ -31,7 +31,10 @@ public class pauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape) && isPaused == false) //if esc key pressed then pause game
+
+        int puzzle6Status = PlayerPrefs.GetInt("puzzle6Status", 0);
+
+        if (Input.GetKeyUp(KeyCode.Escape) && isPaused == false && puzzle6Status != 1) //if esc key pressed then pause game
         {
             isPaused = true;
 

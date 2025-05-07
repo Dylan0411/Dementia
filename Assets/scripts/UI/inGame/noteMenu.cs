@@ -383,29 +383,34 @@ public class noteMenu : MonoBehaviour
     //note buttons (can add more if needed)
     public void noteOneButton() //virtual
     {
-        noteText.text = "note 1 - objective: take misplaced items back to original homes. text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
+        //noteText.text = "note 1 - objective: take misplaced items back to original homes. text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
+        changePage(0);
     }
     public void noteTwoButton() //virtual
     {
-        noteText.text = "note 2 - objective: repair the broken teapot. text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
+        //noteText.text = "note 2 - objective: repair the broken teapot. text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
+        changePage(1);
     }
     public void noteThreeButton() //virtual
     {
-        noteText.text = "note 3 - objective: complete dylans grid puzzle. (automatically skipped as its incomplete). text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
+        //noteText.text = "note 3 - objective: complete dylans grid puzzle. (automatically skipped as its incomplete). text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
+        changePage(2);
     }
     public void noteFourButton() //virtual
     { 
-        noteText.text = "note 4 - objective: find photo to trigger memory(memory prompts player to find a relevant item, eg a wedding ring and bring it back to the photo). text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
+        //noteText.text = "note 4 - objective: find photo to trigger memory(memory prompts player to find a relevant item, eg a wedding ring and bring it back to the photo). text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
+        changePage(3);
     }
     public void noteFiveButton() //virtual
     {
-        noteText.text = "note 5 - objective: clean the house by taking any rubbish to the bin. text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
+        //noteText.text = "note 5 - objective: clean the house by taking any rubbish to the bin. text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
+        changePage(4);
     }
     public void noteSixButton() //virtual
     {
-        noteText.text = "note 6 - objective: complete dylans marble maze puzzle. (automatically skipped as its incomplete). text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
+        //noteText.text = "note 6 - objective: complete dylans marble maze puzzle. (automatically skipped as its incomplete). text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
+        changePage(5);
     }
-
 
     //for note 0 at start of game
     void showStartNotification() //call this via an Invoke
@@ -414,5 +419,10 @@ public class noteMenu : MonoBehaviour
         note1Button.SetActive(true);//show button in notes menu
         note5Button.SetActive(true);//show button in notes menu
 
+    }
+
+    void changePage(int page)
+    {
+        diaryNoteBase.sprite = diaryPages[page];
     }
 }

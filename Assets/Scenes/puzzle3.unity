@@ -1708,10 +1708,22 @@ MonoBehaviour:
   rightCollider: {fileID: 300828862}
   upCollider: {fileID: 1998973452}
   moveVal: 1
-  leftSounds: []
-  rightSounds: []
-  forwardSounds: []
-  backwardSounds: []
+  leftSounds:
+  - {fileID: 8300000, guid: 4a3c760eaafcc4447aef417998d1d84f, type: 3}
+  - {fileID: 8300000, guid: b4869835746a12c448b0c1b462a3d457, type: 3}
+  - {fileID: 8300000, guid: 834cf14ebd0fdea4085baf4bf9dadb7e, type: 3}
+  rightSounds:
+  - {fileID: 8300000, guid: 0943da5f5d5e871459f97383c449d427, type: 3}
+  - {fileID: 8300000, guid: 782e01d92877b4c47a3e908855b88507, type: 3}
+  - {fileID: 8300000, guid: 7e81eb294fb25a74884276d10ae1d168, type: 3}
+  forwardSounds:
+  - {fileID: 8300000, guid: d57115759ff9d844ca74736d817c82cb, type: 3}
+  - {fileID: 8300000, guid: bf7272260ad99e34e9de3babd2928b6e, type: 3}
+  - {fileID: 8300000, guid: 04c3c68d18c4a9f4fa6178280485ff10, type: 3}
+  backwardSounds:
+  - {fileID: 8300000, guid: bf7272260ad99e34e9de3babd2928b6e, type: 3}
+  - {fileID: 8300000, guid: 04c3c68d18c4a9f4fa6178280485ff10, type: 3}
+  - {fileID: 8300000, guid: d57115759ff9d844ca74736d817c82cb, type: 3}
 --- !u!82 &1617585054
 AudioSource:
   m_ObjectHideFlags: 0

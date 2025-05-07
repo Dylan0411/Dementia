@@ -61,8 +61,8 @@ public class noteMenu : MonoBehaviour
     public Sprite[] diaryPages;
 
     private AudioSource audioSource;
-    public AudioClip notificationSound;
-    public AudioClip buttonClickSound;
+    public AudioSource notificationSound;
+    public AudioSource buttonClickSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -120,17 +120,18 @@ public class noteMenu : MonoBehaviour
 
         endOfGameCanvas.SetActive(false);
 
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
+    
     }
 
     void PlayNotificationSound()
     {
-        if (notificationSound != null && notificationSound != null) { audioSource.PlayOneShot(notificationSound); }
+        if (notificationSound != null && notificationSound != null) { notificationSound.Play(); }
     }
 
     void PlayButtonSound()
     {
-        if (buttonClickSound != null && buttonClickSound != null) { audioSource.PlayOneShot(buttonClickSound); }
+        if (buttonClickSound != null && buttonClickSound != null) { buttonClickSound.Play(); }
     }
 
     // Update is called once per frame
@@ -144,13 +145,20 @@ public class noteMenu : MonoBehaviour
         int puzzle5Status = PlayerPrefs.GetInt("puzzle5Status", 0);
         int puzzle6Status = PlayerPrefs.GetInt("puzzle6Status", 0);
 
+        PlayerPrefs.SetInt("puzzle1Status", 1);
+        PlayerPrefs.SetInt("puzzle2Status", 1);
+        PlayerPrefs.SetInt("puzzle3Status", 0);
+        PlayerPrefs.SetInt("puzzle4Status", 0);
+        PlayerPrefs.SetInt("puzzle5Status", 1);
+        PlayerPrefs.SetInt("puzzle6Status", 0);
+
         //notes menu button
         if (Input.GetKeyUp(KeyCode.Tab) && puzzle6Status != 1) //if tab key pressed then pause game and show notes menu
         {
-            PlayButtonSound();
             //Button Click
             if (Time.timeScale == 1f)//if game not already paused...
             {
+                PlayButtonSound();
                 player.GetComponent<playerLook>().enabled = false;//disable player look controls
                 player.GetComponent<PickupItem>().enabled = false;//disable player raycast controls for picking up items
                 Cursor.lockState = CursorLockMode.None;//let the player move the cursor
@@ -174,8 +182,7 @@ public class noteMenu : MonoBehaviour
 
             puzzle1Activated = true;
 
-            // play notification sound
-            PlayNotificationSound();
+  
         }
         if (puzzle5Status == 1 && puzzle5Activated == false)
         {
@@ -184,7 +191,7 @@ public class noteMenu : MonoBehaviour
 
             puzzle5Activated = true;
 
-            // play notification sound
+
         }
         if (puzzle1Status == 1 && puzzle5Status == 1 && puzzle1And5Activated == false)
         {
@@ -193,8 +200,7 @@ public class noteMenu : MonoBehaviour
             noteNotification = true;
             puzzle1And5Activated = true;
 
-            // play notification sound
-            PlayNotificationSound();
+          
         }
         //
         if (puzzle2Status == 1 && note2Activated == false)
@@ -207,8 +213,7 @@ public class noteMenu : MonoBehaviour
             noteNotification = true;
             note2Activated = true;
 
-            // play notification sound
-            PlayNotificationSound();
+ 
         }
         if (puzzle3Status == 1 && note3Activated == false)
         {
@@ -220,8 +225,7 @@ public class noteMenu : MonoBehaviour
             noteNotification = true;
             note3Activated = true;
 
-            // play notification sound
-            PlayNotificationSound();
+ 
         }
         if (puzzle4Status == 1 && note4Activated == false)
         {
@@ -233,8 +237,7 @@ public class noteMenu : MonoBehaviour
             noteNotification = true;
             note4Activated = true;
 
-            // play notification sound
-            PlayNotificationSound();
+  
         }
         if (puzzle6Status == 1 && note6Activated == false)
         {
@@ -243,8 +246,6 @@ public class noteMenu : MonoBehaviour
 
             note6Activated = true;
 
-            // play notification sound
-            PlayNotificationSound();
         }
 
 
@@ -376,6 +377,7 @@ public class noteMenu : MonoBehaviour
         //puzzle complete notification
         if (progressNotification == true)
         {
+            PlayNotificationSound();
             if (progressNotificationPopUp.transform.position != progressNotificationPopUpPos.transform.position) //if notification isnt in destination..
             {
                 progressNotificationPopUp.transform.position = Vector3.MoveTowards(progressNotificationPopUp.transform.position, progressNotificationPopUpPos.transform.position, notificationMovementSpeed); //move it onto the screen

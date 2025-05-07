@@ -1,2 +1,17 @@
 fileFormatVersion: 2
 guid: 6861c16c4098eac44b156694aa0e590f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - mainMenuCanvas: {instanceID: 0}
+  - settingsCanvas: {instanceID: 0}
+  - creditsCanvas: {instanceID: 0}
+  - controlsCanvas: {instanceID: 0}
+  - resetSettingsPopup: {instanceID: 0}
+  - buttonClickSound: {fileID: 8300000, guid: eb25af7cb7cb2364483f206490da1341, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,2 +1,39 @@
 fileFormatVersion: 2
 guid: 83c26ecec72edbb439ce346b932dd305
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - hudCanvas: {instanceID: 0}
+  - notesCanvas: {instanceID: 0}
+  - player: {instanceID: 0}
+  - note1Button: {instanceID: 0}
+  - note2Button: {instanceID: 0}
+  - note3Button: {instanceID: 0}
+  - note4Button: {instanceID: 0}
+  - note5Button: {instanceID: 0}
+  - note6Button: {instanceID: 0}
+  - noteText: {instanceID: 0}
+  - noteNotificationPopUp: {instanceID: 0}
+  - progressNotificationPopUp: {instanceID: 0}
+  - noteNotificationPopUpPos: {instanceID: 0}
+  - noteNotificationDefaultPos: {instanceID: 0}
+  - progressNotificationPopUpPos: {instanceID: 0}
+  - progressNotificationDefaultPos: {instanceID: 0}
+  - noteNotificationCanvas: {instanceID: 0}
+  - note1Tick: {instanceID: 0}
+  - note2Tick: {instanceID: 0}
+  - note3Tick: {instanceID: 0}
+  - note4Tick: {instanceID: 0}
+  - note5Tick: {instanceID: 0}
+  - note6Tick: {instanceID: 0}
+  - endOfGameCanvas: {instanceID: 0}
+  - targetImage: {instanceID: 0}
+  - diaryNoteBase: {instanceID: 0}
+  - notificationSound: {fileID: 8300000, guid: 5e5b248d85c829c428282fdc9359a60c, type: 3}
+  - buttonClickSound: {fileID: 8300000, guid: eb25af7cb7cb2364483f206490da1341, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

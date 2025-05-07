@@ -60,6 +60,10 @@ public class noteMenu : MonoBehaviour
     public Image diaryNoteBase;
     public Sprite[] diaryPages;
 
+    private AudioSource audioSource;
+    public AudioClip notificationSound;
+    public AudioClip buttonClickSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -115,6 +119,18 @@ public class noteMenu : MonoBehaviour
         note6Tick.SetActive(false);
 
         endOfGameCanvas.SetActive(false);
+
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    void PlayNotificationSound()
+    {
+        if (notificationSound != null && notificationSound != null) { audioSource.PlayOneShot(notificationSound); }
+    }
+
+    void PlayButtonSound()
+    {
+        if (buttonClickSound != null && buttonClickSound != null) { audioSource.PlayOneShot(buttonClickSound); }
     }
 
     // Update is called once per frame
@@ -131,6 +147,8 @@ public class noteMenu : MonoBehaviour
         //notes menu button
         if (Input.GetKeyUp(KeyCode.Tab) && puzzle6Status != 1) //if tab key pressed then pause game and show notes menu
         {
+            PlayButtonSound();
+            //Button Click
             if (Time.timeScale == 1f)//if game not already paused...
             {
                 player.GetComponent<playerLook>().enabled = false;//disable player look controls
@@ -155,6 +173,9 @@ public class noteMenu : MonoBehaviour
             progressNotification = true;
 
             puzzle1Activated = true;
+
+            // play notification sound
+            PlayNotificationSound();
         }
         if (puzzle5Status == 1 && puzzle5Activated == false)
         {
@@ -162,6 +183,8 @@ public class noteMenu : MonoBehaviour
             progressNotification = true;
 
             puzzle5Activated = true;
+
+            // play notification sound
         }
         if (puzzle1Status == 1 && puzzle5Status == 1 && puzzle1And5Activated == false)
         {
@@ -169,6 +192,9 @@ public class noteMenu : MonoBehaviour
                                         //display a notification about the new note (ONLY ONCE)
             noteNotification = true;
             puzzle1And5Activated = true;
+
+            // play notification sound
+            PlayNotificationSound();
         }
         //
         if (puzzle2Status == 1 && note2Activated == false)
@@ -180,6 +206,9 @@ public class noteMenu : MonoBehaviour
             //display a notification about the new note (ONLY ONCE)
             noteNotification = true;
             note2Activated = true;
+
+            // play notification sound
+            PlayNotificationSound();
         }
         if (puzzle3Status == 1 && note3Activated == false)
         {
@@ -190,6 +219,9 @@ public class noteMenu : MonoBehaviour
             //display a notification about the new note (ONLY ONCE)
             noteNotification = true;
             note3Activated = true;
+
+            // play notification sound
+            PlayNotificationSound();
         }
         if (puzzle4Status == 1 && note4Activated == false)
         {
@@ -200,6 +232,9 @@ public class noteMenu : MonoBehaviour
             //display a notification about the new note (ONLY ONCE)
             noteNotification = true;
             note4Activated = true;
+
+            // play notification sound
+            PlayNotificationSound();
         }
         if (puzzle6Status == 1 && note6Activated == false)
         {
@@ -207,6 +242,9 @@ public class noteMenu : MonoBehaviour
             progressNotification = true;
 
             note6Activated = true;
+
+            // play notification sound
+            PlayNotificationSound();
         }
 
 

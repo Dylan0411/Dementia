@@ -31,14 +31,6 @@ public class puzzleUnlocker : MonoBehaviour
         int note6Status = PlayerPrefs.GetInt("puzzle6Status", 0);
 
 
-        PlayerPrefs.SetInt("puzzle1Status", 1);
-        PlayerPrefs.SetInt("puzzle2Status", 0);
-        PlayerPrefs.SetInt("puzzle3Status", 0);
-        PlayerPrefs.SetInt("puzzle4Status", 0);
-        PlayerPrefs.SetInt("puzzle5Status", 1);
-        PlayerPrefs.SetInt("puzzle6Status", 0);
-
-
         if (note5Status == 1)
         {
             //do nothing (trash task should just be constant?)

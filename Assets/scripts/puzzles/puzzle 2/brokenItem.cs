@@ -47,6 +47,8 @@ public class brokenItem : MonoBehaviour
 
     LayerMask ghostTeapotLayerMask;
 
+    public GameObject tableCollider;
+
     void Start()
     {
         isFollowingMouse = false;
@@ -56,11 +58,14 @@ public class brokenItem : MonoBehaviour
         PlayerPrefs.SetInt("puzzle2Status", 0);//<<<<<<<<<<<<<<<<<<<<DELETE THIS IF USING SAVE DATA IN FUTURE
 
         ghostTeapotLayerMask = LayerMask.NameToLayer("ghostTeapot");
+
+        tableCollider.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (correctPieces == 7) //if all the fragments are in the right place
         {
             PlayerPrefs.SetInt("puzzle2Status", 1); //mark as complete
@@ -68,9 +73,13 @@ public class brokenItem : MonoBehaviour
 
         if (tableInterface.usingTable == true)
         {
+            tableCollider.SetActive(false);
+
             //exit table
             if (Input.GetKeyDown(KeyCode.F) || PlayerPrefs.GetInt("puzzle2Status") == 1)
             {
+                tableCollider.SetActive(true);
+
                 //Hide the loose fragments on the table
                 fragments.SetActive(false);
 

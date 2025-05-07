@@ -25,23 +25,44 @@ public class PlayerController : MonoBehaviour
     Vector3 desiredPos;
     Vector3 smoothPos;
 
+    // ** Audio Variables **
+    private AudioSource audioSource;
+
+    public AudioClip[] leftSounds;      // RL1, RL2, RL3
+    public AudioClip[] rightSounds;     // LR1, LR2, LR3
+    public AudioClip[] forwardSounds;   // FB1, FB2, FB3
+    public AudioClip[] backwardSounds;  // FB1, FB2, FB3
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         self = this.GameObject();
         grid = GetComponentInParent<GridController>();
         negativeMoveVal = (-1 * moveVal);
+
+        // init audio source
+        audioSource = GetComponent<AudioSource>();
     }
+
+    void PlayRandomSound(AudioClip[] soundArray)
+    {
+        if (soundArray.Length > 0)
+        {
+            AudioClip clip = soundArray[Random.Range(0, soundArray.Length)];
+            audioSource.PlayOneShot(clip);
+        }
+    }
+
     float VertCheck()
     {
         //Move up
         if (Input.GetAxis("Vertical") == 1) {
-            if (upCollider.IsColliding()) { return moveVal; } //Means the player can move
+            if (upCollider.IsColliding()) { PlayRandomSound(forwardSounds);  return moveVal; } //Means the player can move
         }
 
         //Move down
         else {
-            if (downCollider.IsColliding()) { return negativeMoveVal; }
+            if (downCollider.IsColliding()) { PlayRandomSound(backwardSounds); return negativeMoveVal; }
         }
 
         return 0.0f;
@@ -51,12 +72,12 @@ public class PlayerController : MonoBehaviour
     {
         //Move right
         if (Input.GetAxis("Horizontal") == 1) {
-            if (rightCollider.IsColliding()) { return moveVal; } //same as above
+            if (rightCollider.IsColliding()) { PlayRandomSound(rightSounds); return moveVal; } //same as above
         }
 
         //Move left
         else {
-            if (leftCollider.IsColliding()) { return negativeMoveVal; } //same as above
+            if (leftCollider.IsColliding()) { PlayRandomSound(leftSounds); return negativeMoveVal; } //same as above
         }
 
         return 0.0f;

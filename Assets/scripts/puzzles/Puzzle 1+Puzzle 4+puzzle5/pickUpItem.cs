@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PickupItem : MonoBehaviour
 {
@@ -55,8 +56,11 @@ public class PickupItem : MonoBehaviour
     {
         if (collectedItem != null && canDrop == true) //if player is holding an item then...
         {
+
             if (Input.GetKeyDown(KeyCode.F)) //drop item
             {
+                SetLayerRecursively(collectedItem, LayerMask.NameToLayer("Default"));
+
                 //renable the items physics
                 Rigidbody itemRigidbody = collectedItem.GetComponent<Rigidbody>();
                 itemRigidbody.isKinematic = false;
@@ -99,6 +103,8 @@ public class PickupItem : MonoBehaviour
 
                         if (Input.GetKeyDown(KeyCode.F)) //place item
                         {
+                            SetLayerRecursively(collectedItem, LayerMask.NameToLayer("Default"));
+
                             //note the destination object
                             itemDestination = hit.collider.gameObject;
 
@@ -211,8 +217,12 @@ public class PickupItem : MonoBehaviour
                 {
                     if (Input.GetKeyDown(KeyCode.F)) //pickup item
                     {
+
                         //note which item the player is holding
                         collectedItem = hit.collider.gameObject;
+
+                        // Set layer to "hand"
+                        SetLayerRecursively(collectedItem, LayerMask.NameToLayer("hand"));
 
                         //disable the items collider
                         Collider itemCollider = collectedItem.GetComponent<Collider>();
@@ -333,4 +343,16 @@ public class PickupItem : MonoBehaviour
             destination6.SetActive(false);
         }
     }
+
+
+    void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        obj.layer = newLayer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, newLayer);
+        }
+    }
+
+
 }

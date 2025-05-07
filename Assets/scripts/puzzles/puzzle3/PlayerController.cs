@@ -57,7 +57,8 @@ public class PlayerController : MonoBehaviour
     {
         //Move up
         if (Input.GetAxis("Vertical") == 1) {
-            if (upCollider.IsColliding()) { PlayRandomSound(forwardSounds);  return moveVal; } //Means the player can move
+            if (upCollider.IsColliding()) {
+                PlayRandomSound(forwardSounds);  return moveVal; } //Means the player can move
         }
 
         //Move down

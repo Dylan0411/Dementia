@@ -146,7 +146,7 @@ public class noteMenu : MonoBehaviour
         int puzzle6Status = PlayerPrefs.GetInt("puzzle6Status", 0);
 
         PlayerPrefs.SetInt("puzzle1Status", 1);
-        PlayerPrefs.SetInt("puzzle2Status", 1);
+        PlayerPrefs.SetInt("puzzle2Status", 0);
         PlayerPrefs.SetInt("puzzle3Status", 0);
         PlayerPrefs.SetInt("puzzle4Status", 0);
         PlayerPrefs.SetInt("puzzle5Status", 1);

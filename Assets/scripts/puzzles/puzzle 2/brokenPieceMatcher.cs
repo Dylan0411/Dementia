@@ -11,14 +11,18 @@ public class brokenPieceMatcher : MonoBehaviour
     GameObject ghostTeaPot;
     public GameObject vfx;
 
+    public AudioSource teapotDing;
+
+
     private void Start()
     {
         match = false;
         selectedObject = null;
 
         ghostTeaPot = GameObject.FindWithTag("ghostTeaPot");
+        
     }
-
+   
     void OnCollisionEnter(Collision collision) //if the fragment enters the correct spot..
     {
         if (collision.gameObject.CompareTag("teapotSpout") && idNumber == 1) //if the tag matches the correct id number of this script
@@ -110,7 +114,11 @@ public class brokenPieceMatcher : MonoBehaviour
             brokenItem.correctPieces++; //mark it as correctly in place (when this reaches 7 the puzzle is marked as complete)
 
             gameObject.SetActive(false); //hide the ghost fragment
+            
             vfx.SetActive(false); //hide particle effects of the fragment
+
+            teapotDing.Play();
+
         }
     }
 }

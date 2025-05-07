@@ -49,6 +49,12 @@ public class brokenItem : MonoBehaviour
 
     public GameObject tableCollider;
 
+    bool grinding;
+
+    public AudioSource teapotGrind;
+
+
+
     void Start()
     {
         isFollowingMouse = false;
@@ -60,6 +66,8 @@ public class brokenItem : MonoBehaviour
         ghostTeapotLayerMask = LayerMask.NameToLayer("ghostTeapot");
 
         tableCollider.SetActive(true);
+
+        grinding = false;
     }
 
     // Update is called once per frame
@@ -200,12 +208,17 @@ public class brokenItem : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D)) //rotate the ghost teapot clockwise
         {
+            if (grinding != true){ grinding = true; teapotGrind.Play(); }
             ghostTeapot.transform.Rotate(-Vector3.forward, rotationSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.A)) //rotate the ghost teapot anti-clockwise
         {
+            if (grinding != true) { grinding = true; teapotGrind.Play(); }
             ghostTeapot.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
         }
+        if (Input.GetKeyUp(KeyCode.A)) { grinding = false; }
+        if (Input.GetKeyUp(KeyCode.D)) { grinding = false; }
+        if (grinding == false) { teapotGrind.Stop(); }
     }
 
     //used to recenter the cursor after the player leaves the table

@@ -56,6 +56,10 @@ public class noteMenu : MonoBehaviour
     public Image targetImage;
     public float fadeDuration = 1f;
 
+    //Dylan H - adding an array to show the diary pages instead of changing text
+    public Image diaryNoteBase;
+    public Sprite[] diaryPages;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

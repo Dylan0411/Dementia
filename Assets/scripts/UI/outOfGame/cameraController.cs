@@ -29,7 +29,7 @@ public class cameraController : MonoBehaviour
     public GameObject fadeZone4;
     public GameObject fadeZone5;
 
-    public Image targetImage; // The panel or image to fade
+    public Image targetImage;
     public float fadeDuration = 1f;
 
 

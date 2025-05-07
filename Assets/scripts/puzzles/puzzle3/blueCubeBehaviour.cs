@@ -18,7 +18,7 @@ public class blueCubeBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (grid.GetTime() == activeInterval)
+        if (grid.GetTime() % activeInterval == 0)
         {
             isActive = true;
             Activate();

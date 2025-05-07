@@ -102,13 +102,13 @@ public class PlayerController : MonoBehaviour
 
             waitForInputs = true;
             vertActive = false; horiActive = false;
-            desiredPos = self.transform.position + movement;
+            desiredPos = self.transform.localPosition + movement;
         }
 
-        smoothPos = Vector3.Lerp(self.transform.position, desiredPos, 0.1f);
+        smoothPos = Vector3.Lerp(self.transform.localPosition, desiredPos, Time.deltaTime * 10);
 
-        self.transform.position = smoothPos;
-        if (self.transform.position == desiredPos)
+        self.transform.localPosition = smoothPos;
+        if (self.transform.localPosition == desiredPos)
         {
             movement = new Vector3(0.0f, 0.0f, 0.0f);
             waitForInputs = false;

@@ -19,6 +19,8 @@ public class crosshairController : MonoBehaviour
         int note1Status = PlayerPrefs.GetInt("puzzle1Status", 0);
         int note3Status = PlayerPrefs.GetInt("puzzle3Status", 0);
         int note5Status = PlayerPrefs.GetInt("puzzle5Status", 0);
+        int note4Status = PlayerPrefs.GetInt("puzzle4Status", 0);
+        int note2Status = PlayerPrefs.GetInt("puzzle2Status", 0);
 
 
         Ray ray;
@@ -93,6 +95,17 @@ public class crosshairController : MonoBehaviour
                     interactableCrosshair.SetActive(true);
                     defaultCrosshair.SetActive(false);
                 }
+                else if (note4Status == 1 && hit.collider.gameObject.tag == "puzzle6Area")
+                {
+                    interactableCrosshair.SetActive(true);
+                    defaultCrosshair.SetActive(false);
+                }
+                else if (note2Status == 1 && hit.collider.gameObject.tag == "puzzle3Area")
+                {
+                    interactableCrosshair.SetActive(true);
+                    defaultCrosshair.SetActive(false);
+                }
+
                 else //change crosshair back if ray is fired into a different tag AND display the correct text
                 {
                     interactableCrosshair.SetActive(false);

@@ -1420,12 +1420,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474901769}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 463add8ee2a32194994fcef476982b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   puzzleTimer: 10
+  currentTime: 0
 --- !u!1001 &1532745855
 PrefabInstance:
   m_ObjectHideFlags: 0

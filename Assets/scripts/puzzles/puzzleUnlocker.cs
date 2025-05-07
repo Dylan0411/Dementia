@@ -78,12 +78,12 @@ public class puzzleUnlocker : MonoBehaviour
         player.GetComponent<tableInterface>().enabled = false;
 
         //enable dylans grid puzzle script
-        PlayerPrefs.SetInt("puzzle3Status", 1); //<<<<<<< TEMPORARY - MOVE THIS TO GRID PUZZLE SCRIPT WHEN PUZZLE IS COMPLETE
+        player.GetComponent<puzzle3Starter>().enabled = true;
     }
     void note3Handler()
     {
         //disable dylans grid puzzle script
-
+        player.GetComponent<puzzle3Starter>().enabled = false;
 
         //enable picture frame script
         player.GetComponent<photoInterface>().enabled = true;
@@ -94,11 +94,12 @@ public class puzzleUnlocker : MonoBehaviour
         player.GetComponent<photoInterface>().enabled = false;
 
         //enable dylans marble maze script
-        PlayerPrefs.SetInt("puzzle6Status", 1); //<<<<<<< TEMPORARY - MOVE THIS TO MARBLE MAZE SCRIPT WHEN PUZZLE IS COMPLETE
+        player.GetComponent<puzzle6Starter>().enabled = true;
     }
     void note6Handler()
     {
         //disable dylans marble maze script
+        player.GetComponent<puzzle6Starter>().enabled = false;
 
     }
     //
@@ -107,5 +108,8 @@ public class puzzleUnlocker : MonoBehaviour
         //Disable scripts that are not needed at the start of the game
         player.GetComponent<tableInterface>().enabled = false;
         player.GetComponent<photoInterface>().enabled = false;
+        player.GetComponent<puzzle3Starter>().enabled = false;
+        player.GetComponent<puzzle6Starter>().enabled = false;
+
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-//using Vector3 = UnityEngine.Vector3;
+using System.Collections; // Required for IEnumerator
 
 public class noteMenu : MonoBehaviour
 {
@@ -50,11 +51,18 @@ public class noteMenu : MonoBehaviour
     public GameObject note5Tick;
     public GameObject note6Tick;
 
-
+    public GameObject endOfGameCanvas;
+    bool faded;
+    public Image targetImage;
+    public float fadeDuration = 1f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        faded = false;
+
+        FadeOut();
+
         noteNotificationCanvas.SetActive(true);
 
         hudCanvas.SetActive(true);
@@ -101,13 +109,23 @@ public class noteMenu : MonoBehaviour
         note4Tick.SetActive(false);
         note5Tick.SetActive(false);
         note6Tick.SetActive(false);
-}
+
+        endOfGameCanvas.SetActive(false);
+    }
 
     // Update is called once per frame
     void Update()
     {
+        //display the correct notes, default is 0 (no note) -> can add more in future if needed
+        int puzzle1Status = PlayerPrefs.GetInt("puzzle1Status", 0);
+        int puzzle2Status = PlayerPrefs.GetInt("puzzle2Status", 0);
+        int puzzle3Status = PlayerPrefs.GetInt("puzzle3Status", 0);
+        int puzzle4Status = PlayerPrefs.GetInt("puzzle4Status", 0);
+        int puzzle5Status = PlayerPrefs.GetInt("puzzle5Status", 0);
+        int puzzle6Status = PlayerPrefs.GetInt("puzzle6Status", 0);
+
         //notes menu button
-        if (Input.GetKeyUp(KeyCode.Tab)) //if tab key pressed then pause game and show notes menu
+        if (Input.GetKeyUp(KeyCode.Tab) && puzzle6Status != 1) //if tab key pressed then pause game and show notes menu
         {
             if (Time.timeScale == 1f)//if game not already paused...
             {
@@ -122,13 +140,6 @@ public class noteMenu : MonoBehaviour
             }
         }
 
-        //display the correct notes, default is 0 (no note) -> can add more in future if needed
-        int puzzle1Status = PlayerPrefs.GetInt("puzzle1Status", 0);
-        int puzzle2Status = PlayerPrefs.GetInt("puzzle2Status", 0);
-        int puzzle3Status = PlayerPrefs.GetInt("puzzle3Status", 0);
-        int puzzle4Status = PlayerPrefs.GetInt("puzzle4Status", 0);
-        int puzzle5Status = PlayerPrefs.GetInt("puzzle5Status", 0);
-        int puzzle6Status = PlayerPrefs.GetInt("puzzle6Status", 0);
 
 
         //when a variable == 1, it means the puzzle is complete
@@ -199,8 +210,12 @@ public class noteMenu : MonoBehaviour
         if (puzzle1Status + puzzle2Status + puzzle3Status + puzzle4Status + puzzle5Status + puzzle6Status == 6)
         {
             //enable end of game script
-            Debug.Log("All puzzles complete - now what?");
+            Debug.Log("All puzzles complete!");
 
+
+
+            //then wait for 3 seconds via an invoke
+            Invoke("beginEndOfGame", 2f);
 
         }
 
@@ -214,6 +229,85 @@ public class noteMenu : MonoBehaviour
             noteNotificationCanvas.SetActive(true); //show notification canvas
         }
     }
+
+    void beginEndOfGame()
+    {
+        hudCanvas.SetActive(false); //hide hud
+
+        //fade screen to black (make sure black screen is above hud elements)
+        if (faded == false)
+        {
+            fadeDuration = 3f;
+            FadeIn();
+            faded = true;
+        }
+
+        //then wait for 3 seconds via an invoke
+        Invoke("endOfGame", 3f);
+
+    }
+
+    void endOfGame()
+    {
+        //pause game
+        player.GetComponent<playerLook>().enabled = false;//disable player look controls
+        player.GetComponent<PickupItem>().enabled = false;//disable player raycast controls for picking up items
+        //Time.timeScale = 0f; //pause time
+
+        //display some sort of message
+        endOfGameCanvas.SetActive(true); //show end of game screen
+
+        //then wait for 20 seconds via an invoke
+        Invoke("loadMainMenu", 10f);
+
+    }
+
+    void loadMainMenu() //call this via an Invoke
+    {
+        //load main menu scene
+        SceneManager.LoadScene("mainMenu");
+    }
+
+
+
+    //for fading camera
+    public void FadeIn()
+    {
+        StartCoroutine(FadeImage(0f, 1f));
+    }
+
+    public void FadeOut()
+    {
+        StartCoroutine(FadeImage(1f, 0f));
+    }
+
+    private IEnumerator FadeImage(float startAlpha, float endAlpha)
+    {
+        float elapsedTime = 0f;
+        Color color = targetImage.color;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / fadeDuration);
+            targetImage.color = color;
+            yield return null;
+        }
+
+        color.a = endAlpha; // Ensure the final alpha value is exact
+        targetImage.color = color;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
     private void FixedUpdate()

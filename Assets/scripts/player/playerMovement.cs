@@ -13,11 +13,17 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] walkingSounds;
 
+    public AudioSource doorSFX;
+
+    bool usedAudio;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         // init audio source
         audioSource = GetComponent<AudioSource>();
+
+        usedAudio = false;
     }
 
     void PlayRandomSound(AudioClip[] soundArray)
@@ -83,7 +89,19 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
         }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("doorLayer"))
+        {
+            Debug.Log("Collided with door layer!"); // Add behavior here
+            if (usedAudio == false)
+            {
+                usedAudio = true;
+                doorSFX.Play();
+                CancelInvoke("stopAudio"); // Cancel any previous invocations of stopAudio
+            }
+        }
     }
+
 
     void OnCollisionExit(Collision other)
     {
@@ -91,6 +109,17 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
+        if (other.gameObject.layer == LayerMask.NameToLayer("doorLayer"))
+        {
+            Debug.Log("Collided with door layer!"); // Add behavior here
+            Invoke("stopAudio", 1f); // Stop the sound after 0.5 seconds
+        }
+    }
+
+    void stopAudio()
+    {
+        doorSFX.Stop();
+        usedAudio = false;
     }
 
 }

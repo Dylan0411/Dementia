@@ -44,7 +44,7 @@ public class pauseMenu : MonoBehaviour
 
         int puzzle6Status = PlayerPrefs.GetInt("puzzle6Status", 0);
 
-        if (Input.GetKeyUp(KeyCode.Escape) && isPaused == false && puzzle6Status != 1) //if esc key pressed then pause game
+        if (Input.GetKeyUp(KeyCode.Escape) && isPaused == false && puzzle6Status != 1 && photoInterface.viewingImage == false) //if esc key pressed then pause game
         {
             radioSFX.Pause();
             water1SFX.Pause();

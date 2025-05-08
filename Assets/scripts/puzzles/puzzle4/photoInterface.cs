@@ -8,11 +8,13 @@ public class photoInterface : MonoBehaviour
 
     public GameObject photoCanvas;
 
-    bool viewingImage;
+    public static bool viewingImage;
 
     public GameObject player;
 
     public GameObject pictureObject;
+
+    float savedFov;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,6 +47,11 @@ public class photoInterface : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.F)) // Open menu logic
                     {
+                        //save existing fov
+                        savedFov = PlayerPrefs.GetFloat("camFOV");
+                        //Change fov to 30
+                        PlayerPrefs.SetFloat("camFOV", 30);
+
                         interactWithTableText.SetActive(false);
                         interactableCrosshair.SetActive(false);
 
@@ -53,7 +60,8 @@ public class photoInterface : MonoBehaviour
                         //disable some player scripts+pause time
                         player.GetComponent<playerLook>().enabled = false; // Disable player look controls
                         player.GetComponent<PickupItem>().enabled = false; // Disable raycast controls
-                        Time.timeScale = 0f; //Pause time
+
+                        Invoke("shortDelay", 0.1f);
 
                         viewingImage = true; //Update state
                     }
@@ -74,6 +82,10 @@ public class photoInterface : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F)) // Close menu logic
             {
+                //then after reapply the old saved fov
+                PlayerPrefs.SetFloat("camFOV", savedFov);
+
+
                 photoCanvas.SetActive(false); // Hides the image to the player
                 itemDestination.SetActive(true); // Adds the destination
 
@@ -92,5 +104,10 @@ public class photoInterface : MonoBehaviour
         {
             pictureObject.tag = "Untagged"; //Prevent further interactions
         }
+    }
+
+    void shortDelay()
+    {
+        Time.timeScale = 0f; //Pause time
     }
 }

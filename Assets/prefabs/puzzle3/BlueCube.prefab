@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blueCollider: {fileID: 729557375427284765}
+  closedBridge: {fileID: 7657569743580657139}
+  raisedBridge: {fileID: 1267643631305974624}
   activeInterval: 0
 --- !u!1 &7228596237355673771
 GameObject:
@@ -235,6 +237,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e42f4bd04a2f89242b3941c066fb9fc9, type: 3}
+--- !u!1 &1267643631305974624 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e42f4bd04a2f89242b3941c066fb9fc9, type: 3}
+  m_PrefabInstance: {fileID: 2114153033151176241}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1935496182725294554 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e42f4bd04a2f89242b3941c066fb9fc9, type: 3}
@@ -324,6 +331,11 @@ PrefabInstance:
 --- !u!4 &6993799609362886473 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ca69411a54d717a40a51ad8f3018781c, type: 3}
+  m_PrefabInstance: {fileID: 7387115934876059810}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7657569743580657139 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ca69411a54d717a40a51ad8f3018781c, type: 3}
   m_PrefabInstance: {fileID: 7387115934876059810}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9161504970172167698

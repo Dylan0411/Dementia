@@ -7,6 +7,7 @@ public class noteMenu : MonoBehaviour
 {
     public GameObject hudCanvas;
     public GameObject notesCanvas;
+    public GameObject motherOfHUD;
 
     public GameObject player;
 
@@ -51,7 +52,9 @@ public class noteMenu : MonoBehaviour
     public GameObject note5Tick;
     public GameObject note6Tick;
 
-    public GameObject endOfGameCanvas;
+    public GameObject endOfGameCanvas1;
+    public GameObject endOfGameCanvas2;
+
     bool faded;
     public Image targetImage;
     public float fadeDuration = 1f;
@@ -64,9 +67,16 @@ public class noteMenu : MonoBehaviour
     public AudioSource notificationSound;
     public AudioSource buttonClickSound;
 
+    public GameObject diaryNoteBaseMother;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        diaryNoteBaseMother.SetActive(false);
+
+        motherOfHUD.SetActive(true);
+
         faded = false;
 
         FadeOut();
@@ -118,10 +128,12 @@ public class noteMenu : MonoBehaviour
         note5Tick.SetActive(false);
         note6Tick.SetActive(false);
 
-        endOfGameCanvas.SetActive(false);
+        endOfGameCanvas1.SetActive(false);
+        endOfGameCanvas2.SetActive(false);
+
 
         //audioSource = GetComponent<AudioSource>();
-    
+
     }
 
     void PlayNotificationSound()
@@ -144,6 +156,7 @@ public class noteMenu : MonoBehaviour
         int puzzle4Status = PlayerPrefs.GetInt("puzzle4Status", 0);
         int puzzle5Status = PlayerPrefs.GetInt("puzzle5Status", 0);
         int puzzle6Status = PlayerPrefs.GetInt("puzzle6Status", 0);
+
 
         //notes menu button
         if (Input.GetKeyUp(KeyCode.Tab) && puzzle6Status != 1) //if tab key pressed then pause game and show notes menu
@@ -268,7 +281,7 @@ public class noteMenu : MonoBehaviour
 
     void beginEndOfGame()
     {
-        hudCanvas.SetActive(false); //hide hud
+        motherOfHUD.SetActive(false);
 
         //fade screen to black (make sure black screen is above hud elements)
         if (faded == false)
@@ -291,11 +304,20 @@ public class noteMenu : MonoBehaviour
         //Time.timeScale = 0f; //pause time
 
         //display some sort of message
-        endOfGameCanvas.SetActive(true); //show end of game screen
+        endOfGameCanvas1.SetActive(true); //show end of game screen
 
         //then wait for 20 seconds via an invoke
-        Invoke("loadMainMenu", 10f);
+        Invoke("endOfGameTWO", 5f);
 
+    }
+
+    void endOfGameTWO()
+    {
+        endOfGameCanvas2.SetActive(true); //show end of game screen
+
+        endOfGameCanvas1.SetActive(false); //show end of game screen
+
+        Invoke("loadMainMenu", 5f);
     }
 
     void loadMainMenu() //call this via an Invoke
@@ -448,6 +470,10 @@ public class noteMenu : MonoBehaviour
     //for note 0 at start of game
     void showStartNotification() //call this via an Invoke
     {
+        diaryNoteBaseMother.SetActive(true);
+
+        changePage(0);
+
         noteNotification = true;
         note1Button.SetActive(true);//show button in notes menu
         note5Button.SetActive(true);//show button in notes menu

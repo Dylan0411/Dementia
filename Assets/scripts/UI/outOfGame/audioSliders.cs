@@ -11,17 +11,16 @@ public class audioSliders : MonoBehaviour
 
     float defaultVolume = 1.0f;
 
-    void Update()
+    void Start() // Attach listeners once at the beginning
     {
-        float unscaledDeltaTime = Time.unscaledDeltaTime;
-
+        // Add listeners ONCE instead of every frame
         masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
-        masterVolumeSlider.value = PlayerPrefs.GetFloat("masterVolumeSaveData", defaultVolume);
-
         musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
-        musicVolumeSlider.value = PlayerPrefs.GetFloat("musicVolumeSaveData", defaultVolume);
-
         SFXVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
+
+        // Load saved values ONCE in Start()
+        masterVolumeSlider.value = PlayerPrefs.GetFloat("masterVolumeSaveData", defaultVolume);
+        musicVolumeSlider.value = PlayerPrefs.GetFloat("musicVolumeSaveData", defaultVolume);
         SFXVolumeSlider.value = PlayerPrefs.GetFloat("SFXVolumeSaveData", defaultVolume);
     }
 
@@ -30,11 +29,13 @@ public class audioSliders : MonoBehaviour
         audioMixer.SetFloat("masterVolume", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("masterVolumeSaveData", volume);
     }
+
     public void SetMusicVolume(float volume)
     {
         audioMixer.SetFloat("musicVolume", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("musicVolumeSaveData", volume);
     }
+
     public void SetSFXVolume(float volume)
     {
         audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);

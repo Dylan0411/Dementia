@@ -80,6 +80,11 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
+
+        if (Time.timeScale == 0)
+        {
+            doorSFX.Stop();
+        }
     }
 
 

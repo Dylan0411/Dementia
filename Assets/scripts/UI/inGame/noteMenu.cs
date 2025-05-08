@@ -370,9 +370,9 @@ public class noteMenu : MonoBehaviour
         //puzzle complete notification
         if (progressNotification == true)
         {
-            PlayNotificationSound();
             if (progressNotificationPopUp.transform.position != progressNotificationPopUpPos.transform.position) //if notification isnt in destination..
             {
+                PlayNotificationSound();
                 progressNotificationPopUp.transform.position = Vector3.MoveTowards(progressNotificationPopUp.transform.position, progressNotificationPopUpPos.transform.position, notificationMovementSpeed); //move it onto the screen
             }
             else

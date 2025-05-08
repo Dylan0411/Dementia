@@ -78,11 +78,14 @@ public class noteMenu : MonoBehaviour
     float audioMemory;
     public AudioMixer audioMixer;
 
+    int viewingWhatQuest;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        viewingWhatQuest = 0;
+
         puzzle1Progress = 0;
         puzzle5Progress = 0;
 
@@ -147,6 +150,7 @@ public class noteMenu : MonoBehaviour
 
         //audioSource = GetComponent<AudioSource>();
 
+
     }
 
     void PlayNotificationSound()
@@ -193,6 +197,7 @@ public class noteMenu : MonoBehaviour
                 Cursor.visible = true; //show cursor
                 Time.timeScale = 0f; //pause time
                 inNotesMenu = true;//signal to the pause menu that notes are open
+                motherOfHUD.SetActive(false);
             }
         }
 
@@ -208,7 +213,11 @@ public class noteMenu : MonoBehaviour
 
             puzzle1Activated = true;
 
-  
+            if (viewingWhatQuest == 1)
+            {
+                noteOneButton();
+            }
+
         }
         if (puzzle5Status == 1 && puzzle5Activated == false)
         {
@@ -216,6 +225,11 @@ public class noteMenu : MonoBehaviour
             progressNotification = true;
 
             puzzle5Activated = true;
+
+            if (viewingWhatQuest == 5)
+            {
+                noteFiveButton();
+            }
 
 
         }
@@ -239,7 +253,12 @@ public class noteMenu : MonoBehaviour
             noteNotification = true;
             note2Activated = true;
 
- 
+            if (viewingWhatQuest == 2)
+            {
+                noteTwoButton();
+            }
+
+
         }
         if (puzzle3Status == 1 && note3Activated == false)
         {
@@ -251,7 +270,11 @@ public class noteMenu : MonoBehaviour
             noteNotification = true;
             note3Activated = true;
 
- 
+            if (viewingWhatQuest == 3)
+            {
+                noteThreeButton();
+            }
+
         }
         if (puzzle4Status == 1 && note4Activated == false)
         {
@@ -263,7 +286,12 @@ public class noteMenu : MonoBehaviour
             noteNotification = true;
             note4Activated = true;
 
-  
+            if (viewingWhatQuest == 4)
+            {
+                noteFourButton();
+            }
+
+
         }
         if (puzzle6Status == 1 && note6Activated == false)
         {
@@ -271,6 +299,11 @@ public class noteMenu : MonoBehaviour
             progressNotification = true;
 
             note6Activated = true;
+
+            if (viewingWhatQuest == 6)
+            {
+                noteSixButton();
+            }
 
         }
 
@@ -455,46 +488,135 @@ public class noteMenu : MonoBehaviour
         player.GetComponent<PickupItem>().enabled = true;//re-enable player raycast controls for picking up items
         Cursor.lockState = CursorLockMode.Locked; //re-Locks cursor to middle of the screen
         inNotesMenu = false;//signal to the pause menu that notes are closed
+        motherOfHUD.SetActive(true);
+
     }
 
     //note buttons (can add more if needed)
     public void noteOneButton() //virtual
     {
+        viewingWhatQuest = 1;
+
         //noteText.text = "note 1 - objective: take misplaced items back to original homes. text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
-        changePage(0);
+        if (PlayerPrefs.GetInt("puzzle1Status", 0) == 1)
+        {
+            diaryNoteBaseMother.SetActive(true);
+
+            changePage(0);
+            noteText.text = " ";
+
+        }
+        else
+        {
+            diaryNoteBaseMother.SetActive(false);
+
+            noteText.text = "Find the six objects around the house, and put them where they belong!";
+        }
     }
     public void noteTwoButton() //virtual
     {
+        viewingWhatQuest = 2;
+
         //noteText.text = "note 2 - objective: repair the broken teapot. text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
-        changePage(1);
+        if (PlayerPrefs.GetInt("puzzle2Status", 0) == 1)
+        {
+            diaryNoteBaseMother.SetActive(true);
+
+            changePage(1);
+            noteText.text = " ";
+        }
+        else
+        {
+            diaryNoteBaseMother.SetActive(false);
+
+            noteText.text = "Find the broken teapot in the kitchen and reassemble it!";
+        }
     }
     public void noteThreeButton() //virtual
     {
+        viewingWhatQuest = 3;
+
         //noteText.text = "note 3 - objective: complete dylans grid puzzle. (automatically skipped as its incomplete). text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
-        changePage(2);
+        if (PlayerPrefs.GetInt("puzzle6Status", 0) == 1)
+        {
+            diaryNoteBaseMother.SetActive(true);
+
+            changePage(2);
+            noteText.text = " ";
+
+        }
+        else
+        {
+            diaryNoteBaseMother.SetActive(false);
+
+            noteText.text = "Find the game on the dining table, and move the piece to the flag!";
+        }
     }
     public void noteFourButton() //virtual
-    { 
+    {
+        viewingWhatQuest = 4;
+
         //noteText.text = "note 4 - objective: find photo to trigger memory(memory prompts player to find a relevant item, eg a wedding ring and bring it back to the photo). text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
-        changePage(3);
+        if (PlayerPrefs.GetInt("puzzle4Status", 0) == 1)
+        {
+            diaryNoteBaseMother.SetActive(true);
+
+            changePage(3);
+            noteText.text = " ";
+
+        }
+        else
+        {
+            diaryNoteBaseMother.SetActive(false);
+
+            noteText.text = "Find the picture in the bedroom, find the object that goes with it, and reunite them!";
+        }
     }
     public void noteFiveButton() //virtual
     {
         //noteText.text = "note 5 - objective: clean the house by taking any rubbish to the bin. text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
-        changePage(4);
+        viewingWhatQuest = 5;
+
+        if (PlayerPrefs.GetInt("puzzle5Status", 0) == 1)
+        {
+            diaryNoteBaseMother.SetActive(true);
+
+            changePage(4);
+            noteText.text = " ";
+
+        }
+        else
+        {
+            diaryNoteBaseMother.SetActive(false);
+
+            noteText.text = "Find the three trash bags around the house, and throw them away!";
+        }
+
     }
     public void noteSixButton() //virtual
     {
+        viewingWhatQuest = 6;
+
         //noteText.text = "note 6 - objective: complete dylans marble maze puzzle. (automatically skipped as its incomplete). text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
-        changePage(5);
+        if (PlayerPrefs.GetInt("puzzle6Status", 0) == 1)
+        {
+            diaryNoteBaseMother.SetActive(true);
+            changePage(5);
+            noteText.text = " ";
+
+        }
+        else
+        {
+            diaryNoteBaseMother.SetActive(false);
+            noteText.text = "Find the marble maze in the living room!";
+        }
+
     }
 
     //for note 0 at start of game
     void showStartNotification() //call this via an Invoke
     {
-        diaryNoteBaseMother.SetActive(true);
-
-        changePage(0);
+        diaryNoteBaseMother.SetActive(false);
 
         noteNotification = true;
         note1Button.SetActive(true);//show button in notes menu

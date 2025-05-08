@@ -311,7 +311,7 @@ public class PickupItem : MonoBehaviour
                     }
                 }
             }
-            else if (hit.collider.gameObject.tag == "radio" || hit.collider.gameObject.tag == "water1" || hit.collider.gameObject.tag == "water2" || hit.collider.gameObject.tag == "water3" || hit.collider.gameObject.tag == "brokenItemArea" || hit.collider.gameObject.tag == "puzzle3Area" || hit.collider.gameObject.tag == "puzzle6Area")
+            else if (hit.collider.gameObject.tag == "radio" || hit.collider.gameObject.tag == "water1" || hit.collider.gameObject.tag == "water2" || hit.collider.gameObject.tag == "water3" || hit.collider.gameObject.tag == "brokenItemArea" || hit.collider.gameObject.tag == "puzzle3Area" || hit.collider.gameObject.tag == "puzzle6Area" || hit.collider.gameObject.tag == "puzzle4Picture")
             {
                 //show correct text (hud elements)
                 pickUpItemText.SetActive(false);

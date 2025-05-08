@@ -537,7 +537,7 @@ public class noteMenu : MonoBehaviour
         viewingWhatQuest = 3;
 
         //noteText.text = "note 3 - objective: complete dylans grid puzzle. (automatically skipped as its incomplete). text blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa blaaa aaaa aaaa blaa aa aaa aaaa aaaa bla aaaa aaaaa aa";
-        if (PlayerPrefs.GetInt("puzzle6Status", 0) == 1)
+        if (PlayerPrefs.GetInt("puzzle3Status", 0) == 1)
         {
             diaryNoteBaseMother.SetActive(true);
 

@@ -26,6 +26,8 @@ public class PickupItem : MonoBehaviour
     public GameObject destination5;
     public GameObject destination6;
 
+    public AudioSource pickUpSFX;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -58,6 +60,8 @@ public class PickupItem : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.F)) //drop item
             {
+                pickUpSFX.Play();
+
                 SetLayerRecursively(collectedItem, LayerMask.NameToLayer("droppedItem"));
 
                 //renable the items physics
@@ -102,6 +106,8 @@ public class PickupItem : MonoBehaviour
 
                         if (Input.GetKeyDown(KeyCode.F)) //place item
                         {
+                            pickUpSFX.Play();
+
                             noteMenu.puzzle1Progress++;
 
                             SetLayerRecursively(collectedItem, LayerMask.NameToLayer("Default"));
@@ -218,6 +224,7 @@ public class PickupItem : MonoBehaviour
                 {
                     if (Input.GetKeyDown(KeyCode.F)) //pickup item
                     {
+                        pickUpSFX.Play();
 
                         //note which item the player is holding
                         collectedItem = hit.collider.gameObject;

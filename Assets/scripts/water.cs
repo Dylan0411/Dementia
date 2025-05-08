@@ -11,6 +11,8 @@ public class water : MonoBehaviour
 
     public GameObject player;
 
+    public AudioSource interactionSFX;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -42,6 +44,8 @@ public class water : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.F)) //Toggle light
                 {
+                    interactionSFX.Play();
+
                     interactWithWaterText.SetActive(false);
 
                     // toggle the active state of the light
@@ -56,6 +60,8 @@ public class water : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.F)) //Toggle light
                 {
+                    interactionSFX.Play();
+
                     interactWithWaterText.SetActive(false);
 
                     // toggle the active state of the light
@@ -70,6 +76,8 @@ public class water : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.F)) //Toggle light
                 {
+                    interactionSFX.Play();
+
                     interactWithWaterText.SetActive(false);
 
                     // toggle the active state of the light

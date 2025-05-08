@@ -9,6 +9,9 @@ public class radio : MonoBehaviour
 
     public GameObject player;
 
+    public AudioSource interactionSFX;
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,12 +35,16 @@ public class radio : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "radio")//if player is looking at the photo frame..
             {
+
+
                 //Show interaction hint
                 interactWithRadioText.SetActive(true);
 
 
                 if (Input.GetKeyDown(KeyCode.F)) //Toggle light
                 {
+                    interactionSFX.Play();
+
                     interactWithRadioText.SetActive(false);
 
                     // toggle the active state of the light

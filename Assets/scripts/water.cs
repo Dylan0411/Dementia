@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class water : MonoBehaviour
 {
-
-    public GameObject interactWithWaterText;
+    public GameObject interactWithWaterText1;
+    public GameObject interactWithWaterText2;
+    public GameObject interactWithWaterText3;
 
     public GameObject water1;
     public GameObject water2;
@@ -13,14 +14,15 @@ public class water : MonoBehaviour
 
     public AudioSource interactionSFX;
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Initialize UI and state
-        interactWithWaterText.SetActive(false);
+        // Initialize UI and state
+        interactWithWaterText1.SetActive(false);
+        interactWithWaterText2.SetActive(false);
+        interactWithWaterText3.SetActive(false);
 
-        //hide the ui showing the image to the player
+        // Hide the UI showing the image to the player
         water1.SetActive(false);
         water2.SetActive(false);
         water3.SetActive(false);
@@ -34,63 +36,58 @@ public class water : MonoBehaviour
 
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.blue); // TEMP - DELETE THIS
 
+        bool lookingAtWater = false; // Track if player is looking at any water object
+
         if (Physics.Raycast(ray, out hit, 2.5f))
         {
-            if (hit.collider.gameObject.tag == "water1")//if player is looking at the photo frame..
+            if (hit.collider.CompareTag("water1")) // If player is looking at water1
             {
-                //Show interaction hint
-                interactWithWaterText.SetActive(true);
+                interactWithWaterText1.SetActive(true);
+                lookingAtWater = true;
 
-
-                if (Input.GetKeyDown(KeyCode.F)) //Toggle light
+                if (Input.GetKeyDown(KeyCode.F)) // Toggle water1 state
                 {
                     interactionSFX.Play();
-
-                    interactWithWaterText.SetActive(false);
-
-                    // toggle the active state of the light
+                    interactWithWaterText1.SetActive(false);
                     water1.SetActive(!water1.activeSelf);
                 }
             }
-            else if (hit.collider.gameObject.tag == "water2")//if player is looking at the photo frame..
+
+            if (hit.collider.CompareTag("water2")) // If player is looking at water2
             {
-                //Show interaction hint
-                interactWithWaterText.SetActive(true);
+                interactWithWaterText2.SetActive(true);
+                lookingAtWater = true;
 
-
-                if (Input.GetKeyDown(KeyCode.F)) //Toggle light
+                if (Input.GetKeyDown(KeyCode.F)) // Toggle water2 state
                 {
                     interactionSFX.Play();
-
-                    interactWithWaterText.SetActive(false);
-
-                    // toggle the active state of the light
+                    interactWithWaterText2.SetActive(false);
                     water2.SetActive(!water2.activeSelf);
                 }
             }
-            else if (hit.collider.gameObject.tag == "water3")//if player is looking at the photo frame..
+
+            if (hit.collider.CompareTag("water3")) // If player is looking at water3
             {
-                //Show interaction hint
-                interactWithWaterText.SetActive(true);
+                interactWithWaterText3.SetActive(true);
+                lookingAtWater = true;
+                Debug.Log("water3 active");
 
-
-                if (Input.GetKeyDown(KeyCode.F)) //Toggle light
+                if (Input.GetKeyDown(KeyCode.F)) // Toggle water3 state
                 {
                     interactionSFX.Play();
-
-                    interactWithWaterText.SetActive(false);
-
-                    // toggle the active state of the light
+                    interactWithWaterText3.SetActive(false);
                     water3.SetActive(!water3.activeSelf);
-
                 }
             }
-            else
-            {
-                //Hide interaction hint
-                interactWithWaterText.SetActive(false);
+        }
 
-            }
+        // Hide all interaction texts only when the player is NOT looking at any water object
+        if (!lookingAtWater)
+        {
+            interactWithWaterText1.SetActive(false);
+            interactWithWaterText2.SetActive(false);
+            interactWithWaterText3.SetActive(false);
+            Debug.Log("water3 inactive"); // Debug log for when water3 is inactive
         }
     }
 }

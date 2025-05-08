@@ -19,9 +19,15 @@ public class crosshairController : MonoBehaviour
         int note1Status = PlayerPrefs.GetInt("puzzle1Status", 0);
         int note3Status = PlayerPrefs.GetInt("puzzle3Status", 0);
         int note5Status = PlayerPrefs.GetInt("puzzle5Status", 0);
+        int note6Status = PlayerPrefs.GetInt("puzzle6Status", 0);
         int note4Status = PlayerPrefs.GetInt("puzzle4Status", 0);
         int note2Status = PlayerPrefs.GetInt("puzzle2Status", 0);
 
+        if (note6Status == 1)
+        {
+            defaultCrosshair.SetActive(false);
+            interactableCrosshair.SetActive(false);
+        }
 
         Ray ray;
         RaycastHit hit;
@@ -55,31 +61,6 @@ public class crosshairController : MonoBehaviour
                     interactableCrosshair.SetActive(true);
                     defaultCrosshair.SetActive(false);
                 }
-                else if (hit.collider.gameObject.tag == "lightSwitch1")
-                {
-                    interactableCrosshair.SetActive(true);
-                    defaultCrosshair.SetActive(false);
-                }
-                else if (hit.collider.gameObject.tag == "lightSwitch2")
-                {
-                    interactableCrosshair.SetActive(true);
-                    defaultCrosshair.SetActive(false);
-                }
-                else if (hit.collider.gameObject.tag == "lightSwitch3")
-                {
-                    interactableCrosshair.SetActive(true);
-                    defaultCrosshair.SetActive(false);
-                }
-                else if (hit.collider.gameObject.tag == "lightSwitch4")
-                {
-                    interactableCrosshair.SetActive(true);
-                    defaultCrosshair.SetActive(false);
-                }
-                else if (hit.collider.gameObject.tag == "lightSwitch5")
-                {
-                    interactableCrosshair.SetActive(true);
-                    defaultCrosshair.SetActive(false);
-                }
                 else if (hit.collider.gameObject.tag == "water1")
                 {
                     interactableCrosshair.SetActive(true);
@@ -91,6 +72,11 @@ public class crosshairController : MonoBehaviour
                     defaultCrosshair.SetActive(false);
                 }
                 else if (hit.collider.gameObject.tag == "water3")
+                {
+                    interactableCrosshair.SetActive(true);
+                    defaultCrosshair.SetActive(false);
+                }
+                else if (hit.collider.gameObject.tag == "radio")
                 {
                     interactableCrosshair.SetActive(true);
                     defaultCrosshair.SetActive(false);

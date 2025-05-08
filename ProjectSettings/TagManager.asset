@@ -32,6 +32,7 @@ TagManager:
   - mazeCompletionZone
   - puzzle3Area
   - gridCompletionZone
+  - radio
   layers:
   - Default
   - TransparentFX

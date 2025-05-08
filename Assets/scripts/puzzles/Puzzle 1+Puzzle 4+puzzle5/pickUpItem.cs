@@ -102,6 +102,8 @@ public class PickupItem : MonoBehaviour
 
                         if (Input.GetKeyDown(KeyCode.F)) //place item
                         {
+                            noteMenu.puzzle1Progress++;
+
                             SetLayerRecursively(collectedItem, LayerMask.NameToLayer("Default"));
 
                             //note the destination object

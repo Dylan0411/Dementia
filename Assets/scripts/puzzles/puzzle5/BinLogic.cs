@@ -19,6 +19,7 @@ public class BinLogic : MonoBehaviour
                 {
                     bool flag = validIDs.Remove(item.idNumber);
                     Debug.Log(flag ? "Removed item successfully" : "Item unable to be removed or item not found in list");
+                    noteMenu.puzzle5Progress++;
 
                     // Instantiate explosion effect before destroying the object
                     Instantiate(explosionParticles, other.transform.position, other.transform.rotation);

@@ -69,10 +69,20 @@ public class noteMenu : MonoBehaviour
 
     public GameObject diaryNoteBaseMother;
 
+    public Text puzzle1ProgressTEXT;
+    public Text puzzle5ProgressTEXT;
+    public static int puzzle1Progress;
+    public static int puzzle5Progress;
+
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        puzzle1Progress = 0;
+        puzzle5Progress = 0;
+
         diaryNoteBaseMother.SetActive(false);
 
         motherOfHUD.SetActive(true);
@@ -149,6 +159,14 @@ public class noteMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        puzzle5ProgressTEXT.text = puzzle5Progress.ToString();
+        puzzle1ProgressTEXT.text = puzzle1Progress.ToString();
+
+        if (puzzle1Progress > 6)
+        {
+            puzzle1Progress = 6;
+        }
+
         //display the correct notes, default is 0 (no note) -> can add more in future if needed
         int puzzle1Status = PlayerPrefs.GetInt("puzzle1Status", 0);
         int puzzle2Status = PlayerPrefs.GetInt("puzzle2Status", 0);

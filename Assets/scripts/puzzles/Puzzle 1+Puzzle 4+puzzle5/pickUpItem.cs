@@ -58,7 +58,7 @@ public class PickupItem : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.F)) //drop item
             {
-                SetLayerRecursively(collectedItem, LayerMask.NameToLayer("Default"));
+                SetLayerRecursively(collectedItem, LayerMask.NameToLayer("droppedItem"));
 
                 //renable the items physics
                 Rigidbody itemRigidbody = collectedItem.GetComponent<Rigidbody>();

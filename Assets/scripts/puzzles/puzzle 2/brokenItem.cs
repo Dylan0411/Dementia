@@ -73,9 +73,23 @@ public class brokenItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            teapotGrind.Play();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            teapotGrind.Play();
+        }
+
+        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A) || PlayerPrefs.GetInt("puzzle2Status") == 1 || Input.GetKey(KeyCode.F))
+        {
+            teapotGrind.Stop();
+        }
 
         if (correctPieces == 7) //if all the fragments are in the right place
         {
+            teapotGrind.Stop();
             PlayerPrefs.SetInt("puzzle2Status", 1); //mark as complete
         }
 
@@ -208,17 +222,12 @@ public class brokenItem : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.D)) //rotate the ghost teapot clockwise
         {
-            if (grinding != true){ grinding = true; teapotGrind.Play(); }
             ghostTeapot.transform.Rotate(-Vector3.forward, rotationSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.A)) //rotate the ghost teapot anti-clockwise
         {
-            if (grinding != true) { grinding = true; teapotGrind.Play(); }
             ghostTeapot.transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
         }
-        if (Input.GetKeyUp(KeyCode.A)) { grinding = false; }
-        if (Input.GetKeyUp(KeyCode.D)) { grinding = false; }
-        if (grinding == false) { teapotGrind.Stop(); }
     }
 
     //used to recenter the cursor after the player leaves the table

@@ -175,6 +175,9 @@ public class noteMenu : MonoBehaviour
         int puzzle5Status = PlayerPrefs.GetInt("puzzle5Status", 0);
         int puzzle6Status = PlayerPrefs.GetInt("puzzle6Status", 0);
 
+        PlayerPrefs.SetInt("puzzle1Status", 1);
+        PlayerPrefs.SetInt("puzzle5Status", 1);
+
 
         //notes menu button
         if (Input.GetKeyUp(KeyCode.Tab) && puzzle6Status != 1) //if tab key pressed then pause game and show notes menu

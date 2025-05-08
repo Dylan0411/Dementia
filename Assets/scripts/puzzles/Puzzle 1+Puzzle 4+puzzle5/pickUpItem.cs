@@ -304,6 +304,14 @@ public class PickupItem : MonoBehaviour
                     }
                 }
             }
+            else if (hit.collider.gameObject.tag == "radio" || hit.collider.gameObject.tag == "water1" || hit.collider.gameObject.tag == "water2" || hit.collider.gameObject.tag == "water3")
+            {
+                //show correct text (hud elements)
+                pickUpItemText.SetActive(false);
+                placeItemText.SetActive(false);
+                dropItemText.SetActive(false);
+                canDrop = false;
+            }
             else //change crosshair back if ray is fired into a different tag AND display the correct text
             {
                 //show correct text (hud elements)
@@ -321,7 +329,7 @@ public class PickupItem : MonoBehaviour
             //show correct text (hud elements)
             pickUpItemText.SetActive(false);
             placeItemText.SetActive(false);
-            if (collectedItem != null)
+            if (collectedItem != null)// || hit.collider.gameObject.tag == "radio" || hit.collider.gameObject.tag == "water1" || hit.collider.gameObject.tag == "water2" || hit.collider.gameObject.tag == "water3")
             {
                 dropItemText.SetActive(true);
                 canDrop = true;//allow the player to drop the item in their hand

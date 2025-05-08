@@ -15,9 +15,19 @@ public class pauseMenu : MonoBehaviour
 
     public GameObject hudElements;
 
+    public AudioSource water1SFX;
+    public AudioSource water2SFX;
+    public AudioSource water3SFX;
+    public AudioSource radioSFX;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() //hide menus when game launches and enable the player look script
     {
+        radioSFX.UnPause();
+        water1SFX.UnPause();
+        water2SFX.UnPause();
+        water3SFX.UnPause();
+
         resumeButton();//resume game
 
         pauseMenuCanvas.SetActive(false);
@@ -36,6 +46,11 @@ public class pauseMenu : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Escape) && isPaused == false && puzzle6Status != 1) //if esc key pressed then pause game
         {
+            radioSFX.Pause();
+            water1SFX.Pause();
+            water2SFX.Pause();
+            water3SFX.Pause();
+
             isPaused = true;
 
             player.GetComponent<playerLook>().enabled = false;//disable player look controls
@@ -59,6 +74,12 @@ public class pauseMenu : MonoBehaviour
     //pause menu buttons
     public void resumeButton() //virtual
     {
+        radioSFX.UnPause();
+        water1SFX.UnPause();
+        water2SFX.UnPause();
+        water3SFX.UnPause();
+
+
         pauseMenuCanvas.SetActive(false);//hide pause menu
 
         isPaused = false;

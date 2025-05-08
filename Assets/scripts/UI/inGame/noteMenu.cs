@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections; // Required for IEnumerator
+using UnityEngine.Audio;
 
 public class noteMenu : MonoBehaviour
 {
@@ -74,6 +75,8 @@ public class noteMenu : MonoBehaviour
     public static int puzzle1Progress;
     public static int puzzle5Progress;
 
+    float audioMemory;
+    public AudioMixer audioMixer;
 
 
 
@@ -278,8 +281,8 @@ public class noteMenu : MonoBehaviour
             //enable end of game script
             Debug.Log("All puzzles complete!");
 
-
-
+            audioMixer.GetFloat("SFXVolume", out audioMemory);
+            audioMixer.SetFloat("SFXVolume", -80f);
             //then wait for 3 seconds via an invoke
             Invoke("beginEndOfGame", 2f);
 
@@ -333,6 +336,8 @@ public class noteMenu : MonoBehaviour
         endOfGameCanvas2.SetActive(true); //show end of game screen
 
         endOfGameCanvas1.SetActive(false); //show end of game screen
+
+        audioMixer.SetFloat("SFXVolume", audioMemory);
 
         Invoke("loadMainMenu", 5f);
     }
